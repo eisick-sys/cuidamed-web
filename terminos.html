@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Términos y Condiciones — CuidaMED</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #0A7E6A;
+      --secondary: #12B896;
+      --bg: #F7FAFA;
+      --text: #1A2E2A;
+      --muted: #6B8F8A;
+      --border: #C5DEDD;
+      --light: #DCF5F1;
+      --warning: #FFF8EC;
+      --warning-border: #E8A838;
+      --warning-text: #7A5000;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    header {
+      background: var(--primary);
+      padding: 48px 24px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: rgba(18,184,150,0.15);
+      top: -150px; right: -100px;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      width: 250px; height: 250px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+      bottom: -80px; left: -60px;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 40px; height: 40px;
+      background: white;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .logo-icon svg { width: 24px; height: 24px; }
+
+    .logo-text {
+      font-family: 'DM Serif Display', serif;
+      font-size: 24px;
+      color: white;
+      letter-spacing: -0.3px;
+    }
+
+    header h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(26px, 5vw, 38px);
+      color: white;
+      font-weight: 400;
+      position: relative; z-index: 1;
+    }
+
+    header p.subtitle {
+      color: rgba(255,255,255,0.75);
+      font-size: 14px;
+      margin-top: 8px;
+      font-weight: 300;
+      position: relative; z-index: 1;
+    }
+
+    .date-badge {
+      display: inline-block;
+      background: var(--light);
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 500;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-top: 12px;
+    }
+
+    .toc-wrap {
+      max-width: 780px;
+      margin: 40px auto 0;
+      padding: 0 24px;
+    }
+
+    .toc {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 32px;
+    }
+
+    .toc h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 18px;
+      color: var(--primary);
+      margin-bottom: 16px;
+      font-weight: 400;
+    }
+
+    .toc ol { padding-left: 20px; }
+    .toc li { margin-bottom: 6px; }
+    .toc a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+    .toc a:hover { color: var(--primary); }
+
+    main {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    section {
+      margin-bottom: 48px;
+      padding-top: 8px;
+    }
+
+    section h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px;
+      color: var(--primary);
+      font-weight: 400;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    section h3 {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text);
+      margin: 20px 0 8px;
+    }
+
+    section p {
+      color: var(--text);
+      font-size: 15px;
+      margin-bottom: 12px;
+      font-weight: 300;
+    }
+
+    section ul, section ol {
+      padding-left: 20px;
+      margin-bottom: 12px;
+    }
+
+    section li {
+      font-size: 15px;
+      font-weight: 300;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .highlight-box {
+      background: var(--light);
+      border-left: 3px solid var(--secondary);
+      border-radius: 0 10px 10px 0;
+      padding: 16px 20px;
+      margin: 20px 0;
+    }
+
+    .highlight-box p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--primary);
+    }
+
+    /* Disclaimer especial — más prominente */
+    .disclaimer-box {
+      background: var(--warning);
+      border: 1.5px solid var(--warning-border);
+      border-radius: 14px;
+      padding: 24px 28px;
+      margin: 24px 0;
+    }
+
+    .disclaimer-box .disclaimer-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 17px;
+      color: var(--warning-text);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .disclaimer-box p {
+      font-size: 14px;
+      color: var(--warning-text);
+      margin-bottom: 8px;
+    }
+
+    .disclaimer-box ul {
+      padding-left: 18px;
+    }
+
+    .disclaimer-box li {
+      font-size: 14px;
+      color: var(--warning-text);
+      margin-bottom: 6px;
+    }
+
+    .contact-card {
+      background: var(--primary);
+      border-radius: 16px;
+      padding: 32px;
+      color: white;
+      margin-top: 48px;
+    }
+
+    .contact-card h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px;
+      font-weight: 400;
+      margin-bottom: 12px;
+      color: white;
+      border: none;
+      padding: 0;
+    }
+
+    .contact-card p {
+      color: rgba(255,255,255,0.8);
+      font-size: 14px;
+      font-weight: 300;
+      margin-bottom: 8px;
+    }
+
+    .contact-card a {
+      color: var(--secondary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .contact-card a:hover { text-decoration: underline; }
+
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      background: white;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    footer a { color: var(--primary); text-decoration: none; }
+
+    a { color: var(--primary); }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C9.5 2 7 4 7 7C7 9.5 8.5 11.5 10.5 12.5C8 13.5 5 16 5 20H19C19 16 16 13.5 13.5 12.5C15.5 11.5 17 9.5 17 7C17 4 14.5 2 12 2Z" fill="#0A7E6A"/>
+          <rect x="11" y="4" width="2" height="6" rx="1" fill="white"/>
+          <rect x="9" y="6" width="6" height="2" rx="1" fill="white"/>
+        </svg>
+      </div>
+      <span class="logo-text">CuidaMED</span>
+    </div>
+    <h1>Términos y Condiciones</h1>
+    <p class="subtitle">Condiciones de uso de la plataforma CuidaMED</p>
+    <div class="date-badge">Vigente desde el 7 de junio de 2025</div>
+  </header>
+
+  <div class="toc-wrap">
+    <div class="toc">
+      <h2>Contenido</h2>
+      <ol>
+        <li><a href="#objeto">Objeto y naturaleza de la plataforma</a></li>
+        <li><a href="#registro">Registro y condiciones de uso</a></li>
+        <li><a href="#pacientes">Condiciones para pacientes</a></li>
+        <li><a href="#profesionales">Condiciones para profesionales</a></li>
+        <li><a href="#disclaimer">Limitación de responsabilidad — Actuación de profesionales</a></li>
+        <li><a href="#pagos">Pagos, comisiones y suscripciones</a></li>
+        <li><a href="#contenido">Contenido y conducta en la plataforma</a></li>
+        <li><a href="#suspension">Suspensión y eliminación de cuentas</a></li>
+        <li><a href="#propiedad">Propiedad intelectual</a></li>
+        <li><a href="#ley">Ley aplicable y jurisdicción</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ol>
+    </div>
+  </div>
+
+  <main>
+
+    <section id="objeto">
+      <h2>1. Objeto y naturaleza de la plataforma</h2>
+      <p>CuidaMED es una plataforma digital de intermediación que conecta a pacientes con profesionales de salud independientes para la prestación de servicios a domicilio en Chile. La plataforma es operada por Octavio Eduardo Salinas Cabrera, RUT 10.994.322-3.</p>
+      <p>Al registrarte y usar CuidaMED, aceptas íntegramente estos Términos y Condiciones, así como nuestra <a href="/privacidad/">Política de Privacidad</a>. Si no estás de acuerdo con alguna de estas condiciones, no debes utilizar la plataforma.</p>
+
+      <div class="highlight-box">
+        <p>📋 CuidaMED actúa exclusivamente como <strong>intermediario tecnológico</strong>. No es un prestador de servicios de salud, no emplea a los profesionales registrados ni dirige su actuación clínica.</p>
+      </div>
+    </section>
+
+    <section id="registro">
+      <h2>2. Registro y condiciones de uso</h2>
+      <p>Para usar CuidaMED debes:</p>
+      <ul>
+        <li>Ser mayor de 18 años</li>
+        <li>Proporcionar información veraz, completa y actualizada al registrarte</li>
+        <li>Mantener la confidencialidad de tu contraseña y credenciales de acceso</li>
+        <li>No ceder tu cuenta a terceros</li>
+        <li>Notificarnos de inmediato ante cualquier uso no autorizado de tu cuenta</li>
+      </ul>
+      <p>CuidaMED se reserva el derecho de verificar la identidad de los usuarios y rechazar o eliminar cuentas que incumplan estas condiciones.</p>
+    </section>
+
+    <section id="pacientes">
+      <h2>3. Condiciones para pacientes</h2>
+      <p>Como paciente, al solicitar un servicio a través de CuidaMED:</p>
+      <ul>
+        <li>Entregas información veraz sobre el servicio requerido y el estado de salud relevante para su ejecución</li>
+        <li>Eres responsable de proporcionar las condiciones de seguridad e higiene mínimas para que el profesional pueda atenderte en tu domicilio</li>
+        <li>Reconoces que el profesional que acuda a tu domicilio es un prestador independiente, no un empleado de CuidaMED</li>
+        <li>Te comprometes a realizar el pago acordado por el servicio</li>
+        <li>Puedes calificar y reseñar al profesional tras completar el servicio, con veracidad y buena fe</li>
+      </ul>
+    </section>
+
+    <section id="profesionales">
+      <h2>4. Condiciones para profesionales</h2>
+      <p>Al registrarte como profesional en CuidaMED, declaras y garantizas que:</p>
+      <ul>
+        <li>Posees los títulos, certificaciones y registros exigidos por la legislación chilena para ejercer tu profesión (Código Sanitario, Ley 15.076 y normas complementarias según corresponda)</li>
+        <li>Tu registro en el RNPI (Registro Nacional de Prestadores Individuales de Salud) está vigente, cuando aplique a tu profesión</li>
+        <li>Ejerces de forma independiente y no en relación de subordinación o dependencia con CuidaMED</li>
+        <li>Cuentas con seguro de responsabilidad civil o asumes personalmente la responsabilidad por los servicios prestados</li>
+        <li>Mantendrás actualizada tu información en la plataforma, incluyendo datos de contacto, tipo de servicios y tarifas</li>
+        <li>No utilizarás la plataforma para captar clientes de forma desleal o para actividades ajenas a la prestación de salud</li>
+      </ul>
+
+      <div class="highlight-box">
+        <p>⚕️ Los <strong>cuidadores</strong> registrados en CuidaMED no requieren inscripción en el RNPI, ya que no están regulados por el Código Sanitario. Sin embargo, deben igualmente cumplir con todas las demás condiciones aplicables.</p>
+      </div>
+    </section>
+
+    <section id="disclaimer">
+      <h2>5. Limitación de responsabilidad — Actuación de profesionales</h2>
+
+      <div class="disclaimer-box">
+        <div class="disclaimer-title">⚠️ Aviso importante — Naturaleza de la plataforma</div>
+        <p><strong>CuidaMED es una plataforma de intermediación tecnológica, no un prestador de servicios de salud.</strong> Los servicios de atención clínica, cuidado y rehabilitación son prestados directamente por profesionales independientes que operan bajo su propia responsabilidad.</p>
+      </div>
+
+      <h3>5.1 Independencia de los profesionales</h3>
+      <p>Los profesionales registrados en CuidaMED son prestadores independientes. No existe entre ellos y CuidaMED ninguna relación laboral, de mandato, de sociedad ni de representación. CuidaMED no imparte instrucciones clínicas a los profesionales ni dirige su actuación técnica o sanitaria.</p>
+
+      <h3>5.2 Responsabilidad del profesional</h3>
+      <p>Cada profesional es el único responsable de:</p>
+      <ul>
+        <li>La correcta ejecución del servicio conforme a la <em>lex artis</em> de su disciplina</li>
+        <li>El cumplimiento de la normativa sanitaria, ética y deontológica aplicable</li>
+        <li>Los daños físicos, psicológicos o patrimoniales que pudieran derivarse de su actuación u omisión</li>
+        <li>La veracidad de sus títulos, registros y habilitaciones profesionales</li>
+      </ul>
+
+      <h3>5.3 Verificación de credenciales</h3>
+      <p>CuidaMED realiza verificaciones de identidad y consulta al Registro Nacional de Prestadores Individuales de Salud (RNPI) de la Superintendencia de Salud para aquellas profesiones reguladas. No obstante, esta verificación:</p>
+      <ul>
+        <li>No garantiza la idoneidad clínica ni la calidad de la atención prestada</li>
+        <li>No implica que CuidaMED avale, recomiende ni responde por la actuación del profesional</li>
+        <li>Puede estar sujeta a desfases entre el estado del registro en el RNPI y la situación real del profesional</li>
+      </ul>
+
+      <h3>5.4 Limitación de responsabilidad de CuidaMED</h3>
+      <p>En la máxima extensión permitida por la legislación chilena vigente, CuidaMED no será responsable por:</p>
+      <ul>
+        <li>Daños a la salud, lesiones o fallecimiento derivados de la atención prestada por un profesional</li>
+        <li>Incumplimientos contractuales entre paciente y profesional</li>
+        <li>Actuaciones fraudulentas, negligentes o dolosas de los profesionales registrados</li>
+        <li>Pérdidas o daños en el domicilio del paciente durante la prestación del servicio</li>
+        <li>La falta de disponibilidad de profesionales en una zona o fecha determinada</li>
+      </ul>
+
+      <div class="disclaimer-box">
+        <div class="disclaimer-title">⚠️ Recomendación al paciente</div>
+        <p>Antes de contratar un servicio, te recomendamos verificar las credenciales del profesional en <strong>rnpi.superdesalud.gob.cl</strong> y consultar las reseñas de otros usuarios en la plataforma. Ante cualquier situación de emergencia médica, contacta al <strong>SAMU (131)</strong> o acude al servicio de urgencias más cercano.</p>
+      </div>
+    </section>
+
+    <section id="pagos">
+      <h2>6. Pagos, comisiones y suscripciones</h2>
+
+      <h3>6.1 Comisión por servicio</h3>
+      <p>CuidaMED cobra una comisión del <strong>10% sobre el valor del servicio completado</strong>. Esta comisión se descuenta del monto pagado por el paciente antes de transferir el saldo al profesional.</p>
+
+      <h3>6.2 Suscripción de profesionales</h3>
+      <p>Los profesionales pueden contratar una suscripción mensual que otorga beneficios adicionales de visibilidad en la plataforma. Las condiciones específicas del plan (precio, beneficios, período de prueba) se informan al momento de la contratación.</p>
+      <ul>
+        <li>Los nuevos suscriptores tienen un <strong>período de prueba de 7 días</strong> sin costo</li>
+        <li>Los profesionales sin suscripción activa tendrán visibilidad reducida en los resultados de búsqueda</li>
+        <li>Las suscripciones se renuevan automáticamente salvo cancelación expresa</li>
+      </ul>
+
+      <h3>6.3 Procesamiento de pagos</h3>
+      <p>Los pagos se procesan a través de <strong>MercadoPago</strong>. CuidaMED no almacena datos de tarjetas de crédito ni débito. Las transacciones están sujetas a los términos y condiciones de MercadoPago.</p>
+
+      <h3>6.4 Política de reembolsos</h3>
+      <p>Los reembolsos se evaluarán caso a caso ante solicitud del paciente, cuando el servicio no haya sido prestado o haya sido prestado de forma manifiestamente deficiente. Las disputas entre paciente y profesional deben notificarse a CuidaMED dentro de los <strong>5 días hábiles</strong> siguientes al servicio.</p>
+    </section>
+
+    <section id="contenido">
+      <h2>7. Contenido y conducta en la plataforma</h2>
+      <p>Al usar CuidaMED, te comprometes a no:</p>
+      <ul>
+        <li>Publicar información falsa, engañosa o que induzca a error</li>
+        <li>Subir contenido ofensivo, discriminatorio, obsceno o que infrinja derechos de terceros</li>
+        <li>Usar la plataforma para fines distintos a la contratación de servicios de salud a domicilio</li>
+        <li>Contactar a otros usuarios fuera de la plataforma para evadir las comisiones</li>
+        <li>Realizar reseñas falsas o manipular el sistema de calificaciones</li>
+        <li>Intentar acceder de forma no autorizada a sistemas o datos de la plataforma</li>
+      </ul>
+      <p>CuidaMED aplica filtros automáticos de contenido inapropiado en el sistema de mensajería y se reserva el derecho de eliminar contenido que infrinja estas normas.</p>
+    </section>
+
+    <section id="suspension">
+      <h2>8. Suspensión y eliminación de cuentas</h2>
+      <p>CuidaMED puede suspender o eliminar una cuenta, con o sin previo aviso, en los siguientes casos:</p>
+      <ul>
+        <li>Incumplimiento de estos Términos y Condiciones</li>
+        <li>Uso fraudulento o abusivo de la plataforma</li>
+        <li>Verificación de credenciales falsas o desactualizadas</li>
+        <li>Conducta inapropiada, acoso o amenazas hacia otros usuarios</li>
+        <li>Solicitud del propio usuario</li>
+      </ul>
+      <p>La eliminación de una cuenta no exime al usuario de las obligaciones de pago devengadas con anterioridad.</p>
+    </section>
+
+    <section id="propiedad">
+      <h2>9. Propiedad intelectual</h2>
+      <p>La marca CuidaMED, el logotipo, el diseño de la plataforma, el código fuente y todos los contenidos generados por CuidaMED son propiedad de Octavio Eduardo Salinas Cabrera y están protegidos por la legislación chilena de propiedad intelectual (Ley 17.336).</p>
+      <p>Queda prohibida su reproducción, distribución o uso comercial sin autorización expresa y escrita.</p>
+      <p>Los usuarios conservan la propiedad de los contenidos que publican (descripciones, fotos de perfil, reseñas) y otorgan a CuidaMED una licencia no exclusiva para mostrarlos dentro de la plataforma con el fin de prestar el servicio.</p>
+    </section>
+
+    <section id="ley">
+      <h2>10. Ley aplicable y jurisdicción</h2>
+      <p>Estos Términos y Condiciones se rigen por las leyes de la República de Chile, en particular:</p>
+      <ul>
+        <li>Ley N° 19.628 — Protección de la Vida Privada</li>
+        <li>Ley N° 19.496 — Protección de los Derechos de los Consumidores</li>
+        <li>Ley N° 17.336 — Propiedad Intelectual</li>
+        <li>Código Sanitario y normativa de la Superintendencia de Salud</li>
+      </ul>
+      <p>Para cualquier controversia derivada del uso de la plataforma, las partes se someten a la jurisdicción de los Tribunales de Justicia de Chile, sin perjuicio del derecho del consumidor a recurrir al Servicio Nacional del Consumidor (SERNAC).</p>
+    </section>
+
+    <div class="contact-card" id="contacto">
+      <h2>11. Contacto</h2>
+      <p>¿Tienes preguntas sobre estos términos o necesitas asistencia?</p>
+      <p>📧 <a href="mailto:contacto@cuidamed.cl">contacto@cuidamed.cl</a></p>
+      <p>🌐 <a href="https://www.cuidamed.cl" target="_blank">www.cuidamed.cl</a></p>
+      <p style="margin-top: 16px; font-size: 13px;">Octavio Eduardo Salinas Cabrera · RUT 10.994.322-3 · Chile</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>© 2025 CuidaMED — Todos los derechos reservados</p>
+    <p style="margin-top: 6px;"><a href="https://www.cuidamed.cl">www.cuidamed.cl</a> · <a href="/privacidad/">Política de Privacidad</a> · <a href="mailto:contacto@cuidamed.cl">contacto@cuidamed.cl</a></p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Política de Privacidad — CuidaMED</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #0A7E6A;
+      --secondary: #12B896;
+      --bg: #F7FAFA;
+      --text: #1A2E2A;
+      --muted: #6B8F8A;
+      --border: #C5DEDD;
+      --light: #DCF5F1;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    /* HEADER */
+    header {
+      background: var(--primary);
+      padding: 48px 24px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: rgba(18, 184, 150, 0.15);
+      top: -150px;
+      right: -100px;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+      bottom: -80px;
+      left: -60px;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: white;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-icon svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .logo-text {
+      font-family: 'DM Serif Display', serif;
+      font-size: 24px;
+      color: white;
+      letter-spacing: -0.3px;
+    }
+
+    header h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(26px, 5vw, 38px);
+      color: white;
+      font-weight: 400;
+      position: relative;
+      z-index: 1;
+    }
+
+    header p.subtitle {
+      color: rgba(255,255,255,0.75);
+      font-size: 14px;
+      margin-top: 8px;
+      font-weight: 300;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ÍNDICE */
+    .toc-wrap {
+      max-width: 780px;
+      margin: 40px auto 0;
+      padding: 0 24px;
+    }
+
+    .toc {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 32px;
+    }
+
+    .toc h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 18px;
+      color: var(--primary);
+      margin-bottom: 16px;
+      font-weight: 400;
+    }
+
+    .toc ol {
+      padding-left: 20px;
+    }
+
+    .toc li {
+      margin-bottom: 6px;
+    }
+
+    .toc a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+
+    .toc a:hover {
+      color: var(--primary);
+    }
+
+    /* CONTENIDO */
+    main {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    section {
+      margin-bottom: 48px;
+      padding-top: 8px;
+    }
+
+    section h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px;
+      color: var(--primary);
+      font-weight: 400;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    section h3 {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text);
+      margin: 20px 0 8px;
+    }
+
+    section p {
+      color: var(--text);
+      font-size: 15px;
+      margin-bottom: 12px;
+      font-weight: 300;
+    }
+
+    section ul, section ol {
+      padding-left: 20px;
+      margin-bottom: 12px;
+    }
+
+    section li {
+      font-size: 15px;
+      font-weight: 300;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .highlight-box {
+      background: var(--light);
+      border-left: 3px solid var(--secondary);
+      border-radius: 0 10px 10px 0;
+      padding: 16px 20px;
+      margin: 20px 0;
+    }
+
+    .highlight-box p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--primary);
+    }
+
+    /* CONTACT */
+    .contact-card {
+      background: var(--primary);
+      border-radius: 16px;
+      padding: 32px;
+      color: white;
+      margin-top: 48px;
+    }
+
+    .contact-card h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px;
+      font-weight: 400;
+      margin-bottom: 12px;
+      color: white;
+      border: none;
+      padding: 0;
+    }
+
+    .contact-card p {
+      color: rgba(255,255,255,0.8);
+      font-size: 14px;
+      font-weight: 300;
+      margin-bottom: 8px;
+    }
+
+    .contact-card a {
+      color: var(--secondary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .contact-card a:hover {
+      text-decoration: underline;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      background: white;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    footer a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    /* BADGE fecha */
+    .date-badge {
+      display: inline-block;
+      background: var(--light);
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 500;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C9.5 2 7 4 7 7C7 9.5 8.5 11.5 10.5 12.5C8 13.5 5 16 5 20H19C19 16 16 13.5 13.5 12.5C15.5 11.5 17 9.5 17 7C17 4 14.5 2 12 2Z" fill="#0A7E6A"/>
+          <rect x="11" y="4" width="2" height="6" rx="1" fill="white"/>
+          <rect x="9" y="6" width="6" height="2" rx="1" fill="white"/>
+        </svg>
+      </div>
+      <span class="logo-text">CuidaMED</span>
+    </div>
+    <h1>Política de Privacidad</h1>
+    <p class="subtitle">Cómo recopilamos, usamos y protegemos tu información</p>
+    <div class="date-badge">Vigente desde el 7 de junio de 2025</div>
+  </header>
+
+  <div class="toc-wrap">
+    <div class="toc">
+      <h2>Contenido</h2>
+      <ol>
+        <li><a href="#responsable">Responsable del tratamiento</a></li>
+        <li><a href="#datos">Datos que recopilamos</a></li>
+        <li><a href="#finalidades">Finalidades del tratamiento</a></li>
+        <li><a href="#base">Base legal</a></li>
+        <li><a href="#compartir">Con quién compartimos tus datos</a></li>
+        <li><a href="#retencion">Retención de datos</a></li>
+        <li><a href="#seguridad">Seguridad</a></li>
+        <li><a href="#derechos">Tus derechos (Ley 19.628)</a></li>
+        <li><a href="#menores">Menores de edad</a></li>
+        <li><a href="#cambios">Cambios a esta política</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ol>
+    </div>
+  </div>
+
+  <main>
+
+    <section id="responsable">
+      <h2>1. Responsable del tratamiento</h2>
+      <p>El responsable del tratamiento de tus datos personales es:</p>
+      <ul>
+        <li><strong>Nombre:</strong> Octavio Eduardo Salinas Cabrera</li>
+        <li><strong>RUT:</strong> 10.994.322-3</li>
+        <li><strong>Plataforma:</strong> CuidaMED (www.cuidamed.cl)</li>
+        <li><strong>Correo de contacto:</strong> <a href="mailto:contacto@cuidamed.cl">contacto@cuidamed.cl</a></li>
+      </ul>
+      <p>CuidaMED es una plataforma digital que conecta pacientes con profesionales de salud para la prestación de servicios a domicilio en Chile.</p>
+    </section>
+
+    <section id="datos">
+      <h2>2. Datos que recopilamos</h2>
+
+      <h3>2.1 Datos que tú nos entregas</h3>
+      <ul>
+        <li>Nombre completo y correo electrónico (registro)</li>
+        <li>Número de teléfono</li>
+        <li>Dirección de prestación del servicio</li>
+        <li>Fotografía de perfil (opcional)</li>
+        <li>Para profesionales: RUT, tipo de profesional, número de registro RNPI (cuando aplique), descripción de servicios y tarifas</li>
+      </ul>
+
+      <h3>2.2 Datos generados por el uso de la plataforma</h3>
+      <ul>
+        <li>Historial de solicitudes de servicio</li>
+        <li>Mensajes intercambiados a través del chat interno</li>
+        <li>Reseñas y calificaciones</li>
+        <li>Registros de pago y comisiones</li>
+      </ul>
+
+      <h3>2.3 Datos técnicos</h3>
+      <ul>
+        <li>Dirección IP y tipo de dispositivo</li>
+        <li>Sistema operativo y versión de la aplicación</li>
+        <li>Registros de actividad (logs) para diagnóstico de errores</li>
+      </ul>
+
+      <div class="highlight-box">
+        <p>⚕️ <strong>Dato sensible:</strong> La descripción de los servicios solicitados puede contener información sobre el estado de salud del paciente. Tratamos esta información con especial cuidado, conforme al artículo 2° de la Ley 19.628.</p>
+      </div>
+    </section>
+
+    <section id="finalidades">
+      <h2>3. Finalidades del tratamiento</h2>
+      <p>Utilizamos tus datos exclusivamente para:</p>
+      <ul>
+        <li>Crear y gestionar tu cuenta en la plataforma</li>
+        <li>Conectar pacientes con profesionales de salud</li>
+        <li>Procesar pagos y gestionar comisiones</li>
+        <li>Verificar la identidad y credenciales de profesionales (RNPI)</li>
+        <li>Permitir la comunicación entre pacientes y profesionales vía chat</li>
+        <li>Enviar notificaciones relacionadas con tus solicitudes</li>
+        <li>Mejorar el funcionamiento y la seguridad de la plataforma</li>
+        <li>Cumplir con obligaciones legales aplicables</li>
+      </ul>
+      <p>No utilizamos tus datos para publicidad de terceros ni los vendemos a ningún tercero.</p>
+    </section>
+
+    <section id="base">
+      <h2>4. Base legal</h2>
+      <p>El tratamiento de tus datos se basa en:</p>
+      <ul>
+        <li><strong>Consentimiento:</strong> otorgado al momento de registrarte y aceptar estos términos</li>
+        <li><strong>Ejecución del contrato:</strong> para prestarte los servicios de la plataforma</li>
+        <li><strong>Obligación legal:</strong> para cumplir con normativa tributaria, sanitaria y de protección de datos vigente en Chile</li>
+        <li><strong>Interés legítimo:</strong> para garantizar la seguridad de la plataforma y prevenir el fraude</li>
+      </ul>
+    </section>
+
+    <section id="compartir">
+      <h2>5. Con quién compartimos tus datos</h2>
+
+      <h3>5.1 Entre usuarios de la plataforma</h3>
+      <p>Cuando un paciente solicita un servicio, algunos datos del paciente (nombre, dirección, descripción del servicio) son visibles para el profesional asignado, y viceversa, en la medida necesaria para prestar el servicio.</p>
+
+      <h3>5.2 Proveedores de servicio</h3>
+      <ul>
+        <li><strong>MongoDB Atlas (MongoDB, Inc.):</strong> almacenamiento de datos en la nube</li>
+        <li><strong>MercadoPago (MercadoLibre S.R.L.):</strong> procesamiento de pagos y suscripciones</li>
+        <li><strong>Expo / React Native:</strong> infraestructura de la aplicación móvil</li>
+      </ul>
+      <p>Todos estos proveedores actúan como encargados del tratamiento y están sujetos a compromisos de confidencialidad y seguridad.</p>
+
+      <h3>5.3 Autoridades</h3>
+      <p>Podemos compartir información con autoridades judiciales o administrativas cuando así lo exija la ley chilena.</p>
+
+      <div class="highlight-box">
+        <p>🔒 El RUT de los usuarios <strong>nunca es expuesto públicamente</strong> a través de la API ni en los listados de la plataforma.</p>
+      </div>
+    </section>
+
+    <section id="retencion">
+      <h2>6. Retención de datos</h2>
+      <p>Conservamos tus datos mientras tu cuenta esté activa. Si solicitas la eliminación de tu cuenta:</p>
+      <ul>
+        <li>Tus datos personales identificables serán eliminados dentro de los <strong>30 días hábiles</strong> siguientes a la solicitud</li>
+        <li>Los registros contables y de transacciones se conservan por <strong>6 años</strong>, conforme a la legislación tributaria chilena</li>
+        <li>Los mensajes de chat asociados a servicios completados se eliminan junto con la cuenta</li>
+      </ul>
+    </section>
+
+    <section id="seguridad">
+      <h2>7. Seguridad</h2>
+      <p>Implementamos medidas técnicas y organizativas para proteger tus datos:</p>
+      <ul>
+        <li>Autenticación mediante tokens JWT con expiración de 7 días</li>
+        <li>Comunicaciones cifradas mediante HTTPS/TLS</li>
+        <li>Almacenamiento en la nube con cifrado en reposo (MongoDB Atlas)</li>
+        <li>Control de acceso basado en roles (paciente, profesional, administrador)</li>
+        <li>Filtros de contenido inapropiado en mensajes</li>
+      </ul>
+      <p>Sin perjuicio de lo anterior, ningún sistema es infalible. En caso de una brecha de seguridad que afecte tus datos, te notificaremos oportunamente conforme a la ley.</p>
+    </section>
+
+    <section id="derechos">
+      <h2>8. Tus derechos (Ley 19.628)</h2>
+      <p>Conforme a la Ley N° 19.628 sobre Protección de la Vida Privada, tienes derecho a:</p>
+      <ul>
+        <li><strong>Acceso:</strong> conocer qué datos tuyos tenemos almacenados</li>
+        <li><strong>Rectificación:</strong> corregir datos inexactos o incompletos</li>
+        <li><strong>Cancelación:</strong> solicitar la eliminación de tus datos cuando no sean necesarios</li>
+        <li><strong>Oposición:</strong> oponerte al tratamiento de tus datos en ciertos supuestos</li>
+        <li><strong>Bloqueo:</strong> solicitar que no se use temporalmente tu información</li>
+      </ul>
+      <p>Para ejercer cualquiera de estos derechos, escríbenos a <a href="mailto:contacto@cuidamed.cl">contacto@cuidamed.cl</a> indicando tu nombre completo, RUT y la solicitud específica. Responderemos dentro de <strong>15 días hábiles</strong>.</p>
+    </section>
+
+    <section id="menores">
+      <h2>9. Menores de edad</h2>
+      <p>CuidaMED está dirigido exclusivamente a personas mayores de 18 años. No recopilamos conscientemente datos personales de menores de edad. Si detectamos que un menor se ha registrado, eliminaremos su cuenta y datos de forma inmediata.</p>
+      <p>Si eres padre, madre o tutor y crees que tu hijo/a ha proporcionado datos a nuestra plataforma, contáctanos en <a href="mailto:contacto@cuidamed.cl">contacto@cuidamed.cl</a>.</p>
+    </section>
+
+    <section id="cambios">
+      <h2>10. Cambios a esta política</h2>
+      <p>Podemos actualizar esta Política de Privacidad periódicamente. Cuando lo hagamos:</p>
+      <ul>
+        <li>Publicaremos la nueva versión en esta página con la fecha de actualización</li>
+        <li>Si los cambios son sustanciales, te notificaremos por correo electrónico o mediante un aviso en la aplicación</li>
+        <li>El uso continuado de la plataforma tras la publicación implica la aceptación de los cambios</li>
+      </ul>
+    </section>
+
+    <div class="contact-card" id="contacto">
+      <h2>11. Contacto</h2>
+      <p>¿Tienes preguntas sobre esta política o quieres ejercer tus derechos? Escríbenos:</p>
+      <p>📧 <a href="mailto:contacto@cuidamed.cl">contacto@cuidamed.cl</a></p>
+      <p>🌐 <a href="https://www.cuidamed.cl" target="_blank">www.cuidamed.cl</a></p>
+      <p style="margin-top: 16px; font-size: 13px;">Octavio Eduardo Salinas Cabrera · RUT 10.994.322-3 · Chile</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>© 2025 CuidaMED — Todos los derechos reservados</p>
+    <p style="margin-top: 6px;"><a href="https://www.cuidamed.cl">www.cuidamed.cl</a> · <a href="mailto:contacto@cuidamed.cl">contacto@cuidamed.cl</a></p>
+  </footer>
+
+</body>
+</html>
