@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>Restablecer contraseña — CuidaMED</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #0A7E6A;
+      --secondary: #12B896;
+      --bg: #F7FAFA;
+      --text: #1A2E2A;
+      --muted: #6B8F8A;
+      --border: #C5DEDD;
+      --light: #DCF5F1;
+      --warning: #FFF8EC;
+      --warning-border: #E8A838;
+      --warning-text: #7A5000;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.75;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: var(--primary);
+      padding: 48px 24px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: rgba(18,184,150,0.15);
+      top: -150px; right: -100px;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      width: 250px; height: 250px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+      bottom: -80px; left: -60px;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 40px; height: 40px;
+      background: white;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .logo-icon svg { width: 24px; height: 24px; }
+
+    .logo-text {
+      font-family: 'DM Serif Display', serif;
+      font-size: 24px;
+      color: white;
+      letter-spacing: -0.3px;
+    }
+
+    header h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(26px, 5vw, 38px);
+      color: white;
+      font-weight: 400;
+      position: relative; z-index: 1;
+    }
+
+    header p.subtitle {
+      color: rgba(255,255,255,0.75);
+      font-size: 14px;
+      margin-top: 8px;
+      font-weight: 300;
+      position: relative; z-index: 1;
+    }
+
+    main {
+      flex: 1;
+      max-width: 520px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      text-align: center;
+    }
+
+    .card p {
+      font-size: 15px;
+      font-weight: 300;
+      margin-bottom: 12px;
+    }
+
+    .spinner {
+      width: 36px; height: 36px;
+      margin: 0 auto 16px;
+      border: 3px solid var(--light);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .open-app-btn {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      text-decoration: none;
+      padding: 14px 32px;
+      border-radius: 12px;
+      margin: 8px 0 20px;
+      transition: background 0.2s;
+    }
+
+    .open-app-btn:hover { background: #086A59; }
+
+    .help-box {
+      background: var(--light);
+      border-left: 3px solid var(--secondary);
+      border-radius: 0 10px 10px 0;
+      padding: 16px 20px;
+      margin-top: 8px;
+      text-align: left;
+    }
+
+    .help-box p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--primary);
+    }
+
+    .invalid-box {
+      background: var(--warning);
+      border: 1.5px solid var(--warning-border);
+      border-radius: 14px;
+      padding: 24px 28px;
+      text-align: left;
+    }
+
+    .invalid-box .invalid-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 17px;
+      color: var(--warning-text);
+      margin-bottom: 12px;
+    }
+
+    .invalid-box p {
+      font-size: 14px;
+      color: var(--warning-text);
+      margin-bottom: 8px;
+    }
+
+    .hidden { display: none; }
+
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      background: white;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    footer a { color: var(--primary); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C9.5 2 7 4 7 7C7 9.5 8.5 11.5 10.5 12.5C8 13.5 5 16 5 20H19C19 16 16 13.5 13.5 12.5C15.5 11.5 17 9.5 17 7C17 4 14.5 2 12 2Z" fill="#0A7E6A"/>
+          <rect x="11" y="4" width="2" height="6" rx="1" fill="white"/>
+          <rect x="9" y="6" width="6" height="2" rx="1" fill="white"/>
+        </svg>
+      </div>
+      <span class="logo-text">CuidaMED</span>
+    </div>
+    <h1>Restablecer contraseña</h1>
+    <p class="subtitle">Continúa el proceso en la app de CuidaMED</p>
+  </header>
+
+  <main>
+
+    <!-- Estado 1: redirigiendo a la app -->
+    <div class="card" id="state-redirecting">
+      <div class="spinner"></div>
+      <p>Abriendo la app de CuidaMED…</p>
+    </div>
+
+    <!-- Estado 2: fallback si el deep link no abrió -->
+    <div class="card hidden" id="state-fallback">
+      <p>Si la app no se abrió automáticamente, tócalo aquí:</p>
+      <a class="open-app-btn" id="open-app-link" href="#">Abrir en la app</a>
+      <div class="help-box">
+        <p>¿No tienes la app instalada? Descarga <strong>CuidaMED</strong> en tu teléfono y luego pide un nuevo enlace desde <strong>"¿Olvidaste tu contraseña?"</strong> en la pantalla de inicio de sesión. El enlace de este correo expira en 1 hora.</p>
+      </div>
+    </div>
+
+    <!-- Estado 3: sin token -->
+    <div class="invalid-box hidden" id="state-invalid">
+      <div class="invalid-title">⚠️ Enlace inválido o expirado</div>
+      <p>Este enlace de recuperación no es válido o ya expiró.</p>
+      <p>Para obtener uno nuevo, abre la app de CuidaMED y usa la opción <strong>"¿Olvidaste tu contraseña?"</strong> en la pantalla de inicio de sesión.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>© 2025 CuidaMED — Todos los derechos reservados</p>
+    <p style="margin-top: 6px;"><a href="https://www.cuidamed.cl">www.cuidamed.cl</a> · <a href="/privacidad/">Política de Privacidad</a> · <a href="/terminos/">Términos y Condiciones</a></p>
+  </footer>
+
+  <script>
+    (function () {
+      var token = new URLSearchParams(window.location.search).get('token');
+
+      var redirecting = document.getElementById('state-redirecting');
+      var fallback = document.getElementById('state-fallback');
+      var invalid = document.getElementById('state-invalid');
+
+      if (!token) {
+        redirecting.classList.add('hidden');
+        invalid.classList.remove('hidden');
+        return;
+      }
+
+      var deepLink = 'cuidamed://reset-password?token=' + encodeURIComponent(token);
+      document.getElementById('open-app-link').setAttribute('href', deepLink);
+
+      // Si el deep link abre la app, el navegador pasa a segundo plano y este
+      // timer queda congelado; si no abre nada, mostramos el fallback.
+      setTimeout(function () {
+        redirecting.classList.add('hidden');
+        fallback.classList.remove('hidden');
+      }, 1500);
+
+      window.location.href = deepLink;
+    })();
+  </script>
+
+</body>
+</html>
