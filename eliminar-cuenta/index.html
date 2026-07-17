@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eliminar tu cuenta — CuidaMED</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #0A7E6A;
+      --secondary: #12B896;
+      --bg: #F7FAFA;
+      --text: #1A2E2A;
+      --muted: #6B8F8A;
+      --border: #C5DEDD;
+      --light: #DCF5F1;
+      --warning: #FFF8EC;
+      --warning-border: #E8A838;
+      --warning-text: #7A5000;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    header {
+      background: var(--primary);
+      padding: 48px 24px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: rgba(18,184,150,0.15);
+      top: -150px; right: -100px;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      width: 250px; height: 250px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+      bottom: -80px; left: -60px;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 40px; height: 40px;
+      background: white;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .logo-icon svg { width: 24px; height: 24px; }
+
+    .logo-text {
+      font-family: 'DM Serif Display', serif;
+      font-size: 24px;
+      color: white;
+      letter-spacing: -0.3px;
+    }
+
+    header h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(26px, 5vw, 38px);
+      color: white;
+      font-weight: 400;
+      position: relative; z-index: 1;
+    }
+
+    header p.subtitle {
+      color: rgba(255,255,255,0.75);
+      font-size: 14px;
+      margin-top: 8px;
+      font-weight: 300;
+      position: relative; z-index: 1;
+    }
+
+    main {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    section {
+      margin-bottom: 48px;
+      padding-top: 8px;
+    }
+
+    section h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px;
+      color: var(--primary);
+      font-weight: 400;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    section p {
+      color: var(--text);
+      font-size: 15px;
+      margin-bottom: 12px;
+      font-weight: 300;
+    }
+
+    section ul, section ol {
+      padding-left: 20px;
+      margin-bottom: 12px;
+    }
+
+    section li {
+      font-size: 15px;
+      font-weight: 300;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .highlight-box {
+      background: var(--light);
+      border-left: 3px solid var(--secondary);
+      border-radius: 0 10px 10px 0;
+      padding: 16px 20px;
+      margin: 20px 0;
+    }
+
+    .highlight-box p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--primary);
+    }
+
+    .disclaimer-box {
+      background: var(--warning);
+      border: 1.5px solid var(--warning-border);
+      border-radius: 14px;
+      padding: 24px 28px;
+      margin: 24px 0;
+    }
+
+    .disclaimer-box .disclaimer-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 17px;
+      color: var(--warning-text);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .disclaimer-box p, .disclaimer-box li {
+      font-size: 14px;
+      color: var(--warning-text);
+      margin-bottom: 8px;
+    }
+
+    .disclaimer-box ul { padding-left: 18px; }
+
+    .email-btn {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      font-size: 15px;
+      font-weight: 500;
+      text-decoration: none;
+      padding: 14px 32px;
+      border-radius: 12px;
+      margin: 8px 0 4px;
+      transition: background 0.2s;
+    }
+
+    .email-btn:hover { background: #086A59; }
+
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      background: white;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    footer a { color: var(--primary); text-decoration: none; }
+
+    a { color: var(--primary); }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C9.5 2 7 4 7 7C7 9.5 8.5 11.5 10.5 12.5C8 13.5 5 16 5 20H19C19 16 16 13.5 13.5 12.5C15.5 11.5 17 9.5 17 7C17 4 14.5 2 12 2Z" fill="#0A7E6A"/>
+          <rect x="11" y="4" width="2" height="6" rx="1" fill="white"/>
+          <rect x="9" y="6" width="6" height="2" rx="1" fill="white"/>
+        </svg>
+      </div>
+      <span class="logo-text">CuidaMED</span>
+    </div>
+    <h1>Eliminar tu cuenta</h1>
+    <p class="subtitle">Cómo eliminar tu cuenta de CuidaMED y todos tus datos</p>
+  </header>
+
+  <main>
+
+    <section>
+      <h2>Opción 1 — Desde la app (inmediato)</h2>
+      <p>Si tienes la app instalada y puedes iniciar sesión:</p>
+      <ol>
+        <li>Abre la app de <strong>CuidaMED</strong> e inicia sesión</li>
+        <li>Ve a la pestaña <strong>Perfil</strong></li>
+        <li>Baja hasta el final y toca <strong>"Eliminar mi cuenta"</strong></li>
+        <li>Escribe <strong>ELIMINAR</strong> para confirmar y toca el botón de confirmación</li>
+      </ol>
+      <div class="highlight-box">
+        <p>✅ La eliminación desde la app es <strong>inmediata e irreversible</strong>: tu cuenta y tus datos se borran en el momento.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Opción 2 — Sin acceso a la app</h2>
+      <p>Si ya no tienes la app instalada, no puedes iniciar sesión o prefieres solicitarlo por escrito, envíanos un correo <strong>desde la dirección de email con la que te registraste</strong>:</p>
+      <p>
+        <a class="email-btn" href="mailto:contacto@cuidamed.cl?subject=Solicitud%20de%20eliminaci%C3%B3n%20de%20cuenta">Solicitar eliminación por correo</a>
+      </p>
+      <p>O escribe directamente a <a href="mailto:contacto@cuidamed.cl">contacto@cuidamed.cl</a> con el asunto <strong>"Solicitud de eliminación de cuenta"</strong>, indicando el email registrado en CuidaMED.</p>
+      <p>Procesaremos tu solicitud y eliminaremos tu cuenta y tus datos en un plazo máximo de <strong>30 días</strong>, conforme a nuestra <a href="/privacidad/">Política de Privacidad</a>. Te confirmaremos por correo cuando esté completada.</p>
+    </section>
+
+    <section>
+      <h2>Qué datos se eliminan</h2>
+      <p>Al eliminar tu cuenta se borran de forma permanente:</p>
+      <ul>
+        <li>Tu cuenta y datos de registro (nombre, email, RUT)</li>
+        <li>Tu perfil (incluyendo foto, descripción, servicios y credenciales profesionales, si eres profesional)</li>
+        <li>Tus solicitudes de servicio y postulaciones</li>
+        <li>Tus mensajes y conversaciones</li>
+        <li>Tus reseñas y calificaciones</li>
+        <li>Tus notificaciones y sesiones activas</li>
+      </ul>
+
+      <div class="disclaimer-box">
+        <div class="disclaimer-title">⚠️ Datos que podemos conservar</div>
+        <p>Podemos conservar únicamente los registros de <strong>transacciones y pagos</strong> ya realizados, cuando la legislación chilena (tributaria, contable o de protección al consumidor) exija su conservación, y solo por el plazo legal correspondiente. Estos registros no incluyen datos de tarjetas: los pagos son procesados por Webpay (Transbank) y MercadoPago, y CuidaMED nunca almacena datos de tarjetas de crédito o débito.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Antes de eliminar tu cuenta</h2>
+      <ul>
+        <li>La eliminación es <strong>irreversible</strong>: no es posible recuperar la cuenta ni los datos después</li>
+        <li>Si eres profesional y tienes <strong>pagos pendientes por recibir</strong>, te recomendamos esperar a recibirlos o escribirnos antes a <a href="mailto:contacto@cuidamed.cl">contacto@cuidamed.cl</a></li>
+        <li>Si tienes una <strong>suscripción activa</strong>, esta terminará con la eliminación de la cuenta y no se generarán nuevos cobros</li>
+        <li>La eliminación no te exime de obligaciones de pago ya devengadas, según nuestros <a href="/terminos/">Términos y Condiciones</a></li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2025 CuidaMED — Todos los derechos reservados</p>
+    <p style="margin-top: 6px;"><a href="https://www.cuidamed.cl">www.cuidamed.cl</a> · <a href="/privacidad/">Política de Privacidad</a> · <a href="/terminos/">Términos y Condiciones</a> · <a href="mailto:contacto@cuidamed.cl">contacto@cuidamed.cl</a></p>
+  </footer>
+
+</body>
+</html>
