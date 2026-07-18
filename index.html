@@ -172,6 +172,60 @@
       color: var(--muted);
     }
 
+    .pro-block {
+      background: var(--light);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 36px 32px;
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .pro-block h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 24px;
+      color: var(--primary);
+      font-weight: 400;
+      margin-bottom: 12px;
+    }
+
+    .pro-block p {
+      font-size: 15px;
+      font-weight: 300;
+      max-width: 560px;
+      margin: 0 auto 10px;
+    }
+
+    .pro-block ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px 20px;
+      margin: 16px 0 22px;
+      padding: 0;
+    }
+
+    .pro-block li {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--primary);
+    }
+
+    .pro-btn {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      font-size: 15px;
+      font-weight: 500;
+      text-decoration: none;
+      padding: 14px 32px;
+      border-radius: 12px;
+      transition: background 0.2s;
+    }
+
+    .pro-btn:hover { background: #086A59; }
+
     .links h2 {
       font-family: 'DM Serif Display', serif;
       font-size: 22px;
@@ -270,6 +324,18 @@
         <h3>Pago seguro en la app</h3>
         <p>Paga con Webpay o MercadoPago. Nunca almacenamos los datos de tu tarjeta.</p>
       </div>
+    </div>
+
+    <div class="pro-block">
+      <h2>¿Eres profesional de salud?</h2>
+      <p>Únete a CuidaMED y ofrece tus servicios a domicilio a pacientes de tu zona. Tú decides qué servicios entregar, tus tarifas y tu disponibilidad.</p>
+      <ul>
+        <li>✓ Perfil verificado ante el RNPI</li>
+        <li>✓ Agenda y tarifas a tu medida</li>
+        <li>✓ Pagos directo a tu cuenta</li>
+      </ul>
+      <a class="pro-btn" href="mailto:contacto@cuidamed.cl?subject=Quiero%20unirme%20como%20profesional%20a%20CuidaMED">Quiero unirme</a>
+      <p style="font-size: 13px; color: var(--muted); margin-top: 14px; margin-bottom: 0;">Escríbenos y te avisaremos apenas la app esté disponible para registrarte.</p>
     </div>
 
     <div class="links">
