@@ -290,7 +290,7 @@
     </div>
     <h1>Política de Privacidad</h1>
     <p class="subtitle">Cómo recopilamos, usamos y protegemos tu información</p>
-    <div class="date-badge">Vigente desde el 4 de agosto de 2026</div>
+    <div class="date-badge">Vigente desde el 25 de agosto de 2026</div>
   </header>
 
   <div class="toc-wrap">
@@ -305,6 +305,7 @@
         <li><a href="#retencion">Retención de datos</a></li>
         <li><a href="#seguridad">Seguridad</a></li>
         <li><a href="#derechos">Tus derechos (Ley 19.628)</a></li>
+        <li><a href="#cookies">Cookies y datos de navegación</a></li>
         <li><a href="#menores">Menores de edad</a></li>
         <li><a href="#cambios">Cambios a esta política</a></li>
         <li><a href="#contacto">Contacto</a></li>
@@ -318,8 +319,9 @@
       <h2>1. Responsable del tratamiento</h2>
       <p>El responsable del tratamiento de tus datos personales es:</p>
       <ul>
-        <li><strong>Nombre:</strong> Octavio Eduardo Salinas Cabrera</li>
-        <li><strong>RUT:</strong> 10.994.322-3</li>
+        <li><strong>Razón social:</strong> Servicios Tecnológicos Octavio Salinas Cabrera E.I.R.L.</li>
+        <li><strong>RUT:</strong> 78.488.252-7</li>
+        <li><strong>Domicilio:</strong> Camino Papagallo 5300, Talagante, Región Metropolitana</li>
         <li><strong>Plataforma:</strong> CuidaMED (www.cuidamed.cl)</li>
         <li><strong>Correo de contacto:</strong> <a href="mailto:contacto@cuidamed.cl">contacto@cuidamed.cl</a></li>
       </ul>
@@ -335,7 +337,7 @@
         <li>Número de teléfono</li>
         <li>Dirección de prestación del servicio</li>
         <li>Fotografía de perfil (opcional)</li>
-        <li>Para profesionales: RUT, tipo de profesional, número de registro RNPI (cuando aplique), descripción de servicios y tarifas</li>
+        <li>Para profesionales: RUT, tipo de profesional, número de registro RNPI (cuando aplique), descripción de servicios, tarifas y ubicación de cobertura</li>
       </ul>
 
       <h3>2.2 Datos generados por el uso de la plataforma</h3>
@@ -367,11 +369,13 @@
         <li>Conectar pacientes con profesionales de salud</li>
         <li>Procesar pagos y gestionar comisiones</li>
         <li>Verificar la identidad y credenciales de profesionales (RNPI)</li>
+        <li>Verificar las credenciales de los profesionales de la educación en el Registro de Profesionales para la Evaluación y Diagnóstico del Ministerio de Educación (Decreto Supremo N°170/09)</li>
         <li>Verificar que los profesionales no figuren en el Registro Nacional de Inhabilidades para Ejercer Funciones en Ámbitos Educacionales o con Menores de Edad</li>
         <li>Permitir la comunicación entre pacientes y profesionales vía chat</li>
         <li>Enviar notificaciones relacionadas con tus solicitudes</li>
+        <li>Mostrar perfiles y reseñas a otros usuarios de la plataforma</li>
         <li>Mejorar el funcionamiento y la seguridad de la plataforma</li>
-        <li>Cumplir con obligaciones legales aplicables</li>
+        <li>Cumplir con las obligaciones legales aplicables en Chile</li>
       </ul>
       <p>No utilizamos tus datos para publicidad de terceros ni los vendemos a ningún tercero.</p>
     </section>
@@ -382,7 +386,7 @@
       <ul>
         <li><strong>Consentimiento:</strong> otorgado al momento de registrarte y aceptar estos términos</li>
         <li><strong>Ejecución del contrato:</strong> para prestarte los servicios de la plataforma</li>
-        <li><strong>Obligación legal:</strong> para cumplir con normativa tributaria, sanitaria y de protección de datos vigente en Chile</li>
+        <li><strong>Obligación legal:</strong> para cumplir con la normativa tributaria, sanitaria y de protección de datos vigente en Chile, en particular la Ley 19.628 sobre Protección de la Vida Privada</li>
         <li><strong>Interés legítimo:</strong> para garantizar la seguridad de la plataforma y prevenir el fraude</li>
       </ul>
     </section>
@@ -396,7 +400,6 @@
       <h3>5.2 Proveedores de servicio</h3>
       <ul>
         <li><strong>MongoDB Atlas (MongoDB, Inc.):</strong> almacenamiento de datos en la nube</li>
-        <li><strong>Webpay (Transbank S.A.):</strong> procesamiento de pagos de servicios</li>
         <li><strong>MercadoPago (MercadoLibre S.R.L.):</strong> procesamiento de pagos y suscripciones</li>
         <li><strong>Apple Inc.:</strong> procesamiento de compras dentro de la aplicación en dispositivos iOS, bajo sus propias políticas de privacidad</li>
         <li><strong>Expo / React Native:</strong> infraestructura de la aplicación móvil</li>
@@ -405,6 +408,8 @@
 
       <h3>5.3 Autoridades</h3>
       <p>Podemos compartir información con autoridades judiciales o administrativas cuando así lo exija la ley chilena.</p>
+      <p>Los datos de los profesionales pueden ser compartidos con la Superintendencia de Salud para su verificación en el RNPI.</p>
+      <p>Los datos de los profesionales de la educación pueden ser consultados en el Registro de Profesionales para la Evaluación y Diagnóstico del Ministerio de Educación (Decreto Supremo N°170/09) para su verificación.</p>
       <p>Los datos de profesionales pueden ser consultados en el Registro Nacional de Inhabilidades del Servicio de Registro Civil e Identificación para su verificación.</p>
 
       <div class="highlight-box">
@@ -426,11 +431,12 @@
       <h2>7. Seguridad</h2>
       <p>Implementamos medidas técnicas y organizativas para proteger tus datos:</p>
       <ul>
+        <li>Contraseñas almacenadas con hash bcrypt (nunca en texto plano)</li>
         <li>Autenticación mediante tokens JWT con expiración de 7 días</li>
         <li>Comunicaciones cifradas mediante HTTPS/TLS</li>
         <li>Almacenamiento en la nube con cifrado en reposo (MongoDB Atlas)</li>
         <li>Control de acceso basado en roles (paciente, profesional, administrador)</li>
-        <li>Filtros de contenido inapropiado en mensajes</li>
+        <li>Filtros automáticos de contenido inapropiado en el sistema de mensajería</li>
       </ul>
       <p>Sin perjuicio de lo anterior, ningún sistema es infalible. En caso de una brecha de seguridad que afecte tus datos, te notificaremos oportunamente conforme a la ley.</p>
     </section>
@@ -448,14 +454,22 @@
       <p>Para ejercer cualquiera de estos derechos, escríbenos a <a href="mailto:contacto@cuidamed.cl">contacto@cuidamed.cl</a> indicando tu nombre completo, RUT y la solicitud específica. Responderemos dentro de <strong>15 días hábiles</strong>.</p>
     </section>
 
+    <section id="cookies">
+      <h2>9. Cookies y datos de navegación</h2>
+      <p>La aplicación móvil de CuidaMED no utiliza cookies. La versión web puede hacer uso de almacenamiento local del navegador exclusivamente para mantener la sesión del usuario activa, sin fines de rastreo ni publicidad.</p>
+    </section>
+
     <section id="menores">
-      <h2>9. Menores de edad</h2>
-      <p>CuidaMED está dirigido exclusivamente a personas mayores de 18 años. No recopilamos conscientemente datos personales de menores de edad. Si detectamos que un menor se ha registrado, eliminaremos su cuenta y datos de forma inmediata.</p>
-      <p>Si eres padre, madre o tutor y crees que tu hijo/a ha proporcionado datos a nuestra plataforma, contáctanos en <a href="mailto:contacto@cuidamed.cl">contacto@cuidamed.cl</a>.</p>
+      <h2>10. Menores de edad</h2>
+      <p>Solo una persona mayor de 18 años puede registrarse, ser titular de una cuenta, aceptar estos términos, contratar servicios y realizar pagos en CuidaMED. No están permitidas las cuentas de menores de edad; si detectamos que una cuenta fue creada por un menor, la eliminaremos junto con sus datos de forma inmediata.</p>
+      <p>Como titular adulto, puedes contratar servicios dirigidos a un hijo, hija o menor a tu cargo (por ejemplo, fonoaudiología, terapia ocupacional, psicopedagogía o psicología infantil). Al entregar los datos del menor para agendar la atención, declaras ser su padre, madre o representante legal, o contar con autorización de quien ejerce su cuidado para hacerlo.</p>
+      <p>Los datos del menor que nos entregues (nombre, edad e información relevante para la atención) se tratan con el mismo estándar de dato sensible que aplicamos a la información de salud, conforme al artículo 2° de la Ley 19.628, y se utilizan exclusivamente para prestar el servicio solicitado.</p>
+      <p>Los profesionales que atienden a menores son verificados por CuidaMED en el Registro Nacional de Inhabilidades para Ejercer Funciones en Ámbitos Educacionales o con Menores de Edad del Servicio de Registro Civil e Identificación (Ley N° 20.594).</p>
+      <p>Si eres padre, madre o tutor y detectas un uso indebido de los datos de un menor en nuestra plataforma, contáctanos en <a href="mailto:contacto@cuidamed.cl">contacto@cuidamed.cl</a>.</p>
     </section>
 
     <section id="cambios">
-      <h2>10. Cambios a esta política</h2>
+      <h2>11. Cambios a esta política</h2>
       <p>Podemos actualizar esta Política de Privacidad periódicamente. Cuando lo hagamos:</p>
       <ul>
         <li>Publicaremos la nueva versión en esta página con la fecha de actualización</li>
@@ -465,17 +479,17 @@
     </section>
 
     <div class="contact-card" id="contacto">
-      <h2>11. Contacto</h2>
+      <h2>12. Contacto</h2>
       <p>¿Tienes preguntas sobre esta política o quieres ejercer tus derechos? Escríbenos:</p>
       <p>📧 <a href="mailto:contacto@cuidamed.cl">contacto@cuidamed.cl</a></p>
       <p>🌐 <a href="https://www.cuidamed.cl" target="_blank">www.cuidamed.cl</a></p>
-      <p style="margin-top: 16px; font-size: 13px;">Octavio Eduardo Salinas Cabrera · RUT 10.994.322-3 · Chile</p>
+      <p style="margin-top: 16px; font-size: 13px;">Servicios Tecnológicos Octavio Salinas Cabrera E.I.R.L. · RUT 78.488.252-7<br>Representante legal: Octavio Salinas Cabrera<br>Camino Papagallo 5300, Talagante, Región Metropolitana, Chile</p>
     </div>
 
   </main>
 
   <footer>
-    <p>© 2025 CuidaMED — Todos los derechos reservados</p>
+    <p>© 2026 CuidaMED — Todos los derechos reservados</p>
     <p style="margin-top: 6px;"><a href="https://www.cuidamed.cl">www.cuidamed.cl</a> · <a href="mailto:contacto@cuidamed.cl">contacto@cuidamed.cl</a></p>
   </footer>
 
