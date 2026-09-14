@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Descargar CuidaMED</title>
+  <meta name="description" content="Descarga CuidaMED en tu teléfono: salud a domicilio verificada en todo Chile." />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root { --primary: #0A7E6A; --border: #C5DEDD; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: linear-gradient(160deg, #0A7E6A 0%, #075747 100%);
+      color: white; min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 32px 24px;
+    }
+    .logo-icon {
+      width: 64px; height: 64px; background: white; border-radius: 16px;
+      display: flex; align-items: center; justify-content: center; margin: 0 auto 24px;
+    }
+    .logo-icon svg { width: 38px; height: 38px; }
+    h1 { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: 30px; margin-bottom: 10px; }
+    p.sub { font-weight: 300; color: rgba(255,255,255,0.85); font-size: 16px; max-width: 420px; margin: 0 auto 32px; }
+    .store-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
+    .store-btn {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: #0b1512; color: white; text-decoration: none;
+      padding: 12px 22px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.18);
+      transition: transform 0.15s, background 0.2s; min-width: 210px; justify-content: center;
+    }
+    .store-btn:hover { background: #000; transform: translateY(-2px); }
+    .store-btn svg { width: 26px; height: 26px; flex-shrink: 0; }
+    .store-btn .lbl { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.15; text-align: left; }
+    .store-btn .lbl small { font-size: 11px; font-weight: 300; opacity: 0.85; }
+    .store-btn .lbl strong { font-size: 17px; font-weight: 500; }
+    .back { margin-top: 28px; font-size: 13.5px; }
+    .back a { color: rgba(255,255,255,0.8); text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <div class="logo-icon">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M9 5.5C9 4.12 10.12 3 11.5 3H12.5C13.88 3 15 4.12 15 5.5V7H13.2V5.5C13.2 5.11 12.89 4.8 12.5 4.8H11.5C11.11 4.8 10.8 5.11 10.8 5.5V7H9V5.5Z" fill="#0A7E6A"/>
+      <rect x="3" y="7" width="18" height="13" rx="2.5" fill="#0A7E6A"/>
+      <rect x="11" y="10.5" width="2" height="6" rx="1" fill="white"/>
+      <rect x="9" y="12.5" width="6" height="2" rx="1" fill="white"/>
+    </svg>
+  </div>
+
+  <h1>Descarga CuidaMED</h1>
+  <p class="sub">Te llevamos a la tienda de tu teléfono. Si no ocurre solo, elige tu opción:</p>
+
+  <div class="store-buttons">
+    <a class="store-btn" href="https://apps.apple.com/cl/app/cuidamed/id6792294512">
+      <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.05 12.53c-.02-2.02 1.65-2.99 1.73-3.04-.94-1.38-2.41-1.57-2.93-1.59-1.25-.13-2.44.73-3.07.73-.63 0-1.61-.71-2.65-.69-1.36.02-2.62.79-3.32 2.01-1.42 2.46-.36 6.1 1.02 8.1.67.98 1.48 2.08 2.53 2.04 1.02-.04 1.4-.66 2.64-.66 1.23 0 1.58.66 2.65.64 1.09-.02 1.79-1 2.46-1.98.77-1.13 1.09-2.23 1.11-2.29-.02-.01-2.13-.82-2.15-3.24zM15.03 6.58c.56-.68.94-1.62.83-2.58-.81.03-1.79.54-2.37 1.22-.52.6-.97 1.56-.85 2.48.9.07 1.83-.46 2.39-1.12z"/>
+      </svg>
+      <span class="lbl"><small>Descárgalo en</small><strong>App Store</strong></span>
+    </a>
+    <a class="store-btn" href="https://play.google.com/store/apps/details?id=cl.cuidamed.android">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3.6 2.4c-.3.26-.47.66-.47 1.18v16.84c0 .52.17.92.47 1.18l.06.05L13.1 12.1v-.2L3.66 2.35l-.06.05z" fill="#00D2FF"/>
+        <path d="M16.28 15.28L13.1 12.1v-.2l3.18-3.18.07.04 3.77 2.14c1.08.61 1.08 1.62 0 2.24l-3.77 2.14-.07.04z" fill="#FFCE00"/>
+        <path d="M16.35 15.24L13.1 12 3.6 21.6c.36.38.94.42 1.6.05l11.15-6.4z" fill="#FF3D44"/>
+        <path d="M16.35 8.76L5.2 2.36c-.66-.38-1.24-.33-1.6.04L13.1 12l3.25-3.24z" fill="#00E676"/>
+      </svg>
+      <span class="lbl"><small>Disponible en</small><strong>Google Play</strong></span>
+    </a>
+  </div>
+
+  <p class="back"><a href="/">Volver a cuidamed.cl</a></p>
+
+  <script>
+    (function () {
+      var IOS = 'https://apps.apple.com/cl/app/cuidamed/id6792294512';
+      var ANDROID = 'https://play.google.com/store/apps/details?id=cl.cuidamed.android';
+      var ua = navigator.userAgent || '';
+      var isAndroid = /android/i.test(ua);
+      var isIOS = /iphone|ipad|ipod/i.test(ua) ||
+                  (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      if (isAndroid) { window.location.replace(ANDROID); }
+      else if (isIOS) { window.location.replace(IOS); }
+      // Escritorio u otro: no se redirige; quedan visibles los dos botones.
+    })();
+  </script>
+
+</body>
+</html>
