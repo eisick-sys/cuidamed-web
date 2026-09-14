@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manual para pacientes — CuidaMED</title>
+  <meta name="description" content="Guía paso a paso para pacientes y familias en CuidaMED: buscar profesionales de salud verificados, pedir atención a domicilio, pagar seguro y calificar el servicio." />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #0A7E6A;
+      --primary-dark: #086A59;
+      --secondary: #12B896;
+      --bg: #F7FAFA;
+      --text: #1A2E2A;
+      --muted: #6B8F8A;
+      --border: #C5DEDD;
+      --light: #DCF5F1;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.7; }
+
+    header {
+      background: linear-gradient(160deg, #0A7E6A 0%, #075747 100%);
+      color: white; padding: 60px 24px 52px; text-align: center; position: relative; overflow: hidden;
+    }
+    header::before { content: ''; position: absolute; width: 380px; height: 380px; border-radius: 50%; background: rgba(18,184,150,0.16); top: -150px; right: -110px; }
+    .logo { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 20px; position: relative; z-index: 1; }
+    .logo-icon { width: 44px; height: 44px; background: white; border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+    .logo-icon svg { width: 28px; height: 28px; }
+    .logo-text { font-family: 'DM Serif Display', serif; font-size: 26px; }
+    header h1 { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: clamp(26px, 4.5vw, 38px); position: relative; z-index: 1; }
+    header p { font-weight: 300; color: rgba(255,255,255,0.85); margin-top: 12px; max-width: 560px; margin-left: auto; margin-right: auto; position: relative; z-index: 1; }
+
+    .layout { max-width: 1080px; margin: 0 auto; padding: 40px 24px 80px; display: grid; grid-template-columns: 240px 1fr; gap: 48px; align-items: start; }
+    @media (max-width: 860px) { .layout { grid-template-columns: 1fr; gap: 24px; } nav.toc { position: static !important; } }
+
+    nav.toc { position: sticky; top: 24px; background: white; border: 1px solid var(--border); border-radius: 16px; padding: 22px 20px; font-size: 14px; }
+    nav.toc h2 { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); font-weight: 600; margin-bottom: 12px; }
+    nav.toc ol { list-style: none; counter-reset: toc; }
+    nav.toc li { counter-increment: toc; margin-bottom: 4px; }
+    nav.toc a { display: block; color: var(--text); text-decoration: none; padding: 6px 8px; border-radius: 8px; font-weight: 400; }
+    nav.toc a::before { content: counter(toc) ". "; color: var(--primary); font-weight: 600; }
+    nav.toc a:hover { background: var(--light); color: var(--primary); }
+
+    main { min-width: 0; }
+    .intro-lead { font-size: 17px; font-weight: 300; margin-bottom: 8px; }
+
+    section.step { background: white; border: 1px solid var(--border); border-radius: 18px; padding: 30px 32px; margin-bottom: 20px; scroll-margin-top: 20px; }
+    section.step h2 { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: 24px; color: var(--primary); margin-bottom: 6px; display: flex; align-items: baseline; gap: 12px; }
+    section.step h2 .n { font-size: 15px; font-weight: 600; color: white; background: var(--primary); border-radius: 50%; width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: 'DM Sans', sans-serif; }
+    section.step h3 { font-size: 16px; font-weight: 600; color: var(--text); margin: 20px 0 8px; }
+    section.step p { margin-bottom: 12px; font-weight: 300; }
+    section.step ul, section.step ol.list { margin: 0 0 12px 4px; padding-left: 20px; }
+    section.step li { margin-bottom: 8px; font-weight: 300; }
+    strong { font-weight: 600; color: var(--text); }
+    .ui { font-weight: 500; color: var(--primary); }
+
+    .callout { border-radius: 12px; padding: 16px 18px; margin: 16px 0; font-size: 14.5px; font-weight: 300; line-height: 1.6; }
+    .callout.note { background: var(--light); border: 1px solid var(--border); }
+    .callout .tag { display: block; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; color: var(--primary); }
+
+    .ways-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 6px; }
+    .way-card { background: var(--bg); border: 1px solid var(--border); border-radius: 14px; padding: 22px; }
+    .way-card .emoji { font-size: 24px; }
+    .way-card h3 { font-size: 16px; font-weight: 600; color: var(--primary); margin: 8px 0 6px; }
+    .way-card p { font-size: 14px; color: var(--muted); margin: 0; font-weight: 300; line-height: 1.6; }
+
+    footer { text-align: center; padding: 32px 24px; background: white; border-top: 1px solid var(--border); font-size: 13.5px; color: var(--muted); }
+    footer a { color: var(--primary); text-decoration: none; }
+    .back-link { display: inline-block; margin-top: 8px; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 5.5C9 4.12 10.12 3 11.5 3H12.5C13.88 3 15 4.12 15 5.5V7H13.2V5.5C13.2 5.11 12.89 4.8 12.5 4.8H11.5C11.11 4.8 10.8 5.11 10.8 5.5V7H9V5.5Z" fill="#0A7E6A"/>
+          <rect x="3" y="7" width="18" height="13" rx="2.5" fill="#0A7E6A"/>
+          <rect x="11" y="10.5" width="2" height="6" rx="1" fill="white"/>
+          <rect x="9" y="12.5" width="6" height="2" rx="1" fill="white"/>
+        </svg>
+      </div>
+      <span class="logo-text">CuidaMED</span>
+    </div>
+    <h1>Manual para pacientes</h1>
+    <p>Cómo encontrar al profesional de salud correcto para tu familia y recibir atención en tu hogar, paso a paso.</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc">
+      <h2>Contenido</h2>
+      <ol>
+        <li><a href="#como-funciona">Cómo funciona</a></li>
+        <li><a href="#cuenta">Crear tu cuenta</a></li>
+        <li><a href="#buscar">Buscar profesionales</a></li>
+        <li><a href="#pedir">Pedir atención</a></li>
+        <li><a href="#pagar">Coordinar y pagar</a></li>
+        <li><a href="#atencion">El día de la atención</a></li>
+        <li><a href="#calificar">Calificar el servicio</a></li>
+        <li><a href="#mensajes">Mensajes y cambios de fecha</a></li>
+        <li><a href="#soporte">Soporte</a></li>
+      </ol>
+    </nav>
+
+    <main>
+      <p class="intro-lead">CuidaMED es gratis para pacientes y familias. Esta guía te lleva de la mano desde que buscas un profesional hasta que recibes la atención en tu casa.</p>
+
+      <section class="step" id="como-funciona">
+        <h2>Cómo funciona</h2>
+        <p>CuidaMED es un buscador de profesionales de salud que atienden a domicilio, cerca de tu comuna y con credenciales comprobadas. Buscas lo que necesitas, comparas profesionales por sus reseñas y precios, agendas y pagas seguro desde la app. La atención llega a tu hogar, sin salas de espera y sin depender de que alguien te recomiende a alguien.</p>
+        <p>Usar la app no tiene costo. Solo pagas el precio del servicio que contrates, y ese precio lo ves antes de confirmar.</p>
+      </section>
+
+      <section class="step" id="cuenta">
+        <h2><span class="n">1</span> Crear tu cuenta</h2>
+        <p>Descarga CuidaMED en tu teléfono, desde App Store o Google Play, y crea tu cuenta con tu correo. La cuenta de paciente es gratis y no pide datos de pago para registrarte. Solo ingresas tus datos cuando decides pagar un servicio.</p>
+      </section>
+
+      <section class="step" id="buscar">
+        <h2><span class="n">2</span> Buscar profesionales</h2>
+        <p>En el buscador filtras por lo que te importa:</p>
+        <ul>
+          <li><strong>Especialidad o servicio.</strong> Elige el tipo de profesional (enfermería, kinesiología, matronería, cuidados, psicología y más) o directamente la tarea que necesitas, como curaciones, kinesioterapia o control de signos vitales.</li>
+          <li><strong>Comuna.</strong> Para ver a los profesionales que atienden en tu zona.</li>
+          <li><strong>Disponibilidad.</strong> Según cuándo necesitas la atención.</li>
+        </ul>
+        <p>Cada profesional muestra su especialidad, su descripción, sus servicios con precio, sus reseñas y el estado de su verificación. Tómate un momento para comparar antes de elegir.</p>
+        <div class="callout note">
+          <span class="tag">Verificación</span>
+          Los profesionales de salud pasan por verificación en el registro de la Superintendencia de Salud, y los del área de educación por el registro del MINEDUC. Los cuidadores y otras profesiones sin registro estatal se validan con las credenciales que suben. Busca la marca de verificado al elegir.
+        </div>
+      </section>
+
+      <section class="step" id="pedir">
+        <h2><span class="n">3</span> Pedir atención</h2>
+        <p>Hay dos formas de pedir un servicio. Usa la que más te acomode:</p>
+        <div class="ways-grid">
+          <div class="way-card">
+            <div class="emoji">👤</div>
+            <h3>Directo a un profesional</h3>
+            <p>Entras al perfil de quien elegiste, seleccionas uno de sus servicios con su precio y le envías la solicitud con la fecha que prefieres.</p>
+          </div>
+          <div class="way-card">
+            <div class="emoji">📣</div>
+            <h3>Solicitud abierta</h3>
+            <p>Publicas lo que necesitas y varios profesionales postulan con su precio. Comparas las postulaciones y eliges tú.</p>
+          </div>
+        </div>
+        <h3>Qué te pide la solicitud</h3>
+        <p>En <span class="ui">Solicitar Servicio</span> completas:</p>
+        <ul>
+          <li><strong>Fecha y hora.</strong> Si el profesional atiende en horarios fijos, eliges una de sus franjas disponibles. Si trabaja con horario libre, propones tú la fecha y la hora.</li>
+          <li><strong>Dirección.</strong> Dónde quieres recibir la atención (calle, número y comuna).</li>
+          <li><strong>Notas adicionales.</strong> Indicaciones especiales, alergias o condiciones que el profesional deba saber antes de llegar.</li>
+          <li><strong>Orden médica.</strong> Opcional. Si tienes una indicación médica, puedes adjuntarla para que el profesional la revise.</li>
+        </ul>
+        <p>Al enviar, verás <span class="ui">¡Solicitud Enviada!</span> y podrás seguirla desde <span class="ui">Mis Solicitudes</span>.</p>
+      </section>
+
+      <section class="step" id="pagar">
+        <h2><span class="n">4</span> Coordinar y pagar</h2>
+        <p>Cuando el profesional acepta tu solicitud, la atención queda comprometida. Puedes usar el chat para afinar detalles como la hora exacta o cómo llegar a tu casa.</p>
+        <p>El pago se habilita cuando el profesional tiene su cuenta de cobros lista. Si ves el mensaje de que está habilitando sus cobros, es un paso de su lado y te avisaremos cuando puedas pagar. Cuando aparezca el botón <span class="ui">Pagar</span>, pagas de forma segura con MercadoPago desde la app.</p>
+        <div class="callout note">
+          <span class="tag">Pago seguro</span>
+          Pagas el precio del servicio que acordaste, sin cargos ocultos. El pago se procesa a través de MercadoPago y CuidaMED nunca guarda los datos de tu tarjeta.
+        </div>
+      </section>
+
+      <section class="step" id="atencion">
+        <h2><span class="n">5</span> El día de la atención</h2>
+        <p>El profesional llega a la dirección que indicaste, en la fecha y hora acordadas, y realiza el servicio en tu hogar. Después de la atención, el profesional puede subir la <strong>boleta</strong>, que queda disponible para ti desde la misma solicitud.</p>
+      </section>
+
+      <section class="step" id="calificar">
+        <h2><span class="n">6</span> Calificar el servicio</h2>
+        <p>Cuando el servicio queda completado, puedes <span class="ui">Calificar</span> al profesional: le das una puntuación en estrellas y, si quieres, dejas un comentario contando tu experiencia. Tu reseña ayuda a otras familias a elegir mejor, así que vale la pena dedicarle un minuto.</p>
+      </section>
+
+      <section class="step" id="mensajes">
+        <h2><span class="n">7</span> Mensajes y cambios de fecha</h2>
+        <p>Desde cada solicitud puedes escribirle al profesional para coordinar. Si necesitas mover la atención, puedes proponer una nueva fecha, y el profesional la acepta o la rechaza. El profesional también puede proponerte a ti un cambio, y tú respondes de la misma forma con <span class="ui">Aceptar</span> o <span class="ui">Rechazar</span>.</p>
+        <p>Si algo no sale bien, puedes reportar al profesional desde la solicitud para que el equipo de CuidaMED lo revise.</p>
+      </section>
+
+      <section class="step" id="soporte">
+        <h2>Soporte</h2>
+        <p>Si tienes dudas o necesitas ayuda con una solicitud o un pago, escríbenos a <a href="mailto:contacto@cuidamed.cl">contacto@cuidamed.cl</a> y te respondemos.</p>
+      </section>
+
+    </main>
+  </div>
+
+  <footer>
+    <p>© 2026 CuidaMED · Manual para pacientes</p>
+    <a class="back-link" href="/">Volver a cuidamed.cl</a>
+  </footer>
+
+</body>
+</html>
