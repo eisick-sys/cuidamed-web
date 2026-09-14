@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manual para profesionales — CuidaMED</title>
+  <meta name="description" content="Guía paso a paso para profesionales de salud en CuidaMED: crear tu perfil, agregar servicios y tarifas, configurar horarios, conectar MercadoPago y gestionar solicitudes." />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #0A7E6A;
+      --primary-dark: #086A59;
+      --secondary: #12B896;
+      --bg: #F7FAFA;
+      --text: #1A2E2A;
+      --muted: #6B8F8A;
+      --border: #C5DEDD;
+      --light: #DCF5F1;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.7; }
+
+    header {
+      background: linear-gradient(160deg, #0A7E6A 0%, #075747 100%);
+      color: white; padding: 60px 24px 52px; text-align: center; position: relative; overflow: hidden;
+    }
+    header::before { content: ''; position: absolute; width: 380px; height: 380px; border-radius: 50%; background: rgba(18,184,150,0.16); top: -150px; right: -110px; }
+    .logo { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 20px; position: relative; z-index: 1; }
+    .logo-icon { width: 44px; height: 44px; background: white; border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+    .logo-icon svg { width: 28px; height: 28px; }
+    .logo-text { font-family: 'DM Serif Display', serif; font-size: 26px; }
+    header h1 { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: clamp(26px, 4.5vw, 38px); position: relative; z-index: 1; }
+    header p { font-weight: 300; color: rgba(255,255,255,0.85); margin-top: 12px; max-width: 560px; margin-left: auto; margin-right: auto; position: relative; z-index: 1; }
+
+    .layout { max-width: 1080px; margin: 0 auto; padding: 40px 24px 80px; display: grid; grid-template-columns: 240px 1fr; gap: 48px; align-items: start; }
+    @media (max-width: 860px) { .layout { grid-template-columns: 1fr; gap: 24px; } nav.toc { position: static !important; } }
+
+    nav.toc { position: sticky; top: 24px; background: white; border: 1px solid var(--border); border-radius: 16px; padding: 22px 20px; font-size: 14px; }
+    nav.toc h2 { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); font-weight: 600; margin-bottom: 12px; }
+    nav.toc ol { list-style: none; counter-reset: toc; }
+    nav.toc li { counter-increment: toc; margin-bottom: 4px; }
+    nav.toc a { display: block; color: var(--text); text-decoration: none; padding: 6px 8px; border-radius: 8px; font-weight: 400; }
+    nav.toc a::before { content: counter(toc) ". "; color: var(--primary); font-weight: 600; }
+    nav.toc a:hover { background: var(--light); color: var(--primary); }
+
+    main { min-width: 0; }
+    .intro-lead { font-size: 17px; font-weight: 300; margin-bottom: 8px; }
+
+    section.step { background: white; border: 1px solid var(--border); border-radius: 18px; padding: 30px 32px; margin-bottom: 20px; scroll-margin-top: 20px; }
+    section.step h2 { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: 24px; color: var(--primary); margin-bottom: 6px; display: flex; align-items: baseline; gap: 12px; }
+    section.step h2 .n { font-size: 15px; font-weight: 600; color: white; background: var(--primary); border-radius: 50%; width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: 'DM Sans', sans-serif; }
+    section.step h3 { font-size: 16px; font-weight: 600; color: var(--text); margin: 20px 0 8px; }
+    section.step p { margin-bottom: 12px; font-weight: 300; }
+    section.step ul, section.step ol.list { margin: 0 0 12px 4px; padding-left: 20px; }
+    section.step li { margin-bottom: 8px; font-weight: 300; }
+    strong { font-weight: 600; color: var(--text); }
+    .ui { font-weight: 500; color: var(--primary); }
+
+    .callout { border-radius: 12px; padding: 16px 18px; margin: 16px 0; font-size: 14.5px; font-weight: 300; line-height: 1.6; }
+    .callout.note { background: var(--light); border: 1px solid var(--border); }
+    .callout.warn { background: #FEF3F2; border: 1px solid #F3C9C6; }
+    .callout .tag { display: block; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+    .callout.note .tag { color: var(--primary); }
+    .callout.warn .tag { color: #C0362F; }
+
+    .req-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-top: 6px; }
+    .req-card { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 18px; }
+    .req-card .emoji { font-size: 22px; }
+    .req-card h3 { font-size: 15px; font-weight: 600; color: var(--primary); margin: 8px 0 4px; }
+    .req-card p { font-size: 13.5px; color: var(--muted); margin: 0; }
+
+    .price-row { display: flex; flex-wrap: wrap; gap: 14px; margin: 12px 0; }
+    .price-card { flex: 1; min-width: 180px; border: 1px solid var(--border); border-radius: 14px; padding: 20px; background: var(--bg); }
+    .price-card.best { border-color: var(--secondary); background: var(--light); }
+    .price-card .plan { font-size: 14px; font-weight: 600; color: var(--muted); }
+    .price-card .amount { font-family: 'DM Serif Display', serif; font-size: 30px; color: var(--primary); margin: 4px 0; }
+    .price-card .per { font-size: 13px; color: var(--muted); }
+    .price-card .eq { font-size: 12.5px; color: var(--secondary); font-weight: 500; margin-top: 6px; }
+
+    footer { text-align: center; padding: 32px 24px; background: white; border-top: 1px solid var(--border); font-size: 13.5px; color: var(--muted); }
+    footer a { color: var(--primary); text-decoration: none; }
+    .back-link { display: inline-block; margin-top: 8px; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 5.5C9 4.12 10.12 3 11.5 3H12.5C13.88 3 15 4.12 15 5.5V7H13.2V5.5C13.2 5.11 12.89 4.8 12.5 4.8H11.5C11.11 4.8 10.8 5.11 10.8 5.5V7H9V5.5Z" fill="#0A7E6A"/>
+          <rect x="3" y="7" width="18" height="13" rx="2.5" fill="#0A7E6A"/>
+          <rect x="11" y="10.5" width="2" height="6" rx="1" fill="white"/>
+          <rect x="9" y="12.5" width="6" height="2" rx="1" fill="white"/>
+        </svg>
+      </div>
+      <span class="logo-text">CuidaMED</span>
+    </div>
+    <h1>Manual para profesionales</h1>
+    <p>Todo lo que necesitas para aparecer frente a pacientes que buscan tu especialidad, cobrar tus servicios y manejar tu agenda.</p>
+  </header>
+
+  <div class="layout">
+
+    <nav class="toc">
+      <h2>Contenido</h2>
+      <ol>
+        <li><a href="#como-funciona">Cómo funciona para ti</a></li>
+        <li><a href="#requisitos">Requisitos para operar</a></li>
+        <li><a href="#perfil">Crear tu perfil profesional</a></li>
+        <li><a href="#servicios">Agregar servicios y tarifas</a></li>
+        <li><a href="#horarios">Configurar tu disponibilidad</a></li>
+        <li><a href="#verificacion">Verificar tu profesión</a></li>
+        <li><a href="#mercadopago">Conectar MercadoPago</a></li>
+        <li><a href="#plan">Activar tu Plan Profesional</a></li>
+        <li><a href="#solicitudes">Recibir y gestionar solicitudes</a></li>
+        <li><a href="#agenda">Tu agenda</a></li>
+        <li><a href="#cobros">Cobros y ganancias</a></li>
+        <li><a href="#soporte">Soporte</a></li>
+      </ol>
+    </nav>
+
+    <main>
+      <p class="intro-lead">Esta guía sigue el orden en que conviene configurar tu cuenta. Si es tu primera vez, hazla de arriba hacia abajo. Si ya estás operando, salta directo a la sección que necesites desde el índice.</p>
+
+      <section class="step" id="como-funciona">
+        <h2>Cómo funciona para ti</h2>
+        <p>CuidaMED es un buscador donde los pacientes de tu zona publican lo que necesitan y encuentran profesionales verificados que atienden a domicilio. Tu trabajo dentro de la app tiene tres momentos: <strong>configurar tu perfil una vez</strong>, <strong>postular a las solicitudes</strong> que te interesen con tu precio, y <strong>atender y cobrar</strong> cuando el paciente confirma.</p>
+        <p>El paciente usa la app gratis. Tú apareces en el buscador apenas quedas verificado, sin costo por estar. El pago de cada servicio llega directo a tu cuenta de MercadoPago, con la comisión de CuidaMED descontada. Esa comisión es variable: sin Plan Profesional es del 10% por servicio, y con plan baja. El <strong>Plan Profesional</strong> es opcional: no lo necesitas para aparecer, pero suma beneficios, te quita los límites del uso gratuito y te reduce la comisión por servicio.</p>
+      </section>
+
+      <section class="step" id="requisitos">
+        <h2>Requisitos para operar</h2>
+        <p>Para que un paciente pueda encontrarte, contratarte y pagarte, necesitas dos cosas listas. Puedes avanzar en cualquier orden, pero hasta que las dos estén, no vas a recibir pagos. El Plan Profesional no está en esta lista a propósito: es opcional, y lo vemos más abajo.</p>
+        <div class="req-grid">
+          <div class="req-card">
+            <div class="emoji">🪪</div>
+            <h3>Verificación</h3>
+            <p>Tu profesión validada según tu caso: registro de la Superintendencia de Salud, MINEDUC, o las credenciales que subes.</p>
+          </div>
+          <div class="req-card">
+            <div class="emoji">💳</div>
+            <h3>Cuenta de cobros</h3>
+            <p>Tu cuenta de MercadoPago conectada para recibir el pago de cada servicio.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="step" id="perfil">
+        <h2><span class="n">1</span> Crear tu perfil profesional</h2>
+        <p>Al registrarte eliges el rol de profesional. Luego completas tu perfil desde <span class="ui">Editar perfil</span>. Estos son los campos que importan:</p>
+        <ul>
+          <li><strong>Tipo de profesional.</strong> Eliges tu especialidad de la lista (enfermero/a, TENS, kinesiólogo/a, matrona y el resto). Si tu profesión no aparece, elige <span class="ui">Otro</span> y escríbela.</li>
+          <li><strong>Descripción.</strong> Cuenta tu experiencia y tus especialidades. Es lo primero que lee el paciente, así que sé concreto sobre qué haces bien.</li>
+          <li><strong>Comuna principal.</strong> Tu base de operaciones. Es obligatoria.</li>
+          <li><strong>Comunas de cobertura.</strong> Las comunas donde atiendes a domicilio, además de la principal. Cubrir varias comunas es parte del Plan Profesional; en el uso gratuito trabajas con tu comuna base.</li>
+          <li><strong>Foto de perfil.</strong> Debe ser una foto tuya. Esta función se desbloquea con el Plan Profesional.</li>
+        </ul>
+        <p>Al terminar, presiona <span class="ui">Guardar Perfil</span>. El sistema te pedirá tener al menos la descripción, la comuna principal y un servicio antes de guardar.</p>
+      </section>
+
+      <section class="step" id="servicios">
+        <h2><span class="n">2</span> Agregar servicios y tarifas</h2>
+        <p>Cada servicio es una prestación con su propio precio. Un paciente busca por servicio, así que conviene cargar todos los que ofreces. Para agregar uno:</p>
+        <ol class="list">
+          <li>Toca el selector para abrir <span class="ui">Seleccionar Tarea</span>. Ahí aparecen las tareas propias de tu especialidad (por ejemplo, un kinesiólogo ve kinesioterapia, rehabilitación, prevención de caídas). Usa el buscador si la lista es larga.</li>
+          <li>Si lo que ofreces no está en la lista, elige <span class="ui">Otro</span> y escribe el nombre del servicio a mano.</li>
+          <li>Agrega una <strong>descripción opcional</strong> para aclarar qué incluye.</li>
+          <li>Escribe el <strong>precio en pesos chilenos</strong>. Este es el valor que verá el paciente.</li>
+          <li>Presiona <span class="ui">Agregar Servicio</span>. Verás el aviso <span class="ui">Servicio guardado</span>.</li>
+        </ol>
+        <p>Cada servicio de la lista se puede <strong>editar</strong> (cambia el precio o la descripción y presiona <span class="ui">Guardar Cambios</span>) o <strong>eliminar</strong>. Los cambios se guardan solos apenas los confirmas.</p>
+        <div class="callout note">
+          <span class="tag">Consejo</span>
+          Pon precios claros y realistas por prestación en vez de un solo valor genérico. El paciente compara profesionales por servicio, y un precio bien puesto por cada tarea te hace competir mejor.
+        </div>
+      </section>
+
+      <section class="step" id="horarios">
+        <h2><span class="n">3</span> Configurar tu disponibilidad</h2>
+        <p>En la sección <span class="ui">Disponibilidad</span> decides cómo el paciente elige la fecha. Tienes dos modos:</p>
+        <h3>Horario libre</h3>
+        <p>El paciente ingresa la fecha y la hora que prefiera al hacer la solicitud. Tú decides después si la aceptas o si propones otra fecha. Es el modo más flexible y sirve bien si tu semana cambia seguido.</p>
+        <h3>Horarios fijos</h3>
+        <p>Defines tú los momentos en que atiendes. Seleccionas los <strong>días de la semana</strong> y, dentro de cada día, agregas los <strong>bloques de hora</strong> que ofreces (por ejemplo 09:00, 11:00, 16:00). El paciente solo puede elegir dentro de esos bloques. Para quitar un bloque, toca la × sobre él.</p>
+        <div class="callout note">
+          <span class="tag">Cómo elegir</span>
+          Usa horarios fijos si quieres proteger tu tiempo y evitar solicitudes a horas imposibles. Usa horario libre si prefieres recibir cualquier propuesta y filtrarla tú mismo caso a caso.
+        </div>
+      </section>
+
+      <section class="step" id="verificacion">
+        <h2><span class="n">4</span> Verificar tu profesión</h2>
+        <p>La verificación es lo que te da el respaldo frente a los pacientes. Cómo se verifica depende de tu profesión, y hay tres vías:</p>
+        <h3>Profesionales de salud</h3>
+        <p>Enfermero/a, TENS, kinesiólogo/a, matrona, terapeuta ocupacional, fonoaudiólogo/a, nutricionista, podólogo/a y psicólogo/a se verifican con su RUT contra el registro de la Superintendencia de Salud. En <span class="ui">Verificación de credenciales</span> escribes tu RUT con el formato <strong>12.345.678-9</strong> y presionas <span class="ui">Enviar para verificación</span>.</p>
+        <h3>Educación diferencial y psicopedagogía</h3>
+        <p>Psicopedagogo/a y educador/a diferencial se verifican contra el registro del MINEDUC. El proceso en la app es el mismo: ingresas tu RUT y lo envías para revisión.</p>
+        <h3>Cuidadores y profesiones sin registro</h3>
+        <p>Cuidador/a, educador/a de párvulos y quienes eligieron <span class="ui">Otro</span> no tienen un registro estatal que consultar, así que se verifican con las credenciales que suben. En <span class="ui">Credenciales y Certificados</span> adjuntas tu <strong>título profesional</strong> y tus <strong>cursos y certificaciones</strong>, en PDF o imagen. Estos documentos son privados y solo los ve el equipo de CuidaMED.</p>
+        <p>En todos los casos, tu verificación queda pendiente hasta que el equipo de CuidaMED la revise, y el estado se muestra en esa misma sección. Aunque estés en un registro público, subir tus credenciales siempre ayuda a que la revisión sea más rápida.</p>
+        <div class="callout warn">
+          <span class="tag">Importante</span>
+          Si tu profesión se valida contra un registro y tu RUT no aparece habilitado en él, la verificación se rechaza. Asegúrate de estar inscrito y habilitado antes de enviarla.
+        </div>
+      </section>
+
+      <section class="step" id="mercadopago">
+        <h2><span class="n">5</span> Conectar tu cuenta de MercadoPago</h2>
+        <p>Aquí es donde recibes el dinero de tus servicios. Entra a <span class="ui">Cuenta de cobros</span> y presiona <span class="ui">Conectar con MercadoPago</span>.</p>
+        <ol class="list">
+          <li>Se abre el <strong>sitio oficial de MercadoPago</strong> para que inicies sesión y autorices la conexión. CuidaMED nunca ve ni guarda tu contraseña.</li>
+          <li>Si todavía no tienes cuenta de MercadoPago, puedes crearla gratis durante ese mismo paso.</li>
+          <li>Al volver a la app, verás <span class="ui">Cuenta conectada</span>. Listo, ya puedes recibir pagos.</li>
+        </ol>
+        <p>Desde ese momento, cuando un paciente paga un servicio, el dinero llega directo a tu cuenta de MercadoPago con la comisión de CuidaMED ya descontada. Los plazos en que el dinero queda disponible para retirar son los de tu propia cuenta de MercadoPago, no los de CuidaMED.</p>
+        <p>Si necesitas cambiar de cuenta, usa <span class="ui">Desconectar cuenta</span>. Ojo: mientras estés desconectado no puedes recibir nuevos pagos hasta que vuelvas a conectar una.</p>
+      </section>
+
+      <section class="step" id="plan">
+        <h2><span class="n">6</span> Activar tu Plan Profesional</h2>
+        <p>El plan es <strong>opcional</strong>. No lo necesitas para aparecer en el buscador ni para atender: apareces apenas quedas verificado. Lo que hace es darte más visibilidad y quitarte los límites del uso gratuito. Entra a <span class="ui">Plan Profesional</span> y elige:</p>
+        <div class="price-row">
+          <div class="price-card">
+            <div class="plan">Plan Mensual</div>
+            <div class="amount">$5.990</div>
+            <div class="per">CLP / mes</div>
+          </div>
+          <div class="price-card best">
+            <div class="plan">Plan Anual · mejor precio</div>
+            <div class="amount">$59.990</div>
+            <div class="per">CLP / año</div>
+            <div class="eq">Equivale a $4.999/mes · ahorras $11.890</div>
+          </div>
+        </div>
+        <h3>Qué incluye el plan</h3>
+        <ul>
+          <li>Posicionamiento preferente en las búsquedas.</li>
+          <li>Foto de perfil visible para los pacientes.</li>
+          <li>Chat ilimitado con pacientes.</li>
+          <li>Solicitudes ilimitadas.</li>
+          <li>Cobertura en varias comunas.</li>
+          <li>Soporte prioritario.</li>
+        </ul>
+        <h3>Qué pasa sin plan</h3>
+        <p>Igual apareces y atiendes, con algunos límites: hasta 10 solicitudes y 10 conversaciones nuevas por mes, tu comuna base como única cobertura y la foto de perfil oculta.</p>
+        <p>Si es tu primera suscripción, tienes <strong>7 días de prueba gratis</strong>: presiona <span class="ui">Comenzar prueba gratis</span>. Puedes cambiar del plan mensual al anual cuando quieras, y cancelar en cualquier momento desde esa misma pantalla, donde también ves la fecha de tu próximo cobro.</p>
+        <div class="callout note">
+          <span class="tag">Nota</span>
+          Estos son los valores vigentes al publicar este manual. El precio que manda siempre es el que te muestra la app al momento de suscribirte.
+        </div>
+      </section>
+
+      <section class="step" id="solicitudes">
+        <h2><span class="n">7</span> Recibir y gestionar solicitudes</h2>
+        <p>Este es el día a día. Los pacientes publican solicitudes y tú postulas a las que te interesan.</p>
+        <h3>Postular</h3>
+        <p>En una solicitud abierta indicas el <strong>precio de tu servicio</strong> y envías tu postulación. Verás <span class="ui">Postulación enviada</span>. Solo puedes postular una vez a cada solicitud.</p>
+        <h3>Cuando el paciente te elige</h3>
+        <p>Si el paciente te acepta, la solicitud queda comprometida y avanza al pago. Para poder recibir ese pago necesitas tu cuenta de MercadoPago conectada (sección 5). Puedes <span class="ui">Aceptar</span> o <span class="ui">Rechazar</span> según corresponda, y usar <span class="ui">Mensaje</span> para coordinar detalles con el paciente.</p>
+        <h3>Reagendar</h3>
+        <p>Si no te sirve la fecha, puedes proponer una nueva. El paciente ve tu propuesta con botones de <span class="ui">Aceptar</span> y <span class="ui">Rechazar</span>. Funciona en ambos sentidos: el paciente también puede proponerte a ti un cambio de fecha, y tú respondes igual.</p>
+        <h3>Al terminar el servicio</h3>
+        <p>Cuando realizas la atención, marcas la solicitud como <span class="ui">Completar</span>. Después puedes <strong>subir la boleta</strong> para que tu paciente la vea desde su propia solicitud. Ten presente que el paciente puede adjuntar su orden médica a la solicitud para que tú la revises.</p>
+      </section>
+
+      <section class="step" id="agenda">
+        <h2><span class="n">8</span> Tu agenda</h2>
+        <p>En <span class="ui">Mi Agenda</span> ves un calendario con todas tus citas. Cada día con servicios aparece marcado con puntos de color:</p>
+        <ul>
+          <li><strong>Verde:</strong> cita confirmada, ya pagada o realizada.</li>
+          <li><strong>Ámbar:</strong> cita comprometida pero todavía pendiente de pago.</li>
+        </ul>
+        <p>Al tocar un día ves el detalle de cada servicio: la hora, el nombre del paciente, el tipo de servicio y su estado. Es una vista de lo que ya tienes agendado, así que revísala seguido para no cruzar horas.</p>
+      </section>
+
+      <section class="step" id="cobros">
+        <h2><span class="n">9</span> Cobros y ganancias</h2>
+        <p>El pago de cada servicio llega directo a tu cuenta de MercadoPago apenas el paciente paga, con la comisión de CuidaMED ya descontada. No tienes que emitir cobros manuales dentro de la app.</p>
+        <p>La comisión es <strong>variable según tu plan</strong>: sin Plan Profesional es del 10% del valor de cada servicio, y con Plan Profesional baja. Se descuenta automáticamente al momento del pago, así que lo que recibes es el precio del servicio menos esa comisión.</p>
+        <p>En la sección de <span class="ui">Ganancias</span> llevas el registro de lo que has generado a través de la plataforma. Para retirar el dinero a tu banco, usa tu propia cuenta de MercadoPago con sus plazos habituales.</p>
+        <div class="callout note">
+          <span class="tag">Suscripción y comisión son distintas</span>
+          El Plan Profesional es un pago fijo y opcional que te da beneficios y te baja la comisión. La comisión es un porcentaje variable que se descuenta de cada servicio que cobras. Tener plan no la elimina, la reduce.
+        </div>
+      </section>
+
+      <section class="step" id="soporte">
+        <h2>Soporte</h2>
+        <p>Si algo no calza o necesitas ayuda con tu verificación, tu cuenta de cobros o una solicitud, escríbenos a <a href="mailto:contacto@cuidamed.cl">contacto@cuidamed.cl</a> y te respondemos.</p>
+      </section>
+
+    </main>
+  </div>
+
+  <footer>
+    <p>© 2026 CuidaMED · Manual para profesionales</p>
+    <a class="back-link" href="/">Volver a cuidamed.cl</a>
+  </footer>
+
+</body>
+</html>
