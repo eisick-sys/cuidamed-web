@@ -290,7 +290,7 @@
     </div>
     <h1>Política de Privacidad</h1>
     <p class="subtitle">Cómo recopilamos, usamos y protegemos tu información</p>
-    <div class="date-badge">Vigente desde el 2 de septiembre de 2026</div>
+    <div class="date-badge">Vigente desde el 14 de septiembre de 2026</div>
   </header>
 
   <div class="toc-wrap">
@@ -420,6 +420,8 @@
       <div class="highlight-box">
         <p>🔒 El RUT de los usuarios <strong>nunca es expuesto públicamente</strong> a través de la API ni en los listados de la plataforma.</p>
       </div>
+
+      <p>CuidaMED no vende, cede ni comparte datos personales con terceros con fines publicitarios o comerciales.</p>
     </section>
 
     <section id="retencion">
@@ -429,6 +431,7 @@
         <li>Tus datos personales identificables serán eliminados dentro de los <strong>30 días hábiles</strong> siguientes a la solicitud</li>
         <li>Los registros contables y de transacciones se conservan por <strong>6 años</strong>, conforme a la legislación tributaria chilena</li>
         <li>Los mensajes de chat asociados a servicios completados se eliminan junto con la cuenta</li>
+        <li>Si eres profesional y tienes servicios ya pagados sin completar, o reembolsos que MercadoPago bloqueó, la eliminación de tus datos identificables se posterga hasta que esas obligaciones se resuelvan: mientras tanto tu cuenta queda inhabilitada para iniciar sesión, y conservamos únicamente lo necesario para completar la liquidación (tus credenciales de pago y las solicitudes involucradas)</li>
       </ul>
     </section>
 
@@ -437,7 +440,7 @@
       <p>Implementamos medidas técnicas y organizativas para proteger tus datos:</p>
       <ul>
         <li>Contraseñas almacenadas con hash bcrypt (nunca en texto plano)</li>
-        <li>Autenticación mediante tokens JWT con expiración de 7 días</li>
+        <li>Autenticación mediante tokens JWT con expiración limitada</li>
         <li>Comunicaciones cifradas mediante HTTPS/TLS</li>
         <li>Almacenamiento en la nube con cifrado en reposo (MongoDB Atlas)</li>
         <li>Control de acceso basado en roles (paciente, profesional, administrador)</li>
