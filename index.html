@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CuidaMED — Salud a domicilio en Chile</title>
-  <meta name="description" content="CuidaMED conecta pacientes con profesionales de salud verificados que atienden a domicilio: enfermería, TENS, kinesiología, cuidados y más." />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <title>CuidaMED — Salud a domicilio verificada en Chile</title>
+  <meta name="description" content="CuidaMED conecta pacientes con profesionales de salud verificados que atienden a domicilio en todo Chile: enfermería, kinesiología, cuidado de adultos mayores, desarrollo infantil y más." />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     :root {
       --primary: #0A7E6A;
+      --primary-dark: #086A59;
       --secondary: #12B896;
       --bg: #F7FAFA;
       --text: #1A2E2A;
@@ -30,9 +31,34 @@
       min-height: 100vh;
     }
 
+    .serif { font-family: 'DM Serif Display', serif; font-weight: 400; }
+
+    section { width: 100%; }
+
+    .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; width: 100%; }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(24px, 3.5vw, 30px);
+      color: var(--primary);
+      font-weight: 400;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .section-lead {
+      text-align: center;
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--muted);
+      max-width: 620px;
+      margin: 0 auto 36px;
+    }
+
+    /* ---------- HERO ---------- */
     header {
-      background: var(--primary);
-      padding: 72px 24px 64px;
+      background: linear-gradient(160deg, #0A7E6A 0%, #075747 100%);
+      padding: 76px 24px 72px;
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -41,27 +67,22 @@
     header::before {
       content: '';
       position: absolute;
-      width: 400px; height: 400px;
+      width: 460px; height: 460px;
       border-radius: 50%;
-      background: rgba(18,184,150,0.15);
-      top: -150px; right: -100px;
+      background: rgba(18,184,150,0.18);
+      top: -180px; right: -120px;
     }
 
     header::after {
       content: '';
       position: absolute;
-      width: 250px; height: 250px;
+      width: 300px; height: 300px;
       border-radius: 50%;
       background: rgba(255,255,255,0.05);
-      bottom: -80px; left: -60px;
+      bottom: -110px; left: -80px;
     }
 
-    .logo {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 28px;
-    }
+    .logo { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 30px; position: relative; z-index: 1; }
 
     .logo-icon {
       width: 56px; height: 56px;
@@ -72,304 +93,133 @@
 
     .logo-icon svg { width: 34px; height: 34px; }
 
-    .logo-text {
-      font-family: 'DM Serif Display', serif;
-      font-size: 34px;
-      color: white;
-      letter-spacing: -0.3px;
-    }
+    .logo-text { font-family: 'DM Serif Display', serif; font-size: 34px; color: white; letter-spacing: -0.3px; }
 
     header h1 {
       font-family: 'DM Serif Display', serif;
-      font-size: clamp(28px, 5vw, 42px);
+      font-size: clamp(30px, 5.5vw, 46px);
       color: white;
       font-weight: 400;
       position: relative; z-index: 1;
-      max-width: 640px;
+      max-width: 680px;
       margin: 0 auto;
-      line-height: 1.3;
+      line-height: 1.25;
     }
 
     header p.subtitle {
-      color: rgba(255,255,255,0.8);
-      font-size: 16px;
-      margin-top: 14px;
+      color: rgba(255,255,255,0.82);
+      font-size: 16.5px;
+      margin: 16px auto 0;
       font-weight: 300;
       position: relative; z-index: 1;
       max-width: 560px;
-      margin-left: auto;
-      margin-right: auto;
     }
 
-    /* --- Botones de descarga (tiendas) --- */
-    .store-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 14px;
-      margin-top: 30px;
-      position: relative; z-index: 1;
-    }
+    .store-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 32px; position: relative; z-index: 1; }
 
     .store-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      background: #0f1a18;
-      color: white;
-      text-decoration: none;
-      padding: 11px 20px;
-      border-radius: 12px;
+      display: inline-flex; align-items: center; gap: 12px;
+      background: #0b1512; color: white; text-decoration: none;
+      padding: 11px 22px; border-radius: 12px;
       border: 1px solid rgba(255,255,255,0.18);
-      transition: transform 0.15s, background 0.2s;
-      min-width: 200px;
+      transition: transform 0.15s, background 0.2s; min-width: 200px;
     }
-
     .store-btn:hover { background: #000; transform: translateY(-2px); }
-
     .store-btn svg { width: 26px; height: 26px; flex-shrink: 0; }
+    .store-btn .store-label { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.15; text-align: left; }
+    .store-btn .store-label small { font-size: 11px; font-weight: 300; opacity: 0.85; letter-spacing: 0.3px; }
+    .store-btn .store-label strong { font-size: 17px; font-weight: 500; }
 
-    .store-btn .store-label {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      line-height: 1.15;
-      text-align: left;
-    }
-
-    .store-btn .store-label small {
-      font-size: 11px;
-      font-weight: 300;
-      opacity: 0.85;
-      letter-spacing: 0.3px;
-    }
-
-    .store-btn .store-label strong {
-      font-size: 17px;
-      font-weight: 500;
-    }
-
-    main {
-      max-width: 880px;
-      margin: 0 auto;
-      padding: 48px 24px 72px;
-      flex: 1;
-      width: 100%;
-    }
-
-    .what {
-      text-align: center;
-      max-width: 640px;
-      margin: 0 auto 48px;
-    }
-
-    .what h2 {
-      font-family: 'DM Serif Display', serif;
-      font-size: 24px;
-      color: var(--primary);
-      font-weight: 400;
-      margin-bottom: 14px;
-    }
-
-    .what p {
-      font-size: 15px;
-      font-weight: 300;
-    }
-
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-      margin-bottom: 56px;
-    }
-
-    .feature {
+    /* ---------- BARRA DE CONFIANZA ---------- */
+    .trust {
       background: white;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 24px;
-      text-align: center;
-    }
-
-    .feature .emoji { font-size: 28px; margin-bottom: 10px; }
-
-    .feature h3 {
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--primary);
-      margin-bottom: 6px;
-    }
-
-    .feature p {
-      font-size: 13.5px;
-      font-weight: 300;
-      line-height: 1.6;
-      color: var(--muted);
-    }
-
-    /* --- Bloque QR --- */
-    .qr-block {
-      display: flex;
-      align-items: center;
-      gap: 32px;
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 32px;
-      margin-bottom: 56px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .qr-frame {
-      width: 168px;
-      flex-shrink: 0;
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 14px;
-    }
-
-    .qr-svg { display: block; width: 100%; height: auto; }
-
-    .qr-text { flex: 1; min-width: 240px; }
-
-    .qr-text h2 {
-      font-family: 'DM Serif Display', serif;
-      font-size: 24px;
-      color: var(--primary);
-      font-weight: 400;
-      margin-bottom: 10px;
-    }
-
-    .qr-text p {
-      font-size: 15px;
-      font-weight: 300;
-      margin-bottom: 14px;
-    }
-
-    .qr-download {
-      display: inline-block;
-      font-size: 13.5px;
-      font-weight: 500;
-      color: var(--primary);
-      text-decoration: none;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 9px 18px;
-      transition: border-color 0.2s;
-    }
-
-    .qr-download:hover { border-color: var(--secondary); }
-
-    .pro-block {
-      background: var(--light);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 36px 32px;
-      text-align: center;
-      margin-bottom: 56px;
-    }
-
-    .pro-block h2 {
-      font-family: 'DM Serif Display', serif;
-      font-size: 24px;
-      color: var(--primary);
-      font-weight: 400;
-      margin-bottom: 12px;
-    }
-
-    .pro-block p {
-      font-size: 15px;
-      font-weight: 300;
-      max-width: 560px;
-      margin: 0 auto 10px;
-    }
-
-    .pro-block ul {
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 8px 20px;
-      margin: 16px 0 22px;
-      padding: 0;
-    }
-
-    .pro-block li {
-      font-size: 14px;
-      font-weight: 300;
-      color: var(--primary);
-    }
-
-    .pro-btn {
-      display: inline-block;
-      background: var(--primary);
-      color: white;
-      font-size: 15px;
-      font-weight: 500;
-      text-decoration: none;
-      padding: 14px 32px;
-      border-radius: 12px;
-      transition: background 0.2s;
-    }
-
-    .pro-btn:hover { background: #086A59; }
-
-    .links h2 {
-      font-family: 'DM Serif Display', serif;
-      font-size: 22px;
-      color: var(--primary);
-      font-weight: 400;
-      margin-bottom: 18px;
-      padding-bottom: 12px;
       border-bottom: 1px solid var(--border);
     }
+    .trust .wrap {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 36px;
+      padding-top: 20px; padding-bottom: 20px;
+    }
+    .trust span { font-size: 13.5px; font-weight: 500; color: var(--primary); display: inline-flex; align-items: center; gap: 8px; }
 
-    .link-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 14px;
+    /* ---------- INTRO ---------- */
+    .intro { padding: 60px 0 12px; }
+    .intro p { text-align: center; max-width: 640px; margin: 0 auto; font-size: 16px; font-weight: 300; }
+
+    /* ---------- ESPECIALIDADES ---------- */
+    .specialties { padding: 56px 0; }
+    .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; max-width: 760px; margin: 0 auto; }
+    .chip {
+      background: var(--light); color: var(--primary);
+      border: 1px solid var(--border); border-radius: 999px;
+      padding: 9px 18px; font-size: 14px; font-weight: 500;
     }
 
-    .link-card {
-      display: block;
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 20px 24px;
-      text-decoration: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
+    /* ---------- SERVICIOS ---------- */
+    .services { padding: 8px 0 56px; }
+    .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+    .service-card {
+      background: white; border: 1px solid var(--border); border-radius: 16px; padding: 26px 24px;
+      transition: box-shadow 0.2s, transform 0.15s;
     }
+    .service-card:hover { box-shadow: 0 6px 20px rgba(10,126,106,0.08); transform: translateY(-2px); }
+    .service-card .emoji { font-size: 26px; }
+    .service-card h3 { font-size: 16px; font-weight: 600; color: var(--primary); margin: 10px 0 8px; }
+    .service-card p { font-size: 13.5px; font-weight: 300; color: var(--muted); line-height: 1.65; }
 
-    .link-card:hover {
-      border-color: var(--secondary);
-      box-shadow: 0 4px 14px rgba(10,126,106,0.08);
+    /* ---------- COMO FUNCIONA ---------- */
+    .how { padding: 60px 0; background: white; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .how-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; align-items: start; }
+    .how-card { border-radius: 18px; padding: 32px 30px; }
+    .how-card.patients { background: var(--bg); border: 1px solid var(--border); }
+    .how-card.pros { background: var(--light); border: 1px solid var(--border); }
+    .how-card h3 { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--primary); font-weight: 400; margin-bottom: 6px; }
+    .how-card .tag { display: inline-block; font-size: 12px; font-weight: 500; color: var(--muted); margin-bottom: 20px; }
+    .steps { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 16px; }
+    .steps li { display: flex; gap: 14px; align-items: flex-start; }
+    .steps .num {
+      flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+      background: var(--primary); color: white; font-size: 14px; font-weight: 600;
+      display: flex; align-items: center; justify-content: center; margin-top: 2px;
     }
-
-    .link-card h3 {
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--primary);
-      margin-bottom: 4px;
+    .steps .txt { font-size: 14.5px; font-weight: 300; line-height: 1.6; }
+    .steps .txt strong { font-weight: 600; color: var(--text); }
+    .how-note { font-size: 13px; font-weight: 300; color: var(--muted); margin: 20px 0 22px; }
+    .contact-btn {
+      display: inline-block; background: var(--primary); color: white;
+      font-size: 15px; font-weight: 500; text-decoration: none;
+      padding: 13px 30px; border-radius: 12px; transition: background 0.2s;
     }
+    .contact-btn:hover { background: var(--primary-dark); }
 
-    .link-card p {
-      font-size: 13.5px;
-      font-weight: 300;
-      color: var(--muted);
-      line-height: 1.6;
+    /* ---------- DESCARGA / QR ---------- */
+    .download { padding: 64px 0; }
+    .download-card {
+      display: flex; align-items: center; gap: 36px; flex-wrap: wrap; justify-content: center;
+      background: white; border: 1px solid var(--border); border-radius: 20px; padding: 40px 36px;
     }
+    .qr-frame { width: 172px; flex-shrink: 0; background: white; border: 1px solid var(--border); border-radius: 14px; padding: 14px; }
+    .qr-svg { display: block; width: 100%; height: auto; }
+    .download-text { flex: 1; min-width: 250px; }
+    .download-text h2 { font-family: 'DM Serif Display', serif; font-size: 26px; color: var(--primary); font-weight: 400; margin-bottom: 10px; }
+    .download-text p { font-size: 15px; font-weight: 300; margin-bottom: 16px; }
+    .download-text .store-hint { font-size: 13.5px; color: var(--muted); }
+    .download-text .store-hint strong { color: var(--primary); font-weight: 600; }
+    .qr-download { display: inline-block; font-size: 13.5px; font-weight: 500; color: var(--primary); text-decoration: none; border: 1px solid var(--border); border-radius: 10px; padding: 9px 18px; margin-top: 4px; transition: border-color 0.2s; }
+    .qr-download:hover { border-color: var(--secondary); }
 
-    footer {
-      text-align: center;
-      padding: 32px 24px;
-      background: white;
-      border-top: 1px solid var(--border);
-      font-size: 13px;
-      color: var(--muted);
+    /* ---------- LINKS LEGALES ---------- */
+    .links { padding: 12px 0 72px; }
+    .links h2 {
+      font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--primary); font-weight: 400;
+      margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid var(--border);
     }
+    .link-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+    .link-card { display: block; background: white; border: 1px solid var(--border); border-radius: 14px; padding: 20px 24px; text-decoration: none; transition: border-color 0.2s, box-shadow 0.2s; }
+    .link-card:hover { border-color: var(--secondary); box-shadow: 0 4px 14px rgba(10,126,106,0.08); }
+    .link-card h3 { font-size: 15px; font-weight: 500; color: var(--primary); margin-bottom: 4px; }
+    .link-card p { font-size: 13.5px; font-weight: 300; color: var(--muted); line-height: 1.6; }
 
+    footer { text-align: center; padding: 34px 24px; background: white; border-top: 1px solid var(--border); font-size: 13px; color: var(--muted); }
     footer a { color: var(--primary); text-decoration: none; }
   </style>
 </head>
@@ -388,7 +238,7 @@
       <span class="logo-text">CuidaMED</span>
     </div>
     <h1>Salud a domicilio, verificada</h1>
-    <p class="subtitle">Conectamos pacientes con profesionales de salud que atienden en tu hogar: enfermería, TENS, kinesiología, cuidados y más, en todo Chile.</p>
+    <p class="subtitle">Encuentra al profesional de salud correcto para tu familia, cerca de tu comuna y con credenciales comprobadas. En todo Chile.</p>
 
     <!-- Botones de descarga: links de produccion de App Store y Google Play -->
     <div class="store-buttons">
@@ -410,55 +260,143 @@
     </div>
   </header>
 
-  <main>
-
-    <div class="what">
-      <h2>¿Para qué sirve CuidaMED?</h2>
-      <p>Encuentra profesionales de salud cerca de tu comuna, revisa sus reseñas y credenciales, agenda el servicio que necesitas y paga de forma segura, todo desde una sola app.</p>
+  <section class="trust">
+    <div class="wrap">
+      <span>✓ Verificados ante el RNPI</span>
+      <span>🔒 Pago seguro con MercadoPago</span>
+      <span>📍 Cobertura en todo Chile</span>
     </div>
+  </section>
 
-    <div class="features">
-      <div class="feature">
-        <div class="emoji">✓</div>
-        <h3>Profesionales verificados</h3>
-        <p>Contrastados con el Registro Nacional de Prestadores (RNPI) de la Superintendencia de Salud.</p>
-      </div>
-      <div class="feature">
-        <div class="emoji">🏠</div>
-        <h3>Atención en tu hogar</h3>
-        <p>Curaciones, inyecciones, kinesioterapia y cuidados sin salir de casa, cuando lo necesites.</p>
-      </div>
-      <div class="feature">
-        <div class="emoji">🔒</div>
-        <h3>Pago seguro en la app</h3>
-        <p>Paga con MercadoPago. Nunca almacenamos los datos de tu tarjeta.</p>
+  <section class="intro">
+    <div class="wrap">
+      <p>CuidaMED es la app que conecta a pacientes y familias con profesionales de salud que atienden en el hogar. Publicas lo que necesitas, comparas profesionales con sus reseñas y credenciales, agendas y pagas seguro. Todo en un solo lugar, sin depender de recomendaciones de boca en boca.</p>
+    </div>
+  </section>
+
+  <section class="specialties">
+    <div class="wrap">
+      <h2 class="section-title">Profesionales para cada necesidad</h2>
+      <p class="section-lead">Todas las especialidades pasan por verificación en el Registro Nacional de Prestadores de la Superintendencia de Salud.</p>
+      <div class="chips">
+        <span class="chip">Enfermero/a</span>
+        <span class="chip">TENS</span>
+        <span class="chip">Cuidador/a</span>
+        <span class="chip">Kinesiólogo/a</span>
+        <span class="chip">Matrona</span>
+        <span class="chip">Terapeuta Ocupacional</span>
+        <span class="chip">Fonoaudiólogo/a</span>
+        <span class="chip">Nutricionista</span>
+        <span class="chip">Podólogo/a</span>
+        <span class="chip">Psicólogo/a</span>
+        <span class="chip">Educador/a de Párvulos</span>
+        <span class="chip">Educador/a Diferencial</span>
+        <span class="chip">Psicopedagogo/a</span>
       </div>
     </div>
+  </section>
 
-    <div class="qr-block">
-      <div class="qr-frame">
-        <svg viewBox="0 0 29 29" class="qr-svg" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Codigo QR para descargar CuidaMED"><path fill="#fff" d="M0 0h29v29h-29z"/><path class="qrline" stroke="#0a7e6a" d="M2 2.5h7m2 0h1m1 0h4m3 0h7m-25 1h1m5 0h1m4 0h1m1 0h1m4 0h1m5 0h1m-25 1h1m1 0h3m1 0h1m3 0h4m4 0h1m1 0h3m1 0h1m-25 1h1m1 0h3m1 0h1m1 0h2m1 0h1m1 0h3m2 0h1m1 0h3m1 0h1m-25 1h1m1 0h3m1 0h1m7 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-25 1h1m5 0h1m1 0h3m3 0h1m3 0h1m5 0h1m-25 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-17 1h1m1 0h1m5 0h1m-16 1h2m3 0h1m3 0h1m1 0h5m1 0h2m1 0h1m-22 1h2m1 0h2m5 0h2m3 0h5m1 0h1m1 0h2m-24 1h2m2 0h6m2 0h3m2 0h1m2 0h2m1 0h1m-25 1h1m1 0h2m1 0h1m1 0h1m1 0h3m4 0h2m3 0h1m-19 1h1m1 0h2m1 0h1m3 0h5m1 0h2m4 0h1m-18 1h2m1 0h2m3 0h2m1 0h2m3 0h2m-25 1h2m1 0h1m2 0h2m1 0h1m1 0h3m1 0h1m1 0h1m3 0h2m1 0h1m-22 1h3m1 0h2m1 0h1m1 0h3m1 0h2m1 0h3m-22 1h2m1 0h2m1 0h3m1 0h1m2 0h1m2 0h5m2 0h1m-16 1h4m4 0h1m3 0h1m3 0h1m-25 1h7m2 0h1m1 0h2m1 0h1m1 0h1m1 0h1m1 0h1m3 0h1m-25 1h1m5 0h1m3 0h1m1 0h1m2 0h2m3 0h1m2 0h2m-25 1h1m1 0h3m1 0h1m4 0h1m3 0h6m2 0h2m-25 1h1m1 0h3m1 0h1m2 0h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h2m-24 1h1m1 0h3m1 0h1m1 0h4m2 0h4m1 0h3m1 0h2m-25 1h1m5 0h1m1 0h3m2 0h2m1 0h2m1 0h2m-21 1h7m2 0h1m4 0h1m1 0h3m2 0h1m2 0h1"/></svg>
-      </div>
-      <div class="qr-text">
-        <h2>Escanea y descarga</h2>
-        <p>Apunta la cámara de tu teléfono al código y te llevará directo a descargar CuidaMED, en iPhone o Android.</p>
-        <a class="qr-download" href="/cuidamed-qr.png" download>Descargar código QR</a>
+  <section class="services">
+    <div class="wrap">
+      <h2 class="section-title">Servicios que puedes agendar</h2>
+      <p class="section-lead">Desde procedimientos de enfermería hasta terapias de desarrollo infantil, siempre en tu casa.</p>
+      <div class="service-grid">
+        <div class="service-card">
+          <div class="emoji">💉</div>
+          <h3>Enfermería y procedimientos</h3>
+          <p>Curaciones, escaras y ostomías, inyecciones, toma de muestras, sondaje, manejo de catéteres, retiro de puntos, oxigenoterapia y control de signos vitales.</p>
+        </div>
+        <div class="service-card">
+          <div class="emoji">🧓</div>
+          <h3>Cuidado y adulto mayor</h3>
+          <p>Cuidado de adultos mayores, aseo y confort, apoyo en alimentación, traslado y movilización, acompañamiento hospitalario y estimulación cognitiva.</p>
+        </div>
+        <div class="service-card">
+          <div class="emoji">🏃</div>
+          <h3>Kinesiología y rehabilitación</h3>
+          <p>Kinesioterapia motora y respiratoria, rehabilitación post operatoria, prevención de caídas, terapia ocupacional y adaptación del hogar.</p>
+        </div>
+        <div class="service-card">
+          <div class="emoji">🧩</div>
+          <h3>Desarrollo infantil</h3>
+          <p>Fonoaudiología, psicopedagogía, estimulación temprana, apoyo escolar, terapia de lenguaje y apoyo a necesidades educativas especiales.</p>
+        </div>
+        <div class="service-card">
+          <div class="emoji">🤰</div>
+          <h3>Salud de la mujer</h3>
+          <p>Control prenatal, apoyo en lactancia, control puerperal, cuidado del recién nacido, control ginecológico y toma de PAP.</p>
+        </div>
+        <div class="service-card">
+          <div class="emoji">🥗</div>
+          <h3>Nutrición</h3>
+          <p>Evaluación nutricional, control de peso, nutrición en el embarazo, deportiva y bariátrica, y clínica de lactancia.</p>
+        </div>
+        <div class="service-card">
+          <div class="emoji">🦶</div>
+          <h3>Podología</h3>
+          <p>Podología general y para diabéticos, curación de uñas y tratamiento de onicomicosis.</p>
+        </div>
+        <div class="service-card">
+          <div class="emoji">💬</div>
+          <h3>Psicología</h3>
+          <p>Psicología clínica, acompañamiento en duelo y apoyo a cuidadores.</p>
+        </div>
       </div>
     </div>
+  </section>
 
-    <div class="pro-block">
-      <h2>¿Eres profesional de salud?</h2>
-      <p>Únete a CuidaMED y ofrece tus servicios a domicilio a pacientes de tu zona. Tú decides qué servicios entregar, tus tarifas y tu disponibilidad.</p>
-      <ul>
-        <li>✓ Perfil verificado ante el RNPI</li>
-        <li>✓ Agenda y tarifas a tu medida</li>
-        <li>✓ Pagos directo a tu cuenta</li>
-      </ul>
-      <a class="pro-btn" href="mailto:contacto@cuidamed.cl?subject=Quiero%20unirme%20como%20profesional%20a%20CuidaMED">Quiero unirme</a>
-      <p style="font-size: 13px; color: var(--muted); margin-top: 14px; margin-bottom: 0;">Escríbenos y te avisaremos apenas la app esté disponible para registrarte.</p>
+  <section class="how">
+    <div class="wrap">
+      <h2 class="section-title">Cómo funciona</h2>
+      <p class="section-lead">Un camino claro tanto si buscas atención como si quieres ofrecer tus servicios.</p>
+      <div class="how-cols">
+
+        <div class="how-card patients">
+          <h3>Si buscas atención</h3>
+          <span class="tag">Para pacientes y familias · gratis</span>
+          <ol class="steps">
+            <li><span class="num">1</span><span class="txt"><strong>Descarga la app</strong> y crea tu cuenta en minutos, sin costo.</span></li>
+            <li><span class="num">2</span><span class="txt"><strong>Cuéntanos qué necesitas</strong> y en qué comuna. Eliges el servicio y la especialidad.</span></li>
+            <li><span class="num">3</span><span class="txt"><strong>Compara profesionales</strong> verificados, con sus reseñas, credenciales y tarifas.</span></li>
+            <li><span class="num">4</span><span class="txt"><strong>Agenda y paga seguro</strong> desde la app. Nunca guardamos los datos de tu tarjeta.</span></li>
+          </ol>
+        </div>
+
+        <div class="how-card pros">
+          <h3>Si eres profesional de salud</h3>
+          <span class="tag">Para profesionales · aparece frente a quien te busca</span>
+          <ol class="steps">
+            <li><span class="num">1</span><span class="txt"><strong>Crea tu perfil</strong> con tu especialidad, tus servicios y tus tarifas.</span></li>
+            <li><span class="num">2</span><span class="txt"><strong>Verificamos tu título</strong> ante el RNPI. Revisamos tus credenciales antes de publicarte.</span></li>
+            <li><span class="num">3</span><span class="txt"><strong>Define tu disponibilidad</strong> y tu zona de atención. Tú decides cuándo y dónde.</span></li>
+            <li><span class="num">4</span><span class="txt"><strong>Recibe solicitudes</strong> de pacientes de tu comuna que buscan justo tu especialidad.</span></li>
+          </ol>
+          <p class="how-note">El acceso para profesionales funciona con una suscripción que te mantiene visible en el buscador. Escríbenos y te contamos los detalles.</p>
+          <a class="contact-btn" href="mailto:contacto@cuidamed.cl?subject=Quiero%20ofrecer%20mis%20servicios%20en%20CuidaMED">Contáctanos</a>
+        </div>
+
+      </div>
     </div>
+  </section>
 
-    <div class="links">
+  <section class="download">
+    <div class="wrap">
+      <div class="download-card">
+        <div class="qr-frame">
+          <svg viewBox="0 0 29 29" class="qr-svg" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Codigo QR para descargar CuidaMED"><path fill="#fff" d="M0 0h29v29h-29z"/><path class="qrline" stroke="#0a7e6a" d="M2 2.5h7m2 0h1m1 0h4m3 0h7m-25 1h1m5 0h1m4 0h1m1 0h1m4 0h1m5 0h1m-25 1h1m1 0h3m1 0h1m3 0h4m4 0h1m1 0h3m1 0h1m-25 1h1m1 0h3m1 0h1m1 0h2m1 0h1m1 0h3m2 0h1m1 0h3m1 0h1m-25 1h1m1 0h3m1 0h1m7 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-25 1h1m5 0h1m1 0h3m3 0h1m3 0h1m5 0h1m-25 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-17 1h1m1 0h1m5 0h1m-16 1h2m3 0h1m3 0h1m1 0h5m1 0h2m1 0h1m-22 1h2m1 0h2m5 0h2m3 0h5m1 0h1m1 0h2m-24 1h2m2 0h6m2 0h3m2 0h1m2 0h2m1 0h1m-25 1h1m1 0h2m1 0h1m1 0h1m1 0h3m4 0h2m3 0h1m-19 1h1m1 0h2m1 0h1m3 0h5m1 0h2m4 0h1m-18 1h2m1 0h2m3 0h2m1 0h2m3 0h2m-25 1h2m1 0h1m2 0h2m1 0h1m1 0h3m1 0h1m1 0h1m3 0h2m1 0h1m-22 1h3m1 0h2m1 0h1m1 0h3m1 0h2m1 0h3m-22 1h2m1 0h2m1 0h3m1 0h1m2 0h1m2 0h5m2 0h1m-16 1h4m4 0h1m3 0h1m3 0h1m-25 1h7m2 0h1m1 0h2m1 0h1m1 0h1m1 0h1m1 0h1m3 0h1m-25 1h1m5 0h1m3 0h1m1 0h1m2 0h2m3 0h1m2 0h2m-25 1h1m1 0h3m1 0h1m4 0h1m3 0h6m2 0h2m-25 1h1m1 0h3m1 0h1m2 0h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h2m-24 1h1m1 0h3m1 0h1m1 0h4m2 0h4m1 0h3m1 0h2m-25 1h1m5 0h1m1 0h3m2 0h2m1 0h2m1 0h2m-21 1h7m2 0h1m4 0h1m1 0h3m2 0h1m2 0h1"/></svg>
+        </div>
+        <div class="download-text">
+          <h2>Llévala contigo</h2>
+          <p>Escanea el código con la cámara de tu teléfono y descarga CuidaMED al instante, en iPhone o Android.</p>
+          <p class="store-hint">¿Prefieres buscarla tú? Está como <strong>CuidaMED</strong> en App Store y Google Play.</p>
+          <a class="qr-download" href="/cuidamed-qr.png" download>Descargar código QR</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="links">
+    <div class="wrap">
       <h2>Información y ayuda</h2>
       <div class="link-grid">
         <a class="link-card" href="/soporte/">
@@ -479,8 +417,7 @@
         </a>
       </div>
     </div>
-
-  </main>
+  </section>
 
   <footer>
     <p>© 2026 CuidaMED · Todos los derechos reservados</p>
