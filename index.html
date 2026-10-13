@@ -221,6 +221,28 @@
 
     footer { text-align: center; padding: 34px 24px; background: white; border-top: 1px solid var(--border); font-size: 13px; color: var(--muted); }
     footer a { color: var(--primary); text-decoration: none; }
+
+    /* ---------- VIDEO ---------- */
+    .video { padding: 64px 0 0; background: var(--bg); }
+    .video-frame {
+      position: relative; width: 100%; max-width: 360px; margin: 0 auto; aspect-ratio: 9 / 16;
+      border: 1px solid var(--border); border-radius: 16px; overflow: hidden; background: #000;
+    }
+    .video-frame img, .video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+    .video-frame img { object-fit: cover; }
+    .video-play {
+      position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: transparent; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .video-play:focus-visible { outline: 3px solid var(--secondary); outline-offset: -3px; }
+    .video-play-circle {
+      width: 68px; height: 68px; border-radius: 50%; background: var(--primary);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25); transition: background 0.2s;
+    }
+    .video-play:hover .video-play-circle { background: var(--primary-dark); }
+    .video-play-circle svg { width: 28px; height: 28px; margin-left: 4px; }
+    .video-link { display: block; width: fit-content; margin: 14px auto 0; color: var(--primary); font-weight: 600; text-decoration: none; }
   </style>
 </head>
 <body>
@@ -380,6 +402,39 @@
 
       </div>
     </div>
+  </section>
+
+  <section class="video">
+    <div class="wrap">
+      <h2 class="section-title">Conoce CuidaMED en video</h2>
+      <div class="video-frame">
+        <img src="https://i.ytimg.com/vi/DFKpClZZQFU/maxresdefault.jpg" alt="Miniatura del video explicativo de CuidaMED" loading="lazy" width="360" height="640" />
+        <button type="button" class="video-play" id="video-play" aria-label="Reproducir video explicativo de CuidaMED">
+          <span class="video-play-circle">
+            <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"/></svg>
+          </span>
+        </button>
+      </div>
+      <a class="video-link" href="https://www.youtube.com/shorts/DFKpClZZQFU" target="_blank" rel="noopener">Ver en YouTube</a>
+    </div>
+    <script>
+      (function () {
+        var btn = document.getElementById('video-play');
+        if (!btn) return;
+        btn.addEventListener('click', function () {
+          var frame = btn.parentNode;
+          if (frame.querySelector('iframe')) return;
+          var iframe = document.createElement('iframe');
+          iframe.src = 'https://www.youtube-nocookie.com/embed/DFKpClZZQFU?autoplay=1&rel=0&playsinline=1';
+          iframe.title = 'Video explicativo de CuidaMED';
+          iframe.setAttribute('allow', 'autoplay; encrypted-media; picture-in-picture; fullscreen');
+          iframe.setAttribute('allowfullscreen', '');
+          while (frame.firstChild) frame.removeChild(frame.firstChild);
+          frame.appendChild(iframe);
+          iframe.focus();
+        });
+      })();
+    </script>
   </section>
 
   <section class="download">
