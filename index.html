@@ -86,7 +86,7 @@
     /* ---------- HERO ---------- */
     header {
       background: linear-gradient(160deg, #0A7E6A 0%, #075747 100%);
-      padding: 76px 24px 72px;
+      padding: calc(96px + env(safe-area-inset-top)) 24px 72px;
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -170,10 +170,6 @@
     }
     .trust span { font-size: 16px; font-weight: 500; color: var(--primary); display: inline-flex; align-items: center; gap: 8px; }
 
-    /* ---------- INTRO ---------- */
-    .intro { padding: 60px 0 12px; }
-    .intro p { text-align: center; max-width: 640px; margin: 0 auto; font-size: 16px; font-weight: 300; }
-
     /* ---------- ESPECIALIDADES ---------- */
     .specialties { padding: 56px 0; }
     .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; max-width: 760px; margin: 0 auto; }
@@ -198,6 +194,7 @@
     /* ---------- COMO FUNCIONA ---------- */
     .how { padding: 60px 0; background: white; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
     .how-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; align-items: start; }
+    .how-cols--single { grid-template-columns: minmax(0, 1fr); max-width: 680px; margin: 0 auto; }
     .how-card { border-radius: 18px; padding: 32px 30px; }
     .how-card.patients { background: var(--bg); border: 1px solid var(--border); }
     .how-card.pros { background: var(--light); border: 1px solid var(--border); }
@@ -253,7 +250,7 @@
     footer a { color: var(--primary); text-decoration: none; }
 
     /* ---------- VIDEO ---------- */
-    .video { padding: 64px 0 0; background: var(--bg); }
+    .video { padding: 64px 0 56px; background: var(--bg); }
     .video-frame {
       position: relative; width: 100%; max-width: 360px; margin: 0 auto; aspect-ratio: 9 / 16;
       border: 1px solid var(--border); border-radius: 16px; overflow: hidden; background: #000;
@@ -322,7 +319,7 @@
     header h1 .rot-word.is-off { opacity: 0; transform: translateY(0.3em); }
     header h1 .rot-word.is-leaving { opacity: 0; transform: translateY(-0.3em); }
     .rot-pause {
-      position: absolute; z-index: 2; top: 14px; right: max(14px, env(safe-area-inset-right));
+      position: absolute; z-index: 2; top: calc(66px + env(safe-area-inset-top)); right: max(14px, env(safe-area-inset-right));
       width: 44px; height: 44px; border-radius: 50%;
       border: 1px solid rgba(255,255,255,0.55); background: rgba(7,87,71,0.55); color: white;
       display: flex; align-items: center; justify-content: center; cursor: pointer;
@@ -377,11 +374,13 @@
     .dl-bar .dl-single { display: flex; width: 100%; }
     @media (min-width: 761px) { .dl-bar { display: none; } }
 
-    /* Móvil: menos aire entre video, introducción y especialidades */
+    /* Móvil: menos aire vertical entre secciones */
     @media (max-width: 600px) {
-      .video { padding-top: 48px; }
-      .intro { padding: 32px 0 0; }
-      .specialties { padding: 36px 0 48px; }
+      header { padding-top: calc(84px + env(safe-area-inset-top)); }
+      .video { padding: 48px 0 44px; }
+      .how { padding: 48px 0; }
+      .specialties { padding: 48px 0; }
+      .download { padding: 52px 0; }
     }
 
     /* Microinteracciones */
@@ -399,6 +398,81 @@
     .rv-on .rv, .rv-on .chips.is-interactive .chip.rv { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; transition-delay: var(--rv-d, 0ms); }
     .rv-on .rv.is-in, .rv-on .chips.is-interactive .chip.rv.is-in { opacity: 1; transform: none; }
 
+    /* ---------- MENÚ FIJO ---------- */
+    /* Sin JS: barra blanca con logo. Con JS (html.nav-js): transparente sobre el hero y blanca al bajar. */
+    html { scroll-padding-top: calc(56px + env(safe-area-inset-top)); }
+    @media (max-width: 760px) { html { scroll-padding-bottom: 96px; } } /* lo que tapa la barra inferior */
+    @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+    .site-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 60;
+      background: white; border-bottom: 1px solid var(--border); padding-top: env(safe-area-inset-top);
+      transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+    }
+    .site-nav.is-solid { box-shadow: 0 4px 16px rgba(7,40,34,0.08); }
+    .nav-inner {
+      max-width: 1080px; height: 56px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      padding: 0 max(16px, env(safe-area-inset-right)) 0 max(16px, env(safe-area-inset-left));
+    }
+    .nav-brand { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; color: var(--primary); font-family: 'DM Serif Display', serif; font-size: 22px; transition: opacity 0.2s, visibility 0.2s; }
+    .nav-brand img { width: 30px; height: 30px; display: block; }
+    .nav-links { list-style: none; display: flex; align-items: center; gap: 4px; }
+    .nav-links a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px; border-radius: 10px; color: var(--primary-dark); font-size: 16px; font-weight: 500; text-decoration: none; }
+    .nav-links a:hover { text-decoration: underline; text-underline-offset: 4px; }
+    .nav-links a.nav-cta { margin-left: 8px; padding: 0 18px; background: var(--primary); color: white; }
+    .nav-links a.nav-cta:hover { background: var(--primary-dark); text-decoration: none; }
+    .site-nav a:focus-visible, .nav-menu summary:focus-visible { outline: 3px solid var(--primary-dark); outline-offset: 2px; }
+    .nav-menu summary {
+      display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 14px; cursor: pointer; list-style: none;
+      border: 1px solid var(--border); border-radius: 10px; color: var(--primary-dark); font-size: 16px; font-weight: 500;
+    }
+    .nav-menu summary::-webkit-details-marker { display: none; }
+    .nav-menu summary svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+    .nav-menu .ico-close { display: none; }
+    .nav-menu[open] .ico-open { display: none; }
+    .nav-menu[open] .ico-close { display: block; }
+    .nav-menu ul {
+      list-style: none; position: absolute; left: 0; right: 0; top: 100%;
+      background: white; border-bottom: 1px solid var(--border); box-shadow: 0 10px 24px rgba(7,40,34,0.12);
+      padding: 6px max(16px, env(safe-area-inset-right)) 14px max(16px, env(safe-area-inset-left));
+      max-height: calc(100vh - 56px); max-height: calc(100dvh - 56px - env(safe-area-inset-top)); overflow-y: auto;
+    }
+    .nav-menu li + li { border-top: 1px solid var(--border); }
+    .nav-menu ul a { display: flex; align-items: center; min-height: 52px; color: var(--primary-dark); font-size: 18px; font-weight: 500; text-decoration: none; }
+    .nav-menu ul a.nav-cta { justify-content: center; margin-top: 10px; border-radius: 12px; background: var(--primary); color: white; }
+    .nav-menu li.nav-cta-item { border-top: 0; }
+    @media (min-width: 900px) { .nav-menu { display: none; } }
+    @media (max-width: 899px) { .nav-links { display: none; } }
+    /* Arriba del todo, sobre el hero (solo con JS) */
+    .nav-js .site-nav:not(.is-solid) { background: transparent; border-bottom-color: transparent; }
+    .nav-js .site-nav:not(.is-solid) .nav-brand { opacity: 0; visibility: hidden; }
+    .nav-js .site-nav:not(.is-solid) .nav-links a:not(.nav-cta),
+    .nav-js .site-nav:not(.is-solid) .nav-menu summary { color: white; }
+    .nav-js .site-nav:not(.is-solid) .nav-menu summary { border-color: rgba(255,255,255,0.55); }
+    .nav-js .site-nav:not(.is-solid) .nav-links a.nav-cta { background: white; color: var(--primary-dark); }
+    .nav-js .site-nav:not(.is-solid) a:focus-visible,
+    .nav-js .site-nav:not(.is-solid) .nav-menu summary:focus-visible { outline-color: white; }
+
+    /* Logo del hero: entrada suave una sola vez al cargar (con movimiento reducido no se anima) */
+    @keyframes logo-in { from { opacity: 0; transform: translateY(8px) scale(0.94); } }
+    header .logo { animation: logo-in 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+
+    /* Teléfono del hero con capturas reales: DESACTIVADO hasta tener /img/app/.
+       Se activa agregando class="has-phone" al <header> y descomentando su marcado. */
+    .hero-phone { display: none; }
+    header.has-phone .hero-phone {
+      display: block; position: relative; z-index: 1; width: 230px; margin: 40px auto 0; aspect-ratio: 1170 / 2532;
+      padding: 9px; border-radius: 38px; background: #0b1512; box-shadow: 0 24px 50px rgba(0,0,0,0.28);
+    }
+    header.has-phone .hero-phone img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 30px; }
+    @media (min-width: 900px) {
+      header.has-phone { display: flex; justify-content: center; align-items: center; gap: 64px; text-align: left; }
+      header.has-phone .hero-copy { flex: 0 1 600px; }
+      header.has-phone h1 .rot { justify-items: start; }
+      header.has-phone h1, header.has-phone p.subtitle { margin-left: 0; }
+      header.has-phone .store-buttons { justify-content: flex-start; }
+      header.has-phone .hero-phone { flex: 0 0 260px; width: 260px; margin: 0; }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
       .rv-on .rv { opacity: 1; transform: none; }
@@ -414,7 +488,35 @@
     <symbol id="ico-play" viewBox="0 0 24 24"><path d="M3.6 2.4c-.3.26-.47.66-.47 1.18v16.84c0 .52.17.92.47 1.18l.06.05L13.1 12.1v-.2L3.66 2.35l-.06.05z" fill="#00D2FF"/><path d="M16.28 15.28L13.1 12.1v-.2l3.18-3.18.07.04 3.77 2.14c1.08.61 1.08 1.62 0 2.24l-3.77 2.14-.07.04z" fill="#FFCE00"/><path d="M16.35 15.24L13.1 12 3.6 21.6c.36.38.94.42 1.6.05l11.15-6.4z" fill="#FF3D44"/><path d="M16.35 8.76L5.2 2.36c-.66-.38-1.24-.33-1.6.04L13.1 12l3.25-3.24z" fill="#00E676"/></symbol>
   </svg>
 
-  <header>
+  <!-- Menú fijo. En móvil, <details>: abre y cierra sin JS, con teclado y lector de pantalla;
+       el JS solo agrega cerrar con Esc, al elegir una opción o al tocar fuera. -->
+  <nav class="site-nav" id="site-nav" aria-label="Principal">
+    <div class="nav-inner">
+      <a class="nav-brand" href="#top"><img src="/logo-cuidamed-112.png" width="30" height="30" alt="" />CuidaMED</a>
+      <ul class="nav-links">
+        <li><a href="#como-funciona">Cómo funciona</a></li>
+        <li><a href="#especialidades">Especialidades</a></li>
+        <li><a href="#profesionales">Para profesionales</a></li>
+        <li class="nav-cta-item"><a class="nav-cta" href="#descargar">Descargar</a></li>
+      </ul>
+      <details class="nav-menu" id="nav-menu">
+        <summary>
+          <svg class="ico-open" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          <svg class="ico-close" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+          Menú
+        </summary>
+        <ul>
+          <li><a href="#como-funciona">Cómo funciona</a></li>
+          <li><a href="#especialidades">Especialidades</a></li>
+          <li><a href="#profesionales">Para profesionales</a></li>
+          <li class="nav-cta-item"><a class="nav-cta" href="#descargar">Descargar</a></li>
+        </ul>
+      </details>
+    </div>
+  </nav>
+
+  <header id="top">
+    <div class="hero-copy">
     <div class="logo">
       <div class="logo-icon">
         <img src="/logo-cuidamed-112.png" srcset="/logo-cuidamed-112.png 1x, /logo-cuidamed-224.png 2x" width="42" height="42" alt="" />
@@ -467,6 +569,12 @@
         <span class="store-label"><small>Disponible en</small><strong>Google Play</strong></span>
       </a>
     </div>
+    </div>
+    <!-- Teléfono con capturas reales (desactivado hasta tener /img/app/). Para activarlo: class="has-phone" en <header> y descomentar.
+    <div class="hero-phone">
+      <img src="/img/app/buscar.png" width="1170" height="2532" alt="Pantalla de búsqueda de profesionales en la app CuidaMED" />
+    </div>
+    -->
   </header>
 
   <section class="trust">
@@ -510,13 +618,27 @@
     </script>
   </section>
 
-  <section class="intro">
+  <section class="how" id="como-funciona">
     <div class="wrap">
-      <p>CuidaMED es la app que conecta a pacientes y familias con profesionales de salud y educación que atienden en el hogar. Publicas lo que necesitas, comparas profesionales con sus reseñas y credenciales, agendas y pagas seguro. Todo en un solo lugar, sin depender de recomendaciones de boca en boca.</p>
+      <h2 class="section-title">Cómo funciona</h2>
+      <p class="section-lead">CuidaMED es la app que conecta a pacientes y familias con profesionales de salud y educación que atienden en el hogar. Publicas lo que necesitas, comparas profesionales con sus reseñas y credenciales, agendas y pagas seguro. Todo en un solo lugar, sin depender de recomendaciones de boca en boca.</p>
+      <div class="how-cols how-cols--single">
+        <div class="how-card patients">
+          <h3>Si buscas atención</h3>
+          <span class="tag">Para pacientes y familias · gratis</span>
+          <ol class="steps">
+            <li><span class="num">1</span><span class="txt"><strong>Descarga la app</strong> y crea tu cuenta en minutos, sin costo.</span></li>
+            <li><span class="num">2</span><span class="txt"><strong>Cuéntanos qué necesitas</strong> y en qué comuna. Eliges el servicio y la especialidad.</span></li>
+            <li><span class="num">3</span><span class="txt"><strong>Compara profesionales</strong> verificados, con sus reseñas, credenciales y tarifas.</span></li>
+            <li><span class="num">4</span><span class="txt"><strong>Agenda y paga seguro</strong> desde la app. Nunca guardamos los datos de tu tarjeta.</span></li>
+          </ol>
+          <p style="margin:16px 0 0;"><a href="/manual-pacientes/" style="color:var(--primary);font-weight:600;text-decoration:none;">Lee el manual para pacientes →</a></p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="specialties">
+  <section class="specialties" id="especialidades">
     <div class="wrap">
       <!-- Íconos de Ionicons (MIT), https://ionic.io/ionicons -->
       <svg style="display:none">
@@ -708,27 +830,12 @@
     </div>
   </section>
 
-  <section class="how">
+  <section class="how" id="profesionales">
     <div class="wrap">
-      <h2 class="section-title">Cómo funciona</h2>
-      <p class="section-lead">Un camino claro tanto si buscas atención como si quieres ofrecer tus servicios.</p>
-      <div class="how-cols">
-
-        <div class="how-card patients">
-          <h3>Si buscas atención</h3>
-          <span class="tag">Para pacientes y familias · gratis</span>
-          <ol class="steps">
-            <li><span class="num">1</span><span class="txt"><strong>Descarga la app</strong> y crea tu cuenta en minutos, sin costo.</span></li>
-            <li><span class="num">2</span><span class="txt"><strong>Cuéntanos qué necesitas</strong> y en qué comuna. Eliges el servicio y la especialidad.</span></li>
-            <li><span class="num">3</span><span class="txt"><strong>Compara profesionales</strong> verificados, con sus reseñas, credenciales y tarifas.</span></li>
-            <li><span class="num">4</span><span class="txt"><strong>Agenda y paga seguro</strong> desde la app. Nunca guardamos los datos de tu tarjeta.</span></li>
-          </ol>
-          <p style="margin:16px 0 0;"><a href="/manual-pacientes/" style="color:var(--primary);font-weight:600;text-decoration:none;">Lee el manual para pacientes →</a></p>
-        </div>
-
+      <h2 class="section-title">Para profesionales</h2>
+      <p class="section-lead">Si eres profesional de salud o educación, aparece frente a quien te busca, en tu comuna.</p>
+      <div class="how-cols how-cols--single">
         <div class="how-card pros">
-          <h3>Si eres profesional de salud o educación</h3>
-          <span class="tag">Para profesionales · aparece frente a quien te busca</span>
           <ol class="steps">
             <li><span class="num">1</span><span class="txt"><strong>Crea tu perfil</strong> con tu especialidad, tus servicios y tus tarifas.</span></li>
             <li><span class="num">2</span><span class="txt"><strong>Verificamos tu profesión</strong> según tu caso: registro de salud, MINEDUC o tus credenciales. Mientras lo revisamos, tu perfil aparece como "En revisión".</span></li>
@@ -740,12 +847,11 @@
           <a class="contact-btn" href="mailto:contacto@cuidamed.cl?subject=Quiero%20ofrecer%20mis%20servicios%20en%20CuidaMED">Contáctanos</a>
           <p style="font-size:16px;color:var(--muted);margin-top:12px;margin-bottom:0;">O escríbenos directo a <a href="mailto:contacto@cuidamed.cl" style="color:var(--primary-dark);font-weight:600;text-decoration:none;">contacto@cuidamed.cl</a></p>
         </div>
-
       </div>
     </div>
   </section>
 
-  <section class="download">
+  <section class="download" id="descargar">
     <div class="wrap">
       <div class="download-card">
         <div class="qr-frame">
@@ -820,6 +926,25 @@
       var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       var hasIO = 'IntersectionObserver' in window;
 
+      // 0) Menú fijo: transparente arriba del todo, blanco al bajar o con el menú abierto.
+      //    En móvil se cierra con Esc (vuelve el foco al botón), al elegir una opción o al tocar fuera.
+      (function () {
+        var nav = document.getElementById('site-nav');
+        var menu = document.getElementById('nav-menu');
+        if (!nav || !menu) return;
+        var sum = menu.querySelector('summary');
+        function update() { nav.classList.toggle('is-solid', window.scrollY > 8 || menu.open); }
+        document.documentElement.classList.add('nav-js');
+        update();
+        window.addEventListener('scroll', update, { passive: true });
+        menu.addEventListener('toggle', update);
+        menu.addEventListener('click', function (e) { if (e.target.closest('a')) menu.open = false; });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && menu.open) { menu.open = false; sum.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (menu.open && !menu.contains(e.target)) menu.open = false; });
+      })();
+
       // 1) Titular: rota la especialidad cada 2,5 s, dos vueltas, y se detiene en la primera.
       //    Botón de pausa (WCAG 2.2.2). Con movimiento reducido no rota.
       (function () {
@@ -881,7 +1006,7 @@
       //    y no hay movimiento reducido; al terminar se quita la clase para no afectar los hover.
       (function () {
         if (!hasIO || reduce) return;
-        var sel = '.video .section-title, .video-frame, .video-link, .intro p, ' +
+        var sel = '.video .section-title, .video-frame, .video-link, ' +
           '.specialties .section-title, .specialties .section-lead, .chip, ' +
           '.services .section-title, .services .section-lead, .service-card, ' +
           '.how .section-title, .how .section-lead, .how-card, .download-card, .links h2, .link-card';
