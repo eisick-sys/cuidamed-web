@@ -1,0 +1,11 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    { "source": "/descargar/:lugar(hero|barra|especialidades|seccion|profesionales)", "destination": "/descargar/:lugar/", "permanent": false },
+    { "source": "/:campana(ig|meta|itv)", "destination": "/:campana/", "permanent": false }
+  ],
+  "rewrites": [
+    { "source": "/descargar/:lugar(hero|barra|especialidades|seccion|profesionales)/", "destination": "/descargar/index.html" },
+    { "source": "/:campana(ig|meta|itv)/", "destination": "/index.html" }
+  ]
+}

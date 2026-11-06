@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /reset-password/
+Disallow: /correo/
+
+Sitemap: https://www.cuidamed.cl/sitemap.xml

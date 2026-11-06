@@ -6,6 +6,7 @@
   <title>Descargar CuidaMED</title>
   <meta name="description" content="Descarga CuidaMED en tu teléfono: atención de salud y educación a domicilio, verificada, en todo Chile." />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="canonical" href="https://www.cuidamed.cl/descargar/" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <style>
@@ -40,6 +41,7 @@
     .back { margin-top: 28px; font-size: 13.5px; }
     .back a { color: rgba(255,255,255,0.8); text-decoration: underline; }
   </style>
+  <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 
@@ -71,6 +73,9 @@
   <p class="back"><a href="/">Volver a cuidamed.cl</a></p>
 
   <script>
+    // Cola de Vercel Web Analytics: el script (defer) la procesa al cargar.
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+
     (function () {
       var IOS = 'https://apps.apple.com/cl/app/cuidamed/id6792294512';
       var ANDROID = 'https://play.google.com/store/apps/details?id=cl.cuidamed.android';
@@ -78,9 +83,28 @@
       var isAndroid = /android/i.test(ua);
       var isIOS = /iphone|ipad|ipod/i.test(ua) ||
                   (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-      if (isAndroid) { window.location.replace(ANDROID); }
-      else if (isIOS) { window.location.replace(IOS); }
+      var dest = isAndroid ? ANDROID : (isIOS ? IOS : null);
       // Escritorio u otro: no se redirige; quedan visibles los dos botones.
+      if (!dest) return;
+
+      // La redirección espera a que salga la visita a la analítica; mientras tanto
+      // los botones siguen visibles por si el salto no ocurre.
+      var done = false;
+      function go() {
+        if (done) return;
+        done = true;
+        window.location.replace(dest);
+      }
+      // 1) Vía normal: Vercel llama a beforeSend justo antes de enviar la visita
+      //    con fetch keepalive (sobrevive al cambio de página); saltamos un instante después.
+      window.va('beforeSend', function (event) {
+        if (event && event.type === 'pageview') setTimeout(go, 150);
+        return event;
+      });
+      // 2) Respaldo (analítica bloqueada o no activa): evento load + 500 ms.
+      function fallback() { setTimeout(go, 500); }
+      if (document.readyState === 'complete') fallback();
+      else window.addEventListener('load', fallback);
     })();
   </script>
 

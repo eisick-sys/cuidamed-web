@@ -5,6 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CuidaMED — Atención de salud y educación a domicilio, verificada</title>
   <meta name="description" content="CuidaMED: profesionales de salud y educación verificados a domicilio en todo Chile. Enfermería, kinesiología, cuidado de adultos mayores, desarrollo infantil y más." />
+  <link rel="canonical" href="https://www.cuidamed.cl/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="CuidaMED" />
+  <meta property="og:locale" content="es_CL" />
+  <meta property="og:title" content="CuidaMED — Atención de salud y educación a domicilio, verificada" />
+  <meta property="og:description" content="Profesionales de salud y educación verificados que atienden en tu hogar, en todo Chile. Descarga la app gratis." />
+  <meta property="og:url" content="https://www.cuidamed.cl/" />
+  <meta property="og:image" content="https://www.cuidamed.cl/og-cuidamed.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="CuidaMED: atención de salud y educación a domicilio, verificada" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="CuidaMED — Atención de salud y educación a domicilio, verificada" />
+  <meta name="twitter:description" content="Profesionales de salud y educación verificados que atienden en tu hogar, en todo Chile. Descarga la app gratis." />
+  <meta name="twitter:image" content="https://www.cuidamed.cl/og-cuidamed.png" />
+  <meta name="twitter:image:alt" content="CuidaMED: atención de salud y educación a domicilio, verificada" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -278,6 +294,7 @@
     .svc-note { font-size: 13.5px; font-weight: 300; color: var(--muted); margin-bottom: 14px; }
     .svc-foot .contact-btn { display: block; text-align: center; }
   </style>
+  <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 
@@ -291,15 +308,15 @@
     <h1>Atención de salud y educación a&nbsp;domicilio,&nbsp;verificada</h1>
     <p class="subtitle">Encuentra al profesional de salud o educación correcto para tu familia, cerca de tu comuna y con credenciales comprobadas. En todo Chile.</p>
 
-    <!-- Botones de descarga: links de produccion de App Store y Google Play -->
+    <!-- Botones de descarga: pasan por /descargar/hero/ (rewrite en vercel.json) para medir intención en Analytics -->
     <div class="store-buttons">
-      <a class="store-btn" href="https://apps.apple.com/cl/app/cuidamed/id6792294512" target="_blank" rel="noopener">
+      <a class="store-btn" href="/descargar/hero/">
         <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
           <path d="M17.05 12.53c-.02-2.02 1.65-2.99 1.73-3.04-.94-1.38-2.41-1.57-2.93-1.59-1.25-.13-2.44.73-3.07.73-.63 0-1.61-.71-2.65-.69-1.36.02-2.62.79-3.32 2.01-1.42 2.46-.36 6.1 1.02 8.1.67.98 1.48 2.08 2.53 2.04 1.02-.04 1.4-.66 2.64-.66 1.23 0 1.58.66 2.65.64 1.09-.02 1.79-1 2.46-1.98.77-1.13 1.09-2.23 1.11-2.29-.02-.01-2.13-.82-2.15-3.24zM15.03 6.58c.56-.68.94-1.62.83-2.58-.81.03-1.79.54-2.37 1.22-.52.6-.97 1.56-.85 2.48.9.07 1.83-.46 2.39-1.12z"/>
         </svg>
         <span class="store-label"><small>Descárgalo en</small><strong>App Store</strong></span>
       </a>
-      <a class="store-btn" href="https://play.google.com/store/apps/details?id=cl.cuidamed.android" target="_blank" rel="noopener">
+      <a class="store-btn" href="/descargar/hero/">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path d="M3.6 2.4c-.3.26-.47.66-.47 1.18v16.84c0 .52.17.92.47 1.18l.06.05L13.1 12.1v-.2L3.66 2.35l-.06.05z" fill="#00D2FF"/>
           <path d="M16.28 15.28L13.1 12.1v-.2l3.18-3.18.07.04 3.77 2.14c1.08.61 1.08 1.62 0 2.24l-3.77 2.14-.07.04z" fill="#FFCE00"/>
@@ -392,7 +409,7 @@
         <ul class="svc-list" id="svc-list"></ul>
         <div class="svc-foot">
           <p class="svc-note">Cada profesional elige qué servicios ofrece y define su tarifa en la app.</p>
-          <a class="contact-btn" id="svc-cta" href="/descargar/">Busca en la app</a>
+          <a class="contact-btn" id="svc-cta" href="/descargar/especialidades/">Busca en la app</a>
         </div>
       </dialog>
     </div>
