@@ -41,7 +41,7 @@
       --secondary: #12B896;
       --bg: #F7FAFA;
       --text: #1A2E2A;
-      --muted: #6B8F8A;
+      --muted: #4F716C;
       --border: #C5DEDD;
       --light: #DCF5F1;
     }
@@ -76,7 +76,7 @@
 
     .section-lead {
       text-align: center;
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 300;
       color: var(--muted);
       max-width: 620px;
@@ -136,10 +136,10 @@
     }
 
     header p.subtitle {
-      color: rgba(255,255,255,0.82);
+      color: white;
       font-size: 16.5px;
       margin: 16px auto 0;
-      font-weight: 300;
+      font-weight: 400;
       position: relative; z-index: 1;
       max-width: 560px;
     }
@@ -151,13 +151,13 @@
       background: #0b1512; color: white; text-decoration: none;
       padding: 11px 22px; border-radius: 12px;
       border: 1px solid rgba(255,255,255,0.18);
-      transition: transform 0.15s, background 0.2s; min-width: 200px;
+      transition: transform 0.15s, background 0.2s; min-width: 220px;
     }
     .store-btn:hover { background: #000; transform: translateY(-2px); }
     .store-btn svg { width: 26px; height: 26px; flex-shrink: 0; }
     .store-btn .store-label { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.15; text-align: left; }
-    .store-btn .store-label small { font-size: 11px; font-weight: 300; opacity: 0.85; letter-spacing: 0.3px; }
-    .store-btn .store-label strong { font-size: 17px; font-weight: 500; }
+    .store-btn .store-label small { font-size: 16px; font-weight: 400; letter-spacing: 0.2px; }
+    .store-btn .store-label strong { font-size: 19px; font-weight: 500; }
 
     /* ---------- BARRA DE CONFIANZA ---------- */
     .trust {
@@ -168,7 +168,7 @@
       display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 36px;
       padding-top: 20px; padding-bottom: 20px;
     }
-    .trust span { font-size: 13.5px; font-weight: 500; color: var(--primary); display: inline-flex; align-items: center; gap: 8px; }
+    .trust span { font-size: 16px; font-weight: 500; color: var(--primary); display: inline-flex; align-items: center; gap: 8px; }
 
     /* ---------- INTRO ---------- */
     .intro { padding: 60px 0 12px; }
@@ -178,9 +178,9 @@
     .specialties { padding: 56px 0; }
     .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; max-width: 760px; margin: 0 auto; }
     .chip {
-      background: var(--light); color: var(--primary);
+      background: var(--light); color: var(--primary-dark);
       border: 1px solid var(--border); border-radius: 999px;
-      padding: 9px 18px; font-size: 14px; font-weight: 500;
+      padding: 9px 18px; font-size: 16px; font-weight: 500;
     }
 
     /* ---------- SERVICIOS ---------- */
@@ -193,7 +193,7 @@
     .service-card:hover { box-shadow: 0 6px 20px rgba(10,126,106,0.08); transform: translateY(-2px); }
     .service-card .emoji { font-size: 26px; }
     .service-card h3 { font-size: 16px; font-weight: 600; color: var(--primary); margin: 10px 0 8px; }
-    .service-card p { font-size: 13.5px; font-weight: 300; color: var(--muted); line-height: 1.65; }
+    .service-card p { font-size: 16px; font-weight: 300; color: var(--muted); line-height: 1.65; }
 
     /* ---------- COMO FUNCIONA ---------- */
     .how { padding: 60px 0; background: white; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
@@ -201,21 +201,22 @@
     .how-card { border-radius: 18px; padding: 32px 30px; }
     .how-card.patients { background: var(--bg); border: 1px solid var(--border); }
     .how-card.pros { background: var(--light); border: 1px solid var(--border); }
+    .how-card.pros h3 { color: var(--primary-dark); }
     .how-card h3 { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--primary); font-weight: 400; margin-bottom: 6px; }
-    .how-card .tag { display: inline-block; font-size: 12px; font-weight: 500; color: var(--muted); margin-bottom: 20px; }
+    .how-card .tag { display: inline-block; font-size: 16px; font-weight: 500; color: var(--muted); margin-bottom: 20px; }
     .steps { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 16px; }
     .steps li { display: flex; gap: 14px; align-items: flex-start; }
     .steps .num {
-      flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
-      background: var(--primary); color: white; font-size: 14px; font-weight: 600;
+      flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%;
+      background: var(--primary); color: white; font-size: 16px; font-weight: 600;
       display: flex; align-items: center; justify-content: center; margin-top: 2px;
     }
-    .steps .txt { font-size: 14.5px; font-weight: 300; line-height: 1.6; }
+    .steps .txt { font-size: 16px; font-weight: 300; line-height: 1.6; }
     .steps .txt strong { font-weight: 600; color: var(--text); }
-    .how-note { font-size: 13px; font-weight: 300; color: var(--muted); margin: 20px 0 22px; }
+    .how-note { font-size: 16px; font-weight: 300; color: var(--muted); margin: 20px 0 22px; }
     .contact-btn {
       display: inline-block; background: var(--primary); color: white;
-      font-size: 15px; font-weight: 500; text-decoration: none;
+      font-size: 16px; font-weight: 500; text-decoration: none;
       padding: 13px 30px; border-radius: 12px; transition: background 0.2s;
     }
     .contact-btn:hover { background: var(--primary-dark); }
@@ -230,10 +231,10 @@
     .qr-svg { display: block; width: 100%; height: auto; }
     .download-text { flex: 1; min-width: 250px; }
     .download-text h2 { font-family: 'DM Serif Display', serif; font-size: 26px; color: var(--primary); font-weight: 400; margin-bottom: 10px; }
-    .download-text p { font-size: 15px; font-weight: 300; margin-bottom: 16px; }
-    .download-text .store-hint { font-size: 13.5px; color: var(--muted); }
+    .download-text p { font-size: 16px; font-weight: 300; margin-bottom: 16px; }
+    .download-text .store-hint { font-size: 16px; color: var(--muted); }
     .download-text .store-hint strong { color: var(--primary); font-weight: 600; }
-    .qr-download { display: inline-block; font-size: 13.5px; font-weight: 500; color: var(--primary); text-decoration: none; border: 1px solid var(--border); border-radius: 10px; padding: 9px 18px; margin-top: 4px; transition: border-color 0.2s; }
+    .qr-download { display: inline-block; font-size: 16px; font-weight: 500; color: var(--primary); text-decoration: none; border: 1px solid var(--border); border-radius: 10px; padding: 9px 18px; margin-top: 4px; transition: border-color 0.2s; }
     .qr-download:hover { border-color: var(--secondary); }
 
     /* ---------- LINKS LEGALES ---------- */
@@ -245,10 +246,10 @@
     .link-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
     .link-card { display: block; background: white; border: 1px solid var(--border); border-radius: 14px; padding: 20px 24px; text-decoration: none; transition: border-color 0.2s, box-shadow 0.2s; }
     .link-card:hover { border-color: var(--secondary); box-shadow: 0 4px 14px rgba(10,126,106,0.08); }
-    .link-card h3 { font-size: 15px; font-weight: 500; color: var(--primary); margin-bottom: 4px; }
-    .link-card p { font-size: 13.5px; font-weight: 300; color: var(--muted); line-height: 1.6; }
+    .link-card h3 { font-size: 17px; font-weight: 500; color: var(--primary); margin-bottom: 4px; }
+    .link-card p { font-size: 16px; font-weight: 300; color: var(--muted); line-height: 1.6; }
 
-    footer { text-align: center; padding: 34px 24px; background: white; border-top: 1px solid var(--border); font-size: 13px; color: var(--muted); }
+    footer { text-align: center; padding: 34px 24px; background: white; border-top: 1px solid var(--border); font-size: 16px; color: var(--muted); }
     footer a { color: var(--primary); text-decoration: none; }
 
     /* ---------- VIDEO ---------- */
@@ -263,7 +264,7 @@
       position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: transparent; cursor: pointer;
       display: flex; align-items: center; justify-content: center;
     }
-    .video-play:focus-visible { outline: 3px solid var(--secondary); outline-offset: -3px; }
+    .video-play:focus-visible { outline: 3px solid white; outline-offset: -3px; }
     .video-play-circle {
       width: 68px; height: 68px; border-radius: 50%; background: var(--primary);
       display: flex; align-items: center; justify-content: center;
@@ -280,7 +281,7 @@
     .chips.is-interactive .chip { cursor: pointer; transition: border-color 0.2s; }
     .chips.is-interactive .chip::after { content: '+'; font-weight: 600; opacity: 0.6; margin-left: 1px; }
     .chips.is-interactive .chip:hover { border-color: var(--secondary); }
-    .chip:focus-visible { outline: 3px solid var(--secondary); outline-offset: 2px; }
+    .chip:focus-visible { outline: 3px solid var(--primary-dark); outline-offset: 2px; }
     .svc-dialog {
       width: calc(100% - 32px); max-width: 520px; max-height: calc(100vh - 32px); max-height: calc(100dvh - 32px);
       margin: auto; padding: 0; border: 1px solid var(--border); border-radius: 20px;
@@ -296,12 +297,12 @@
       background: white; color: var(--primary); font-size: 22px; line-height: 1; cursor: pointer; transition: border-color 0.2s;
     }
     .svc-close:hover { border-color: var(--secondary); }
-    .svc-close:focus-visible { outline: 3px solid var(--secondary); outline-offset: 2px; }
+    .svc-close:focus-visible { outline: 3px solid var(--primary-dark); outline-offset: 2px; }
     .svc-list { list-style: none; margin: 0; padding: 16px 24px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
-    .svc-list li { display: flex; align-items: center; gap: 12px; font-size: 15px; line-height: 1.4; }
+    .svc-list li { display: flex; align-items: center; gap: 12px; font-size: 16px; line-height: 1.4; }
     .svc-list svg { width: 20px; height: 20px; fill: currentColor; color: var(--primary); flex-shrink: 0; }
     .svc-foot { padding: 16px 24px 22px; border-top: 1px solid var(--border); }
-    .svc-note { font-size: 13.5px; font-weight: 300; color: var(--muted); margin-bottom: 14px; }
+    .svc-note { font-size: 16px; font-weight: 300; color: var(--muted); margin-bottom: 14px; }
     .svc-foot .contact-btn { display: block; text-align: center; }
 
     /* ---------- FASE 2: DINAMISMO ---------- */
@@ -340,7 +341,7 @@
     }
     .dl-single:hover { background: var(--primary-dark); }
     .dl-single:active { transform: scale(0.98); }
-    .dl-single:focus-visible { outline: 3px solid var(--secondary); outline-offset: 3px; }
+    .dl-single:focus-visible { outline: 3px solid var(--primary-dark); outline-offset: 3px; }
     .dl-single--light { background: white; color: var(--primary-dark); }
     .dl-single--light:hover { background: var(--light); }
     .dl-single--light:focus-visible { outline-color: white; }
@@ -354,11 +355,15 @@
     [data-os] .store-buttons .dl-single { display: inline-flex; width: 100%; max-width: 320px; }
     [data-os] .store-buttons .store-btn { display: none; }
     .store-btn:active { transform: scale(0.98); }
-    .store-btn:focus-visible { outline: 3px solid var(--secondary); outline-offset: 3px; }
+    .store-btn:focus-visible { outline: 3px solid var(--primary-dark); outline-offset: 3px; }
+    header .store-btn:focus-visible { outline-color: white; }
 
     /* Sección de descarga: botones de tienda bajo el texto */
     .download-text .store-buttons { justify-content: flex-start; margin: 4px 0 18px; }
-    [data-os] .download-card .qr-frame { order: 2; }
+    .only-mobile { display: none; }
+    [data-os] .only-mobile { display: block; }
+    [data-os] .only-desktop, [data-os] .download-card .qr-frame, [data-os] .qr-download { display: none; }
+    [data-os] .download-text .store-hint { margin-bottom: 0; }
 
     /* Barra fija inferior (solo móvil) */
     .dl-bar {
@@ -371,6 +376,13 @@
     .dl-bar.is-visible { transform: none; visibility: visible; transition: transform 0.25s ease, visibility 0s; }
     .dl-bar .dl-single { display: flex; width: 100%; }
     @media (min-width: 761px) { .dl-bar { display: none; } }
+
+    /* Móvil: menos aire entre video, introducción y especialidades */
+    @media (max-width: 600px) {
+      .video { padding-top: 48px; }
+      .intro { padding: 32px 0 0; }
+      .specialties { padding: 36px 0 48px; }
+    }
 
     /* Microinteracciones */
     .service-card:active { transform: translateY(0) scale(0.99); }
@@ -422,7 +434,7 @@
           <span class="rot-word">Salud y educación</span>
           <span class="rot-word is-off">Enfermería</span>
           <span class="rot-word is-off">Kinesiología</span>
-          <span class="rot-word is-off">Cuidado de adultos mayores</span>
+          <span class="rot-word is-off">Adultos mayores</span>
           <span class="rot-word is-off">Fonoaudiología</span>
           <span class="rot-word is-off">Apoyo escolar</span>
         </span>
@@ -724,9 +736,9 @@
             <li><span class="num">4</span><span class="txt"><strong>Recibe solicitudes</strong> de pacientes de tu comuna que buscan justo tu especialidad.</span></li>
           </ol>
           <p class="how-note">Crear tu perfil y aparecer en el buscador es gratis: apareces cuando completas tu perfil y conectas tu cuenta de MercadoPago, donde recibes tus pagos. El Plan Profesional es opcional y te suma más visibilidad. Escríbenos y te contamos los detalles.</p>
-          <p style="margin:0 0 18px;"><a href="/manual-profesionales/" style="color:var(--primary);font-weight:600;text-decoration:none;">Lee el manual para profesionales →</a></p>
+          <p style="margin:0 0 18px;"><a href="/manual-profesionales/" style="color:var(--primary-dark);font-weight:600;text-decoration:none;">Lee el manual para profesionales →</a></p>
           <a class="contact-btn" href="mailto:contacto@cuidamed.cl?subject=Quiero%20ofrecer%20mis%20servicios%20en%20CuidaMED">Contáctanos</a>
-          <p style="font-size:13.5px;color:var(--muted);margin-top:12px;margin-bottom:0;">O escríbenos directo a <a href="mailto:contacto@cuidamed.cl" style="color:var(--primary);font-weight:600;text-decoration:none;">contacto@cuidamed.cl</a></p>
+          <p style="font-size:16px;color:var(--muted);margin-top:12px;margin-bottom:0;">O escríbenos directo a <a href="mailto:contacto@cuidamed.cl" style="color:var(--primary-dark);font-weight:600;text-decoration:none;">contacto@cuidamed.cl</a></p>
         </div>
 
       </div>
@@ -741,7 +753,8 @@
         </div>
         <div class="download-text">
           <h2>Llévala contigo</h2>
-          <p>Escanea el código con la cámara de tu teléfono y descarga CuidaMED al instante, en iPhone o Android.</p>
+          <p class="only-desktop">Escanea el código con la cámara de tu teléfono y descarga CuidaMED al instante, en iPhone o Android.</p>
+          <p class="only-mobile">Busca, compara y agenda profesionales verificados desde tu teléfono. Descargarla es gratis.</p>
           <div class="store-buttons">
             <a class="dl-single" href="/descargar/seccion/">
               <svg class="ico-ios" aria-hidden="true"><use href="#ico-apple"/></svg>
