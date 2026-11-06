@@ -2,8 +2,18 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>CuidaMED — Atención de salud y educación a domicilio, verificada</title>
+  <script>
+    // Antes del primer pintado: marca el sistema del teléfono (data-os) para mostrar
+    // el botón único "Descargar gratis" con el ícono correcto, sin parpadeo.
+    (function () {
+      var ua = navigator.userAgent || '';
+      var os = /android/i.test(ua) ? 'android'
+        : (/iphone|ipad|ipod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)) ? 'ios' : '';
+      if (os) document.documentElement.setAttribute('data-os', os);
+    })();
+  </script>
   <meta name="description" content="CuidaMED: profesionales de salud y educación verificados a domicilio en todo Chile. Enfermería, kinesiología, cuidado de adultos mayores, desarrollo infantil y más." />
   <link rel="canonical" href="https://www.cuidamed.cl/" />
   <meta property="og:type" content="website" />
@@ -293,10 +303,104 @@
     .svc-foot { padding: 16px 24px 22px; border-top: 1px solid var(--border); }
     .svc-note { font-size: 13.5px; font-weight: 300; color: var(--muted); margin-bottom: 14px; }
     .svc-foot .contact-btn { display: block; text-align: center; }
+
+    /* ---------- FASE 2: DINAMISMO ---------- */
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+    /* Márgenes seguros (viewport-fit=cover): en horizontal el notch no tapa el texto */
+    header { padding-left: max(24px, env(safe-area-inset-left)); padding-right: max(24px, env(safe-area-inset-right)); }
+    .wrap { padding-left: max(24px, env(safe-area-inset-left)); padding-right: max(24px, env(safe-area-inset-right)); }
+
+    /* Titular: la especialidad rota en una celda de grilla que reserva el ancho y alto
+       de la palabra más larga, así el layout no se mueve. */
+    header h1 .rot { display: grid; justify-items: center; align-items: end; }
+    header h1 .rot-word {
+      grid-area: 1 / 1; font-style: italic; color: white;
+      transition: opacity 0.45s ease, transform 0.45s ease;
+    }
+    header h1 .rot-word.is-off { opacity: 0; transform: translateY(0.3em); }
+    header h1 .rot-word.is-leaving { opacity: 0; transform: translateY(-0.3em); }
+    .rot-pause {
+      position: absolute; z-index: 2; top: 14px; right: max(14px, env(safe-area-inset-right));
+      width: 44px; height: 44px; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.55); background: rgba(7,87,71,0.55); color: white;
+      display: flex; align-items: center; justify-content: center; cursor: pointer;
+    }
+    .rot-pause[hidden] { display: none; }
+    .rot-pause svg { width: 18px; height: 18px; fill: currentColor; }
+    .rot-pause:hover { background: rgba(7,87,71,0.85); }
+    .rot-pause:focus-visible { outline: 3px solid white; outline-offset: 2px; }
+
+    /* Botón único "Descargar gratis": solo cuando se detecta iOS o Android (data-os) */
+    .dl-single {
+      display: none; align-items: center; justify-content: center; gap: 12px;
+      min-height: 56px; padding: 10px 26px; border-radius: 14px; text-decoration: none;
+      background: var(--primary); color: white; border: 1px solid transparent;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .dl-single:hover { background: var(--primary-dark); }
+    .dl-single:active { transform: scale(0.98); }
+    .dl-single:focus-visible { outline: 3px solid var(--secondary); outline-offset: 3px; }
+    .dl-single--light { background: white; color: var(--primary-dark); }
+    .dl-single--light:hover { background: var(--light); }
+    .dl-single--light:focus-visible { outline-color: white; }
+    .dl-single svg { width: 26px; height: 26px; flex-shrink: 0; fill: currentColor; }
+    .dl-single .dl-label { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.2; text-align: left; }
+    .dl-single .dl-label strong { font-size: 19px; font-weight: 600; }
+    .dl-single .dl-label small { font-size: 16px; font-weight: 400; }
+    .dl-single .ico-ios, .dl-single .ico-android, .dl-single .for-ios, .dl-single .for-android { display: none; }
+    [data-os="ios"] .dl-single .ico-ios, [data-os="android"] .dl-single .ico-android { display: block; }
+    [data-os="ios"] .dl-single .for-ios, [data-os="android"] .dl-single .for-android { display: inline; }
+    [data-os] .store-buttons .dl-single { display: inline-flex; width: 100%; max-width: 320px; }
+    [data-os] .store-buttons .store-btn { display: none; }
+    .store-btn:active { transform: scale(0.98); }
+    .store-btn:focus-visible { outline: 3px solid var(--secondary); outline-offset: 3px; }
+
+    /* Sección de descarga: botones de tienda bajo el texto */
+    .download-text .store-buttons { justify-content: flex-start; margin: 4px 0 18px; }
+    [data-os] .download-card .qr-frame { order: 2; }
+
+    /* Barra fija inferior (solo móvil) */
+    .dl-bar {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
+      background: white; border-top: 1px solid var(--border); box-shadow: 0 -6px 20px rgba(7,40,34,0.10);
+      padding: 10px max(16px, env(safe-area-inset-right)) calc(10px + env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+      transform: translateY(110%); visibility: hidden;
+      transition: transform 0.25s ease, visibility 0s linear 0.25s;
+    }
+    .dl-bar.is-visible { transform: none; visibility: visible; transition: transform 0.25s ease, visibility 0s; }
+    .dl-bar .dl-single { display: flex; width: 100%; }
+    @media (min-width: 761px) { .dl-bar { display: none; } }
+
+    /* Microinteracciones */
+    .service-card:active { transform: translateY(0) scale(0.99); }
+    .chips.is-interactive .chip { transition: border-color 0.2s, background 0.2s, transform 0.15s, box-shadow 0.2s; }
+    .chips.is-interactive .chip:hover { background: white; box-shadow: 0 4px 12px rgba(10,126,106,0.10); transform: translateY(-1px); }
+    .chips.is-interactive .chip:active { transform: scale(0.97); box-shadow: none; }
+    .contact-btn:active { transform: scale(0.98); }
+    .svc-dialog[open] { animation: dlg-in 0.22s ease-out; }
+    .svc-dialog[open]::backdrop { animation: bd-in 0.22s ease-out; }
+    @keyframes dlg-in { from { opacity: 0; transform: translateY(14px) scale(0.98); } }
+    @keyframes bd-in { from { opacity: 0; } }
+
+    /* Aparición al hacer scroll: la clase rv-on solo la pone el JS; sin JS todo queda visible */
+    .rv-on .rv, .rv-on .chips.is-interactive .chip.rv { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; transition-delay: var(--rv-d, 0ms); }
+    .rv-on .rv.is-in, .rv-on .chips.is-interactive .chip.rv.is-in { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+      .rv-on .rv { opacity: 1; transform: none; }
+    }
   </style>
   <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
+
+  <!-- Íconos de tienda reutilizados por los botones "Descargar gratis" -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="ico-apple" viewBox="0 0 24 24"><path d="M17.05 12.53c-.02-2.02 1.65-2.99 1.73-3.04-.94-1.38-2.41-1.57-2.93-1.59-1.25-.13-2.44.73-3.07.73-.63 0-1.61-.71-2.65-.69-1.36.02-2.62.79-3.32 2.01-1.42 2.46-.36 6.1 1.02 8.1.67.98 1.48 2.08 2.53 2.04 1.02-.04 1.4-.66 2.64-.66 1.23 0 1.58.66 2.65.64 1.09-.02 1.79-1 2.46-1.98.77-1.13 1.09-2.23 1.11-2.29-.02-.01-2.13-.82-2.15-3.24zM15.03 6.58c.56-.68.94-1.62.83-2.58-.81.03-1.79.54-2.37 1.22-.52.6-.97 1.56-.85 2.48.9.07 1.83-.46 2.39-1.12z"/></symbol>
+    <symbol id="ico-play" viewBox="0 0 24 24"><path d="M3.6 2.4c-.3.26-.47.66-.47 1.18v16.84c0 .52.17.92.47 1.18l.06.05L13.1 12.1v-.2L3.66 2.35l-.06.05z" fill="#00D2FF"/><path d="M16.28 15.28L13.1 12.1v-.2l3.18-3.18.07.04 3.77 2.14c1.08.61 1.08 1.62 0 2.24l-3.77 2.14-.07.04z" fill="#FFCE00"/><path d="M16.35 15.24L13.1 12 3.6 21.6c.36.38.94.42 1.6.05l11.15-6.4z" fill="#FF3D44"/><path d="M16.35 8.76L5.2 2.36c-.66-.38-1.24-.33-1.6.04L13.1 12l3.25-3.24z" fill="#00E676"/></symbol>
+  </svg>
 
   <header>
     <div class="logo">
@@ -305,11 +409,36 @@
       </div>
       <span class="logo-text">CuidaMED</span>
     </div>
-    <h1>Atención de salud y educación a&nbsp;domicilio,&nbsp;verificada</h1>
+    <button type="button" class="rot-pause" id="rot-pause" aria-pressed="false" hidden>
+      <svg viewBox="0 0 24 24" aria-hidden="true" class="ico-pause"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg>
+      <svg viewBox="0 0 24 24" aria-hidden="true" class="ico-play-anim" style="display:none"><path d="M8 5v14l11-7z"/></svg>
+      <span class="sr-only" id="rot-pause-label">Pausar la animación del titular</span>
+    </button>
+    <h1>
+      <span class="sr-only">Salud y educación a domicilio con profesionales verificados: enfermería, kinesiología, cuidado de adultos mayores, fonoaudiología, apoyo escolar y más.</span>
+      <!-- Versión visual: la palabra rota (JS). Sin JS o con movimiento reducido queda fija en la primera. -->
+      <span aria-hidden="true">
+        <span class="rot" id="rot">
+          <span class="rot-word">Salud y educación</span>
+          <span class="rot-word is-off">Enfermería</span>
+          <span class="rot-word is-off">Kinesiología</span>
+          <span class="rot-word is-off">Cuidado de adultos mayores</span>
+          <span class="rot-word is-off">Fonoaudiología</span>
+          <span class="rot-word is-off">Apoyo escolar</span>
+        </span>
+        a&nbsp;domicilio con profesionales verificados
+      </span>
+    </h1>
     <p class="subtitle">Encuentra al profesional de salud o educación correcto para tu familia, cerca de tu comuna y con credenciales comprobadas. En todo Chile.</p>
 
-    <!-- Botones de descarga: pasan por /descargar/hero/ (rewrite en vercel.json) para medir intención en Analytics -->
+    <!-- Botones de descarga: pasan por /descargar/hero/ (rewrite en vercel.json) para medir intención en Analytics.
+         En iPhone/Android se ve solo .dl-single (CSS según data-os); en escritorio, los dos de tienda. -->
     <div class="store-buttons">
+      <a class="dl-single dl-single--light" href="/descargar/hero/">
+        <svg class="ico-ios" aria-hidden="true"><use href="#ico-apple"/></svg>
+        <svg class="ico-android" aria-hidden="true"><use href="#ico-play"/></svg>
+        <span class="dl-label"><strong>Descargar gratis</strong><small class="for-ios">en App Store</small><small class="for-android">en Google Play</small></span>
+      </a>
       <a class="store-btn" href="/descargar/hero/">
         <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
           <path d="M17.05 12.53c-.02-2.02 1.65-2.99 1.73-3.04-.94-1.38-2.41-1.57-2.93-1.59-1.25-.13-2.44.73-3.07.73-.63 0-1.61-.71-2.65-.69-1.36.02-2.62.79-3.32 2.01-1.42 2.46-.36 6.1 1.02 8.1.67.98 1.48 2.08 2.53 2.04 1.02-.04 1.4-.66 2.64-.66 1.23 0 1.58.66 2.65.64 1.09-.02 1.79-1 2.46-1.98.77-1.13 1.09-2.23 1.11-2.29-.02-.01-2.13-.82-2.15-3.24zM15.03 6.58c.56-.68.94-1.62.83-2.58-.81.03-1.79.54-2.37 1.22-.52.6-.97 1.56-.85 2.48.9.07 1.83-.46 2.39-1.12z"/>
@@ -334,6 +463,39 @@
       <span>🔒 Pago seguro con MercadoPago</span>
       <span>📍 Cobertura en todo Chile</span>
     </div>
+  </section>
+
+  <section class="video">
+    <div class="wrap">
+      <h2 class="section-title">Conoce CuidaMED en video</h2>
+      <div class="video-frame">
+        <img src="https://i.ytimg.com/vi/JDZYmsyijQ0/maxresdefault.jpg" alt="Miniatura del video explicativo de CuidaMED" loading="lazy" width="360" height="640" />
+        <button type="button" class="video-play" id="video-play" aria-label="Reproducir video explicativo de CuidaMED">
+          <span class="video-play-circle">
+            <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"/></svg>
+          </span>
+        </button>
+      </div>
+      <a class="video-link" href="https://www.youtube.com/shorts/JDZYmsyijQ0" target="_blank" rel="noopener">Ver en YouTube</a>
+    </div>
+    <script>
+      (function () {
+        var btn = document.getElementById('video-play');
+        if (!btn) return;
+        btn.addEventListener('click', function () {
+          var frame = btn.parentNode;
+          if (frame.querySelector('iframe')) return;
+          var iframe = document.createElement('iframe');
+          iframe.src = 'https://www.youtube-nocookie.com/embed/JDZYmsyijQ0?autoplay=1&rel=0&playsinline=1';
+          iframe.title = 'Video explicativo de CuidaMED';
+          iframe.setAttribute('allow', 'autoplay; encrypted-media; picture-in-picture; fullscreen');
+          iframe.setAttribute('allowfullscreen', '');
+          while (frame.firstChild) frame.removeChild(frame.firstChild);
+          frame.appendChild(iframe);
+          iframe.focus();
+        });
+      })();
+    </script>
   </section>
 
   <section class="intro">
@@ -571,39 +733,6 @@
     </div>
   </section>
 
-  <section class="video">
-    <div class="wrap">
-      <h2 class="section-title">Conoce CuidaMED en video</h2>
-      <div class="video-frame">
-        <img src="https://i.ytimg.com/vi/JDZYmsyijQ0/maxresdefault.jpg" alt="Miniatura del video explicativo de CuidaMED" loading="lazy" width="360" height="640" />
-        <button type="button" class="video-play" id="video-play" aria-label="Reproducir video explicativo de CuidaMED">
-          <span class="video-play-circle">
-            <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"/></svg>
-          </span>
-        </button>
-      </div>
-      <a class="video-link" href="https://www.youtube.com/shorts/JDZYmsyijQ0" target="_blank" rel="noopener">Ver en YouTube</a>
-    </div>
-    <script>
-      (function () {
-        var btn = document.getElementById('video-play');
-        if (!btn) return;
-        btn.addEventListener('click', function () {
-          var frame = btn.parentNode;
-          if (frame.querySelector('iframe')) return;
-          var iframe = document.createElement('iframe');
-          iframe.src = 'https://www.youtube-nocookie.com/embed/JDZYmsyijQ0?autoplay=1&rel=0&playsinline=1';
-          iframe.title = 'Video explicativo de CuidaMED';
-          iframe.setAttribute('allow', 'autoplay; encrypted-media; picture-in-picture; fullscreen');
-          iframe.setAttribute('allowfullscreen', '');
-          while (frame.firstChild) frame.removeChild(frame.firstChild);
-          frame.appendChild(iframe);
-          iframe.focus();
-        });
-      })();
-    </script>
-  </section>
-
   <section class="download">
     <div class="wrap">
       <div class="download-card">
@@ -613,6 +742,21 @@
         <div class="download-text">
           <h2>Llévala contigo</h2>
           <p>Escanea el código con la cámara de tu teléfono y descarga CuidaMED al instante, en iPhone o Android.</p>
+          <div class="store-buttons">
+            <a class="dl-single" href="/descargar/seccion/">
+              <svg class="ico-ios" aria-hidden="true"><use href="#ico-apple"/></svg>
+              <svg class="ico-android" aria-hidden="true"><use href="#ico-play"/></svg>
+              <span class="dl-label"><strong>Descargar gratis</strong><small class="for-ios">en App Store</small><small class="for-android">en Google Play</small></span>
+            </a>
+            <a class="store-btn" href="/descargar/seccion/">
+              <svg viewBox="0 0 24 24" fill="white" aria-hidden="true"><use href="#ico-apple"/></svg>
+              <span class="store-label"><small>Descárgalo en</small><strong>App Store</strong></span>
+            </a>
+            <a class="store-btn" href="/descargar/seccion/">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-play"/></svg>
+              <span class="store-label"><small>Disponible en</small><strong>Google Play</strong></span>
+            </a>
+          </div>
           <p class="store-hint">¿Prefieres buscarla tú? Está como <strong>CuidaMED</strong> en App Store y Google Play.</p>
           <a class="qr-download" href="/cuidamed-descarga-qr.png" download>Descargar código QR</a>
         </div>
@@ -648,6 +792,117 @@
     <p>© 2026 CuidaMED · Todos los derechos reservados</p>
     <p style="margin-top: 6px;"><a href="mailto:contacto@cuidamed.cl">contacto@cuidamed.cl</a></p>
   </footer>
+
+  <!-- Barra fija inferior (móvil): aparece al pasar el hero y se oculta al llegar a la sección de descarga -->
+  <div class="dl-bar" id="dl-bar" role="region" aria-label="Descargar la app">
+    <a class="dl-single" href="/descargar/barra/">
+      <svg class="ico-ios" aria-hidden="true"><use href="#ico-apple"/></svg>
+      <svg class="ico-android" aria-hidden="true"><use href="#ico-play"/></svg>
+      <span class="dl-label"><strong>Descargar gratis</strong><small class="for-ios">en App Store</small><small class="for-android">en Google Play</small></span>
+    </a>
+  </div>
+
+  <script>
+    (function () {
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var hasIO = 'IntersectionObserver' in window;
+
+      // 1) Titular: rota la especialidad cada 2,5 s, dos vueltas, y se detiene en la primera.
+      //    Botón de pausa (WCAG 2.2.2). Con movimiento reducido no rota.
+      (function () {
+        var rot = document.getElementById('rot');
+        var btn = document.getElementById('rot-pause');
+        if (!rot || !btn || reduce) return;
+        var words = rot.querySelectorAll('.rot-word');
+        if (words.length < 2) return;
+        var i = 0, steps = 0, max = words.length * 2, timer = null;
+        var icoPause = btn.querySelector('.ico-pause'), icoPlay = btn.querySelector('.ico-play-anim');
+
+        function show(n) {
+          var cur = words[i], next = words[n];
+          cur.classList.add('is-leaving');
+          setTimeout(function () { cur.classList.remove('is-leaving'); cur.classList.add('is-off'); }, 450);
+          next.classList.remove('is-off');
+          i = n;
+        }
+        function tick() {
+          show((i + 1) % words.length);
+          steps++;
+          if (steps >= max) stop(true);
+        }
+        function start() { timer = setInterval(tick, 2500); }
+        function stop(done) {
+          clearInterval(timer); timer = null;
+          if (done) btn.hidden = true;
+        }
+        btn.addEventListener('click', function () {
+          var paused = btn.getAttribute('aria-pressed') === 'true';
+          if (paused) { start(); } else { stop(false); }
+          btn.setAttribute('aria-pressed', paused ? 'false' : 'true');
+          icoPause.style.display = paused ? '' : 'none';
+          icoPlay.style.display = paused ? 'none' : '';
+        });
+        btn.hidden = false;
+        start();
+      })();
+
+      // 2) Barra fija: visible entre el final del hero y el inicio de la sección de descarga.
+      (function () {
+        var bar = document.getElementById('dl-bar');
+        var hero = document.querySelector('header');
+        var dl = document.querySelector('.download');
+        if (!bar || !hero || !dl || !hasIO) return;
+        var heroPassed = false, dlReached = false;
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.target === hero) heroPassed = !e.isIntersecting && e.boundingClientRect.top < 0;
+            else dlReached = e.isIntersecting || e.boundingClientRect.top < 0;
+          });
+          bar.classList.toggle('is-visible', heroPassed && !dlReached);
+        });
+        io.observe(hero);
+        io.observe(dl);
+      })();
+
+      // 3) Aparición suave al hacer scroll. Solo se ocultan elementos si el observador existe
+      //    y no hay movimiento reducido; al terminar se quita la clase para no afectar los hover.
+      (function () {
+        if (!hasIO || reduce) return;
+        var sel = '.video .section-title, .video-frame, .video-link, .intro p, ' +
+          '.specialties .section-title, .specialties .section-lead, .chip, ' +
+          '.services .section-title, .services .section-lead, .service-card, ' +
+          '.how .section-title, .how .section-lead, .how-card, .download-card, .links h2, .link-card';
+        var els = document.querySelectorAll(sel);
+        var grids = ['chips', 'service-grid', 'how-cols', 'link-grid'];
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (!e.isIntersecting) return;
+            var el = e.target;
+            io.unobserve(el);
+            el.classList.add('is-in');
+            var d = parseInt(el.style.getPropertyValue('--rv-d'), 10) || 0;
+            setTimeout(function () {
+              el.classList.remove('rv', 'is-in');
+              el.style.removeProperty('--rv-d');
+            }, d + 650);
+          });
+        }, { rootMargin: '0px 0px -6% 0px', threshold: 0.08 });
+        for (var k = 0; k < els.length; k++) {
+          var el = els[k], p = el.parentNode;
+          for (var g = 0; g < grids.length; g++) {
+            if (p.classList.contains(grids[g])) {
+              var idx = Array.prototype.indexOf.call(p.children, el);
+              el.style.setProperty('--rv-d', Math.min(idx, 8) * 60 + 'ms');
+              break;
+            }
+          }
+          el.classList.add('rv');
+          io.observe(el);
+        }
+        document.documentElement.classList.add('rv-on');
+      })();
+    })();
+  </script>
 
 </body>
 </html>
