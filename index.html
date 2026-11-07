@@ -215,8 +215,41 @@
       display: inline-block; background: var(--primary); color: white;
       font-size: 16px; font-weight: 500; text-decoration: none;
       padding: 13px 30px; border-radius: 12px; transition: background 0.2s;
+      text-align: center; line-height: 1.4; text-wrap: balance;
     }
     .contact-btn:hover { background: var(--primary-dark); }
+    .contact-btn:focus-visible { outline: 3px solid var(--primary-dark); outline-offset: 3px; }
+
+    /* ---------- QUIÉNES SOMOS ---------- */
+    .about { padding: 60px 0; }
+    .about .section-title { margin-bottom: 22px; }
+    .about-text { max-width: 680px; margin: 0 auto; }
+    .about-text p { font-size: 17px; line-height: 1.75; color: var(--text); }
+    .about-text p + p { margin-top: 16px; }
+
+    /* ---------- PREGUNTAS FRECUENTES ---------- */
+    .faq { padding: 60px 0; background: white; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .faq .section-title { margin-bottom: 32px; }
+    .faq-wrap { max-width: 720px; margin: 0 auto; }
+    .faq-group + .faq-group { margin-top: 36px; }
+    .faq-group h3 { font-family: 'DM Serif Display', serif; font-size: 22px; font-weight: 400; color: var(--primary); margin-bottom: 14px; }
+    .faq-list { display: flex; flex-direction: column; gap: 10px; }
+    .faq-item { background: var(--bg); border: 1px solid var(--border); border-radius: 14px; }
+    .faq-item summary {
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      min-height: 56px; padding: 14px 20px; cursor: pointer; list-style: none; border-radius: 14px;
+      font-size: 17px; font-weight: 500; line-height: 1.45; color: var(--text);
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: ''; flex-shrink: 0; width: 9px; height: 9px; margin: -4px 4px 0 0;
+      border-right: 2px solid var(--primary); border-bottom: 2px solid var(--primary);
+      transform: rotate(45deg); transition: transform 0.2s;
+    }
+    .faq-item[open] summary::after { transform: rotate(-135deg); margin-top: 4px; }
+    .faq-item summary:hover { color: var(--primary-dark); }
+    .faq-item summary:focus-visible { outline: 3px solid var(--primary-dark); outline-offset: 2px; }
+    .faq-answer { padding: 0 20px 18px; font-size: 16px; line-height: 1.65; color: var(--text); }
 
     /* ---------- DESCARGA / QR ---------- */
     .download { padding: 64px 0; }
@@ -379,6 +412,10 @@
       header { padding-top: calc(84px + env(safe-area-inset-top)); }
       .video { padding: 48px 0 44px; }
       .how { padding: 48px 0; }
+      .about, .faq { padding: 48px 0; }
+      .contact-btn { padding: 13px 22px; }
+      .faq-item summary { padding: 12px 16px; }
+      .faq-answer { padding: 0 16px 16px; }
       .specialties { padding: 48px 0; }
       .download { padding: 52px 0; }
     }
@@ -478,6 +515,23 @@
       .rv-on .rv { opacity: 1; transform: none; }
     }
   </style>
+  <!-- Mismo texto exacto que la sección #preguntas -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "¿Cuánto cuesta usar CuidaMED?", "acceptedAnswer": { "@type": "Answer", "text": "Descargar la app y crear tu cuenta es gratis. Pagas solo el servicio que agendas, a la tarifa que fija cada profesional." } },
+      { "@type": "Question", "name": "¿Cómo se paga?", "acceptedAnswer": { "@type": "Answer", "text": "Dentro de la app, con MercadoPago. CuidaMED nunca guarda los datos de tu tarjeta." } },
+      { "@type": "Question", "name": "¿Funciona con FONASA o isapre?", "acceptedAnswer": { "@type": "Answer", "text": "Hoy la atención es particular: CuidaMED no tiene convenio con FONASA ni con isapres. Después de la atención, el profesional puede subir la boleta del servicio a la app. Si tu plan de salud o seguro cubre esa prestación, puedes usarla para pedir el reembolso." } },
+      { "@type": "Question", "name": "¿Cómo se verifica a los profesionales?", "acceptedAnswer": { "@type": "Answer", "text": "Cada profesional pasa por una verificación según su profesión: los de salud en el registro de la Superintendencia de Salud, los del área de educación en el registro del MINEDUC, y los cuidadores y otras profesiones sin registro estatal con las credenciales que suben. Mientras revisamos, el perfil se muestra como \"En revisión\"; busca el distintivo \"✓ Verificado\" al elegir. La verificación no garantiza la idoneidad clínica ni la calidad de la atención." } },
+      { "@type": "Question", "name": "¿En qué comunas funciona?", "acceptedAnswer": { "@type": "Answer", "text": "En la mayoría de las regiones del país, según los profesionales inscritos en cada comuna. En la app ves si hay profesionales que atienden en la tuya." } },
+      { "@type": "Question", "name": "¿Cuánto cuesta ofrecer mis servicios?", "acceptedAnswer": { "@type": "Answer", "text": "Crear tu perfil y aparecer en el buscador es gratis. CuidaMED cobra una comisión sobre el valor de cada servicio completado. El plan profesional es opcional: suma visibilidad, baja la comisión y tiene 7 días de prueba gratis si es tu primera suscripción." } },
+      { "@type": "Question", "name": "¿Qué necesito para aparecer en las búsquedas?", "acceptedAnswer": { "@type": "Answer", "text": "Completar tu perfil y conectar tu cuenta de MercadoPago, donde recibes tus pagos." } },
+      { "@type": "Question", "name": "¿Cómo recibo mis pagos?", "acceptedAnswer": { "@type": "Answer", "text": "El pago de cada servicio llega directo a tu cuenta de MercadoPago, con la comisión de CuidaMED y la de MercadoPago por procesar el pago ya descontadas. Los plazos para retirar el dinero son los de tu cuenta de MercadoPago, no los de CuidaMED." } }
+    ]
+  }
+  </script>
   <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
@@ -497,6 +551,7 @@
         <li><a href="#como-funciona">Cómo funciona</a></li>
         <li><a href="#especialidades">Especialidades</a></li>
         <li><a href="#profesionales">Para profesionales</a></li>
+        <li><a href="#preguntas">Preguntas</a></li>
         <li class="nav-cta-item"><a class="nav-cta" href="#descargar">Descargar</a></li>
       </ul>
       <details class="nav-menu" id="nav-menu">
@@ -509,6 +564,7 @@
           <li><a href="#como-funciona">Cómo funciona</a></li>
           <li><a href="#especialidades">Especialidades</a></li>
           <li><a href="#profesionales">Para profesionales</a></li>
+          <li><a href="#preguntas">Preguntas</a></li>
           <li class="nav-cta-item"><a class="nav-cta" href="#descargar">Descargar</a></li>
         </ul>
       </details>
@@ -842,10 +898,72 @@
             <li><span class="num">3</span><span class="txt"><strong>Define tu disponibilidad</strong> y tu zona de atención. Tú decides cuándo y dónde.</span></li>
             <li><span class="num">4</span><span class="txt"><strong>Recibe solicitudes</strong> de pacientes de tu comuna que buscan justo tu especialidad.</span></li>
           </ol>
-          <p class="how-note">Crear tu perfil y aparecer en el buscador es gratis: apareces cuando completas tu perfil y conectas tu cuenta de MercadoPago, donde recibes tus pagos. El Plan Profesional es opcional y te suma más visibilidad. Escríbenos y te contamos los detalles.</p>
+          <p class="how-note">Crear tu perfil y aparecer en el buscador es gratis: apareces cuando completas tu perfil y conectas tu cuenta de MercadoPago, donde recibes tus pagos. El Plan Profesional es opcional y te suma más visibilidad.</p>
           <p style="margin:0 0 18px;"><a href="/manual-profesionales/" style="color:var(--primary-dark);font-weight:600;text-decoration:none;">Lee el manual para profesionales →</a></p>
-          <a class="contact-btn" href="mailto:contacto@cuidamed.cl?subject=Quiero%20ofrecer%20mis%20servicios%20en%20CuidaMED">Contáctanos</a>
-          <p style="font-size:16px;color:var(--muted);margin-top:12px;margin-bottom:0;">O escríbenos directo a <a href="mailto:contacto@cuidamed.cl" style="color:var(--primary-dark);font-weight:600;text-decoration:none;">contacto@cuidamed.cl</a></p>
+          <a class="contact-btn" href="/descargar/profesionales/">Descarga la app y crea tu perfil</a>
+          <p style="font-size:16px;color:var(--muted);margin-top:12px;margin-bottom:0;">¿Tienes dudas? Escríbenos a <a href="mailto:contacto@cuidamed.cl?subject=Quiero%20ofrecer%20mis%20servicios%20en%20CuidaMED" style="color:var(--primary-dark);font-weight:600;text-decoration:none;">contacto@cuidamed.cl</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="quienes-somos" aria-labelledby="quienes-somos-title">
+    <div class="wrap">
+      <h2 class="section-title" id="quienes-somos-title">Hecho en Punta Arenas, para todo Chile</h2>
+      <div class="about-text">
+        <p>CuidaMED nació en Magallanes de algo que muchas familias conocen: necesitar a una enfermera, un kinesiólogo o una educadora en casa y no saber a quién llamar. La búsqueda dependía de recomendaciones de boca en boca, sin forma de saber si la persona estaba titulada ni cuánto cobraba.</p>
+        <p>Por eso creamos una app donde cada profesional pasa por una verificación en su registro oficial o, si su profesión no lo tiene, con sus credenciales, y publica sus servicios y sus tarifas. Las familias eligen con información y pagan de forma segura dentro de la app, y los profesionales independientes encuentran a quienes los necesitan y reciben el pago directo en su cuenta, con una comisión clara y conocida de antemano.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Preguntas frecuentes: <details> nativo, abre y cierra sin JS. El texto debe coincidir
+       exactamente con el JSON-LD FAQPage del <head>; si cambias uno, cambia el otro. -->
+  <section class="faq" id="preguntas" aria-labelledby="preguntas-title">
+    <div class="wrap">
+      <h2 class="section-title" id="preguntas-title">Preguntas frecuentes</h2>
+      <div class="faq-wrap">
+        <div class="faq-group">
+          <h3>Pacientes y familias</h3>
+          <div class="faq-list">
+            <details class="faq-item">
+              <summary>¿Cuánto cuesta usar CuidaMED?</summary>
+              <p class="faq-answer">Descargar la app y crear tu cuenta es gratis. Pagas solo el servicio que agendas, a la tarifa que fija cada profesional.</p>
+            </details>
+            <details class="faq-item">
+              <summary>¿Cómo se paga?</summary>
+              <p class="faq-answer">Dentro de la app, con MercadoPago. CuidaMED nunca guarda los datos de tu tarjeta.</p>
+            </details>
+            <details class="faq-item">
+              <summary>¿Funciona con FONASA o isapre?</summary>
+              <p class="faq-answer">Hoy la atención es particular: CuidaMED no tiene convenio con FONASA ni con isapres. Después de la atención, el profesional puede subir la boleta del servicio a la app. Si tu plan de salud o seguro cubre esa prestación, puedes usarla para pedir el reembolso.</p>
+            </details>
+            <details class="faq-item">
+              <summary>¿Cómo se verifica a los profesionales?</summary>
+              <p class="faq-answer">Cada profesional pasa por una verificación según su profesión: los de salud en el registro de la Superintendencia de Salud, los del área de educación en el registro del MINEDUC, y los cuidadores y otras profesiones sin registro estatal con las credenciales que suben. Mientras revisamos, el perfil se muestra como "En revisión"; busca el distintivo "✓ Verificado" al elegir. La verificación no garantiza la idoneidad clínica ni la calidad de la atención.</p>
+            </details>
+            <details class="faq-item">
+              <summary>¿En qué comunas funciona?</summary>
+              <p class="faq-answer">En la mayoría de las regiones del país, según los profesionales inscritos en cada comuna. En la app ves si hay profesionales que atienden en la tuya.</p>
+            </details>
+          </div>
+        </div>
+        <div class="faq-group">
+          <h3>Profesionales</h3>
+          <div class="faq-list">
+            <details class="faq-item">
+              <summary>¿Cuánto cuesta ofrecer mis servicios?</summary>
+              <p class="faq-answer">Crear tu perfil y aparecer en el buscador es gratis. CuidaMED cobra una comisión sobre el valor de cada servicio completado. El plan profesional es opcional: suma visibilidad, baja la comisión y tiene 7 días de prueba gratis si es tu primera suscripción.</p>
+            </details>
+            <details class="faq-item">
+              <summary>¿Qué necesito para aparecer en las búsquedas?</summary>
+              <p class="faq-answer">Completar tu perfil y conectar tu cuenta de MercadoPago, donde recibes tus pagos.</p>
+            </details>
+            <details class="faq-item">
+              <summary>¿Cómo recibo mis pagos?</summary>
+              <p class="faq-answer">El pago de cada servicio llega directo a tu cuenta de MercadoPago, con la comisión de CuidaMED y la de MercadoPago por procesar el pago ya descontadas. Los plazos para retirar el dinero son los de tu cuenta de MercadoPago, no los de CuidaMED.</p>
+            </details>
+          </div>
         </div>
       </div>
     </div>
@@ -1009,9 +1127,11 @@
         var sel = '.video .section-title, .video-frame, .video-link, ' +
           '.specialties .section-title, .specialties .section-lead, .chip, ' +
           '.services .section-title, .services .section-lead, .service-card, ' +
-          '.how .section-title, .how .section-lead, .how-card, .download-card, .links h2, .link-card';
+          '.how .section-title, .how .section-lead, .how-card, ' +
+          '.about .section-title, .about-text p, .faq .section-title, .faq-group h3, .faq-item, ' +
+          '.download-card, .links h2, .link-card';
         var els = document.querySelectorAll(sel);
-        var grids = ['chips', 'service-grid', 'how-cols', 'link-grid'];
+        var grids = ['chips', 'service-grid', 'how-cols', 'link-grid', 'about-text', 'faq-list'];
         var io = new IntersectionObserver(function (entries) {
           entries.forEach(function (e) {
             if (!e.isIntersecting) return;
