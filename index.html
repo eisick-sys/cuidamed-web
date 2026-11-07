@@ -220,6 +220,20 @@
     .contact-btn:hover { background: var(--primary-dark); }
     .contact-btn:focus-visible { outline: 3px solid var(--primary-dark); outline-offset: 3px; }
 
+    /* ---------- RESEÑAS ---------- */
+    .reviews { padding: 60px 0; border-bottom: 1px solid var(--border); }
+    .review-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; }
+    .review-card { background: white; border: 1px solid var(--border); border-radius: 16px; padding: 22px 24px; display: flex; flex-direction: column; gap: 10px; }
+    .review-stars { color: #A15C07; font-size: 18px; letter-spacing: 2px; line-height: 1; }
+    .review-card blockquote p { font-size: 16px; line-height: 1.6; color: var(--text); }
+    .review-card blockquote .review-title { font-size: 17px; font-weight: 600; margin-bottom: 4px; }
+    .review-card figcaption { margin-top: auto; display: flex; flex-direction: column; font-size: 16px; line-height: 1.5; color: var(--muted); }
+    .review-user { font-weight: 600; color: var(--primary-dark); }
+    .review-more { text-align: center; margin-top: 24px; }
+    .review-link { display: inline-flex; align-items: center; min-height: 44px; font-size: 16px; font-weight: 600; color: var(--primary-dark); text-decoration: none; }
+    .review-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+    .review-link:focus-visible { outline: 3px solid var(--primary-dark); outline-offset: 2px; border-radius: 6px; }
+
     /* ---------- QUIÉNES SOMOS ---------- */
     .about { padding: 60px 0; }
     .about .section-title { margin-bottom: 22px; }
@@ -412,7 +426,7 @@
       header { padding-top: calc(84px + env(safe-area-inset-top)); }
       .video { padding: 48px 0 44px; }
       .how { padding: 48px 0; }
-      .about, .faq { padding: 48px 0; }
+      .about, .faq, .reviews { padding: 48px 0; }
       .contact-btn { padding: 13px 22px; }
       .faq-item summary { padding: 12px 16px; }
       .faq-answer { padding: 0 16px 16px; }
@@ -691,6 +705,42 @@
           <p style="margin:16px 0 0;"><a href="/manual-pacientes/" style="color:var(--primary);font-weight:600;text-decoration:none;">Lee el manual para pacientes →</a></p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Reseñas reales de App Store Chile, copiadas textuales (sin corregir) del feed público de Apple.
+       No inventar ni editar reseñas; si se agregan otras, mismas reglas. -->
+  <section class="reviews" id="resenas" aria-labelledby="resenas-title">
+    <div class="wrap">
+      <h2 class="section-title" id="resenas-title">Lo que dicen en App Store</h2>
+      <p class="section-lead">Reseñas publicadas en App Store, tal como se escribieron.</p>
+      <div class="review-grid">
+        <figure class="review-card">
+          <div class="review-stars" role="img" aria-label="5 de 5 estrellas">★★★★★</div>
+          <blockquote>
+            <p class="review-title">Buen servicio</p>
+            <p>Encontre genial esta aplicación, pude encontrar justo lo que necesitaba de un profesional, recomiendo descargarla</p>
+          </blockquote>
+          <figcaption><span class="review-user">Nativi96o</span><span class="review-meta">App Store · octubre de 2026</span></figcaption>
+        </figure>
+        <figure class="review-card">
+          <div class="review-stars" role="img" aria-label="5 de 5 estrellas">★★★★★</div>
+          <blockquote>
+            <p class="review-title">Excelente app</p>
+            <p>Muy intuitiva, de fácil uso.</p>
+          </blockquote>
+          <figcaption><span class="review-user">Ljcr93</span><span class="review-meta">App Store · octubre de 2026</span></figcaption>
+        </figure>
+        <figure class="review-card">
+          <div class="review-stars" role="img" aria-label="5 de 5 estrellas">★★★★★</div>
+          <blockquote>
+            <p class="review-title">Buena alternativa</p>
+            <p>Una muy buena alternativa para acceder a servicios de salud de forma cómoda, rápida y sencilla.</p>
+          </blockquote>
+          <figcaption><span class="review-user">ElleinP</span><span class="review-meta">App Store · octubre de 2026</span></figcaption>
+        </figure>
+      </div>
+      <p class="review-more"><a class="review-link" href="https://apps.apple.com/cl/app/cuidamed/id6792294512" rel="noopener">Ver en App Store →</a></p>
     </div>
   </section>
 
@@ -1128,10 +1178,11 @@
           '.specialties .section-title, .specialties .section-lead, .chip, ' +
           '.services .section-title, .services .section-lead, .service-card, ' +
           '.how .section-title, .how .section-lead, .how-card, ' +
+          '.reviews .section-title, .reviews .section-lead, .review-card, .review-more, ' +
           '.about .section-title, .about-text p, .faq .section-title, .faq-group h3, .faq-item, ' +
           '.download-card, .links h2, .link-card';
         var els = document.querySelectorAll(sel);
-        var grids = ['chips', 'service-grid', 'how-cols', 'link-grid', 'about-text', 'faq-list'];
+        var grids = ['chips', 'service-grid', 'how-cols', 'link-grid', 'about-text', 'faq-list', 'review-grid'];
         var io = new IntersectionObserver(function (entries) {
           entries.forEach(function (e) {
             if (!e.isIntersecting) return;
